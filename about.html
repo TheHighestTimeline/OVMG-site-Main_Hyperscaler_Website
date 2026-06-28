@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — OVMG Hyperscale Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --cyan: #39BAEB; --teal: #00EDA7; --violet: #4A90E2; --green: #58F2E4; --bg: #040816; --surface: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.10); --text: #ffffff; --text-muted: rgba(255,255,255,0.60); --text-dim: rgba(255,255,255,0.45); }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  .bg-radial { position: fixed; inset: 0; background: linear-gradient(135deg, rgba(74,144,226,0.15) 0%, rgba(11,61,145,0.12) 25%, rgba(4,8,22,0.95) 50%, rgba(57,186,235,0.08) 75%, rgba(0,237,167,0.06) 100%); pointer-events: none; z-index: 0; }
+  
+
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; border-bottom: 1px solid var(--border); background: rgba(4,8,22,0.70); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  
+  .logo-text .sub { font-size: 11px; letter-spacing: 0.35em; color: var(--text-muted); text-transform: uppercase; font-family: 'Syne', sans-serif; }
+  .logo-text .main { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.92); font-family: 'Syne', sans-serif; }
+  .logo-brand { height: 44px; width: auto; max-width: 220px; object-fit: contain; display: block; }
+  @media (max-width: 768px) { .logo-brand { height: 34px; max-width: 180px; } }
+  nav { display: flex; align-items: center; gap: 32px; }
+  nav a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  nav a:hover, nav a.active { color: var(--text); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; border: none; font-family: 'Inter', sans-serif; }
+  .btn-white { background: #ffffff; color: #000000; }
+  .btn-white:hover { background: rgba(255,255,255,0.88); }
+  .btn-outline { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { background: rgba(255,255,255,0.10); }
+
+  main { position: relative; z-index: 1; padding-top: 68px; }
+  .section { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); padding: 20px 0 0; }
+  .breadcrumb a { color: var(--text-dim); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-muted); }
+  .breadcrumb svg { width: 14px; height: 14px; opacity: 0.5; }
+
+  .page-hero { padding: 40px 0 56px; }
+  .page-hero-inner { max-width: 800px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 100px; border: 1px solid rgba(57,186,235,0.25); background: rgba(255,255,255,0.04); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.90); margin-bottom: 28px; font-family: 'Syne', sans-serif; }
+
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 0.96; letter-spacing: -0.02em; margin-bottom: 28px; }
+  .gradient-text { background: linear-gradient(90deg, var(--cyan), var(--teal), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+
+  .lead { font-size: 20px; color: var(--text-muted); line-height: 1.75; max-width: 680px; }
+
+  /* Mission */
+  .mission { margin: 48px 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { border-radius: 28px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(20px); overflow: hidden; padding: 40px; transition: border-color 0.3s; }
+  .card:hover { border-color: rgba(57,186,235,0.25); }
+  .card-cyan { background: linear-gradient(135deg, rgba(57,186,235,0.08), rgba(255,255,255,0.02), rgba(74,144,226,0.08)); border-color: rgba(57,186,235,0.15); }
+  .card-violet { background: linear-gradient(135deg, rgba(74,144,226,0.08), rgba(255,255,255,0.02), rgba(45,212,191,0.08)); border-color: rgba(74,144,226,0.15); }
+
+  .card-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.80); font-family: 'Syne', sans-serif; margin-bottom: 16px; }
+  .card-label.violet { color: rgba(196,181,253,0.80); }
+  .card h2 { font-family: 'Syne', sans-serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; }
+  .card p { color: var(--text-muted); font-size: 16px; line-height: 1.75; }
+
+  /* Values */
+  .section-heading { margin: 64px 0 32px; }
+  .section-heading .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.80); font-family: 'Syne', sans-serif; margin-bottom: 12px; }
+  .section-heading h2 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 0 0 32px; }
+  .value-card { border-radius: 24px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(16px); padding: 32px; transition: all 0.3s; }
+  .value-card:hover { border-color: rgba(57,186,235,0.2); transform: translateY(-2px); }
+  .value-num { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; line-height: 1; margin-bottom: 16px; background: linear-gradient(90deg, var(--cyan), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .value-card h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+  .value-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* Approach */
+  .approach-full { border-radius: 28px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(20px); padding: 48px; margin: 0 0 32px; }
+  .approach-full .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.80); font-family: 'Syne', sans-serif; margin-bottom: 16px; }
+  .approach-full h2 { font-family: 'Syne', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 40px; max-width: 680px; }
+
+  .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .approach-item { padding: 24px; border-radius: 18px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); }
+  .approach-item h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .approach-item p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* Team placeholder */
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0 0 32px; }
+  .team-card { border-radius: 24px; border: 1px solid var(--border); background: var(--surface); padding: 28px; text-align: center; transition: all 0.3s; }
+  .team-card:hover { border-color: rgba(57,186,235,0.2); transform: translateY(-2px); }
+  .team-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, rgba(57,186,235,0.3), rgba(74,144,226,0.3)); border: 2px solid var(--border); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; }
+  .team-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .team-role { font-size: 13px; color: var(--text-dim); }
+
+  .cta-banner { margin: 32px 0 96px; padding: 56px; border-radius: 32px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .cta-banner h2 { font-family: 'Syne', sans-serif; font-size: clamp(24px, 3vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 560px; }
+
+  .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text); }
+
+  @media (max-width: 1024px) { .team-grid { grid-template-columns: repeat(2, 1fr); } .approach-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .mobile-menu-btn { display: block; }
+    .mission { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .approach-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-banner { flex-direction: column; padding: 36px 24px; }
+    .card { padding: 28px; }
+    .approach-full { padding: 28px; }
+  }
+
+  /* Mobile menu overlay */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(4,8,22,0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .mobile-overlay.open { display: flex; }
+  .mobile-overlay a {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    padding: 10px 24px;
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .mobile-overlay a:hover, .mobile-overlay a.active { color: #58D0FF; }
+  .mobile-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 8px;
+  }
+  @media (max-width: 768px) {
+    .header-inner .btn-white { display: none; }
+    .logo-text .sub { font-size: 10px; letter-spacing: 0.25em; }
+    .logo-text .main { font-size: 13px; }
+    
+    .header-inner { height: 58px; padding: 0 16px; }
+    main { padding-top: 58px; }
+  }
+
+
+  .logo-mark { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #39BAEB, #00EDA7, #4A90E2); box-shadow: 0 0 32px rgba(57,186,235,0.35); flex-shrink: 0; }
+  @media (max-width: 768px) { .logo-mark { width: 34px; height: 34px; border-radius: 10px; } }
+
+
+  /* Mouse ripple effect */
+  .ripple-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+</style>
+</head>
+<body>
+
+<div class="bg-radial"></div>
+<canvas id="rippleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/ovmg-header-logo.png" alt="OneVibe Media Group" class="logo-brand">
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="platform.html">Platform</a>
+      <a href="netzero.html">NetZero</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact.html" class="btn btn-white">Strategic Review</a>
+    <button class="mobile-menu-btn" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-overlay" id="mobileMenu">
+  <button class="mobile-close" aria-label="Close menu">
+    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="platform.html">Platform</a>
+  <a href="netzero.html">NetZero</a>
+  <a href="projects.html">Projects</a>
+  <a href="about.html" class="active">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="margin-top:12px;padding:12px 28px;border-radius:100px;background:#fff;color:#000;font-size:15px;">Strategic Review</a>
+</div>
+
+<main>
+  <div class="section">
+    <div class="breadcrumb fade-up">
+      <a href="index.html">Home</a>
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      <span>About Us</span>
+    </div>
+
+    <div class="page-hero fade-up delay-1">
+      <div class="page-hero-inner">
+        <h1>
+          Infrastructure built on<br>
+          <span class="gradient-text">conviction, not compromise.</span>
+        </h1>
+        <p class="lead">OneVibe Media Group is a hyperscale infrastructure platform built by people who believe the next generation of compute deserves a better foundation — one where power, site, connectivity, and sustainability are designed together from day one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="section">
+    <div class="mission">
+      <div class="card card-cyan fade-up delay-1">
+        <h2>To make hyperscale infrastructure more accessible, more sustainable, and more certain.</h2>
+        <p>The largest computing platforms in the world need infrastructure that can grow with them — and they need partners who can deliver it without the delays, misalignments, and compromises that define traditional real estate development.</p>
+      </div>
+
+      <div class="card card-violet fade-up delay-2">
+        <h2>Integrated delivery means no gaps between teams, no handoffs, no surprises.</h2>
+        <p>OVMG was founded on a simple belief: the coordination gaps between site, power, connectivity, and sustainability teams are the primary reason hyperscale projects run late. We built a platform to close those gaps permanently.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div class="section">
+    <div class="section-heading fade-up">
+      <h2>What drives every decision we make.</h2>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card fade-up delay-1">
+        <div class="value-num">01</div>
+        <h3>Clarity over complexity</h3>
+        <p>Infrastructure is complex enough. Our job is to make it legible — to our clients, our partners, and ourselves. We present information clearly, make commitments we can keep, and never obscure risk.</p>
+      </div>
+
+      <div class="value-card fade-up delay-2">
+        <div class="value-num">02</div>
+        <h3>Sustainability by design</h3>
+        <p>NetZero is not a reporting exercise — it's an engineering constraint. Every OVMG project is designed with sustainability as a foundational input, not a feature added at the end.</p>
+      </div>
+
+      <div class="value-card fade-up delay-3">
+        <div class="value-num">03</div>
+        <h3>Scale with integrity</h3>
+        <p>Growing the portfolio matters, but not at the expense of execution quality. We take on projects we can deliver well, and we hold ourselves accountable to the same standards at every scale.</p>
+      </div>
+
+      <div class="value-card fade-up delay-1">
+        <div class="value-num">04</div>
+        <h3>Long-term thinking</h3>
+        <p>Hyperscale infrastructure lasts decades. We make decisions that serve the 20-year life of a campus, not just the 20-month development cycle. That means choosing the right site, the right power strategy, and the right partners.</p>
+      </div>
+
+      <div class="value-card fade-up delay-2">
+        <div class="value-num">05</div>
+        <h3>Partnership over transaction</h3>
+        <p>The best hyperscale outcomes come from deep, long-term relationships between developer and operator. We invest in understanding our clients' needs before we propose solutions.</p>
+      </div>
+
+      <div class="value-card fade-up delay-3">
+        <div class="value-num">06</div>
+        <h3>Continuous improvement</h3>
+        <p>Every project teaches us something. We build feedback loops into our delivery process so that each campus we develop makes the next one faster, more efficient, and more reliable.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Approach -->
+  <div class="section">
+    <div class="approach-full fade-up">
+      <h2>A delivery model built around parallel execution, not sequential handoffs.</h2>
+      <div class="approach-grid">
+        <div class="approach-item">
+          <h4>Site-first thinking</h4>
+          <p>We start every project by understanding the site in full — its constraints, its opportunities, and its fit with the client's long-term infrastructure strategy.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Parallel workstreams</h4>
+          <p>Site, power, connectivity, and sustainability planning run simultaneously from day one. This eliminates the sequencing delays that cause most infrastructure projects to slip.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Single accountability</h4>
+          <p>One team owns the entire delivery. No handoffs between consultants, no blame between specialisms. OVMG is accountable for the outcome, not just our part of it.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Phased capital commitment</h4>
+          <p>Our phased delivery model allows clients to commit capital incrementally while maintaining full visibility on end-state delivery timelines and costs.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Transparent reporting</h4>
+          <p>We provide clients with the data they need — power, carbon, connectivity, schedule — in a format they can use directly in their own operational and ESG reporting.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Post-delivery support</h4>
+          <p>Our relationship with a campus doesn't end at handover. OVMG provides ongoing monitoring, optimisation, and reporting support throughout the asset's life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- CTA -->
+  <div class="section">
+    <div class="cta-banner fade-up">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(126,241,245,0.80);font-family:'Syne',sans-serif;margin-bottom:16px;">Work With Us</div>
+        <h2>We're building something that matters. If that resonates, let's talk.</h2>
+      </div>
+      <a href="contact.html" class="btn btn-white" style="white-space:nowrap;flex-shrink:0;">
+        Get in Touch
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.animationPlayState = 'running'; });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    if (el.getBoundingClientRect().top > window.innerHeight) { el.style.animationPlayState = 'paused'; observer.observe(el); }
+  });
+
+  // Mobile menu toggle
+  var mobileBtn = document.querySelector('.mobile-menu-btn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', function() { mobileMenu.classList.add('open'); });
+  }
+  var mobileClose = document.querySelector('.mobile-close');
+  if (mobileClose && mobileMenu) {
+    mobileClose.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+  }
+  // Close menu when clicking a link
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    });
+  }
+
+
+  
+
+
+  // Ripple effect
+  (function(){
+    var c = document.getElementById('rippleCanvas');
+    if(!c) return;
+    var ctx = c.getContext('2d');
+    var ripples = [];
+    var last = 0;
+    function sz(){ c.width = window.innerWidth; c.height = window.innerHeight; }
+    sz();
+    window.addEventListener('resize', sz);
+    document.addEventListener('mousemove', function(e){
+      var now = Date.now();
+      if(now - last > 80){
+        ripples.push({x:e.clientX, y:e.clientY, r:0, o:0.3});
+        last = now;
+      }
+    });
+    function draw(){
+      ctx.clearRect(0,0,c.width,c.height);
+      for(var i=ripples.length-1;i>=0;i--){
+        var rp = ripples[i];
+        rp.r += 1.5;
+        rp.o -= 0.004;
+        if(rp.o <= 0){ ripples.splice(i,1); continue; }
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(74,144,226,' + rp.o + ')';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+</script>
+</body>
+</html>
