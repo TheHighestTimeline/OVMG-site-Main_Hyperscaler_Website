@@ -3,211 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — OVMG Hyperscale Infrastructure</title>
+<title>Projects | OVMG Hyperscale Infrastructure</title>
+<meta name="description" content="OVMG's active data center campuses and pipeline. Kingsboro NC and Salem SC, plus the NetZero Campus Model and Data Center in a Box. Capacity, acreage, and power path for each site.">
+<meta property="og:title" content="OVMG Projects | Active Campuses and Pipeline">
+<meta property="og:description" content="Active campuses, strategic pipeline, built to grow.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --cyan: #39BAEB; --teal: #00EDA7; --violet: #4A90E2; --green: #58F2E4; --bg: #040816; --surface: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.10); --text: #ffffff; --text-muted: rgba(255,255,255,0.60); --text-dim: rgba(255,255,255,0.45); }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-
-  .bg-radial { position: fixed; inset: 0; background: linear-gradient(135deg, rgba(74,144,226,0.15) 0%, rgba(11,61,145,0.12) 25%, rgba(4,8,22,0.95) 50%, rgba(57,186,235,0.08) 75%, rgba(0,237,167,0.06) 100%); pointer-events: none; z-index: 0; }
-  
-
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; border-bottom: 1px solid var(--border); background: rgba(4,8,22,0.70); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-  .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  
-  .logo-text .sub { font-size: 11px; letter-spacing: 0.35em; color: var(--text-muted); text-transform: uppercase; font-family: 'Syne', sans-serif; }
-  .logo-text .main { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.92); font-family: 'Syne', sans-serif; }
-  .logo-brand { height: 44px; width: auto; max-width: 220px; object-fit: contain; display: block; }
-  @media (max-width: 768px) { .logo-brand { height: 34px; max-width: 180px; } }
-  nav { display: flex; align-items: center; gap: 32px; }
-  nav a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-  nav a:hover, nav a.active { color: var(--text); }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; border: none; font-family: 'Inter', sans-serif; }
-  .btn-white { background: #ffffff; color: #000000; }
-  .btn-white:hover { background: rgba(255,255,255,0.88); }
-  .btn-outline { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { background: rgba(255,255,255,0.10); }
-
-  main { position: relative; z-index: 1; padding-top: 68px; }
-  .section { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-
-  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); padding: 20px 0 0; }
-  .breadcrumb a { color: var(--text-dim); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--text-muted); }
-  .breadcrumb svg { width: 14px; height: 14px; opacity: 0.5; }
-
-  .page-hero { padding: 40px 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
-  .page-hero-left .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 100px; border: 1px solid rgba(57,186,235,0.25); background: rgba(255,255,255,0.04); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.90); margin-bottom: 24px; font-family: 'Syne', sans-serif; }
-
-  h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 0.96; letter-spacing: -0.02em; }
-  .gradient-text { background: linear-gradient(90deg, var(--cyan), var(--teal), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
-
-  .page-hero-right p { font-size: 18px; color: var(--text-muted); line-height: 1.75; margin-bottom: 28px; }
-  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
-
-  /* Anchor nav */
-  .anchor-nav { display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 18px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(12px); margin: 0 0 32px; }
-  .anchor-pill { padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.2s; }
-  .anchor-pill:hover { color: var(--text); border-color: rgba(57,186,235,0.3); }
-
-  /* Filter bar */
-  .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 18px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(12px); margin: 0 0 28px; align-items: center; }
-  .filter-icon { display: flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 13px; color: rgba(255,255,255,0.65); }
-  .filter-pill { padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 13px; color: rgba(255,255,255,0.65); cursor: pointer; transition: all 0.2s; }
-  .filter-pill:hover, .filter-pill.active { color: var(--text); border-color: rgba(57,186,235,0.3); background: rgba(57,186,235,0.06); }
-
-  /* Cards */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 0 0 32px; }
-
-  .card { border-radius: 28px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(20px); overflow: hidden; padding: 40px; transition: border-color 0.3s; }
-  .card:hover { border-color: rgba(57,186,235,0.25); }
-  .card-cyan { background: linear-gradient(135deg, rgba(57,186,235,0.08), rgba(255,255,255,0.02), rgba(74,144,226,0.08)); border-color: rgba(57,186,235,0.15); }
-  .card-emerald { background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(255,255,255,0.02), rgba(57,186,235,0.06)); border-color: rgba(52,211,153,0.15); }
-
-  .card-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.80); font-family: 'Syne', sans-serif; margin-bottom: 16px; }
-  .card-label.green { color: rgba(134,239,172,0.80); }
-
-  .card h2 { font-family: 'Syne', sans-serif; font-size: clamp(22px, 2.5vw, 36px); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 16px; }
-  .card h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-  .card p { color: var(--text-muted); font-size: 16px; line-height: 1.75; }
-
-  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-  .tag { padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 13px; color: rgba(255,255,255,0.70); }
-
-  /* Projects grid */
-  .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0 0 32px; }
-
-  .project-card { border-radius: 24px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(16px); padding: 28px; transition: all 0.3s; }
-  .project-card:hover { border-color: rgba(57,186,235,0.3); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-
-  .project-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-  .project-icon svg { width: 22px; height: 22px; }
-
-  .project-status-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .project-type { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(126,241,245,0.70); font-family: 'Syne', sans-serif; }
-  .status-badge { padding: 4px 12px; border-radius: 100px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 11px; color: rgba(255,255,255,0.65); }
-  .status-badge.active { border-color: rgba(88,242,228,0.3); color: rgba(134,239,172,0.9); background: rgba(88,242,228,0.06); }
-  .status-badge.pipeline { border-color: rgba(57,186,235,0.3); color: rgba(126,241,245,0.9); background: rgba(57,186,235,0.06); }
-
-  .project-card h3 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .project-region { font-size: 13px; color: var(--text-dim); margin-bottom: 16px; }
-  .project-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-
-  /* Approach section */
-  .approach-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 0 0 32px; }
-
-  .approach-card { border-radius: 28px; border: 1px solid var(--border); background: var(--surface); padding: 40px; }
-  .approach-card .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.80); font-family: 'Syne', sans-serif; margin-bottom: 16px; }
-  .approach-card h2 { font-family: 'Syne', sans-serif; font-size: clamp(20px, 2vw, 28px); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 20px; }
-
-  .approach-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
-  .approach-item:last-child { border-bottom: none; }
-  .approach-item h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-  .approach-item p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-
-  .pipeline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
-  .pipeline-item { padding: 20px; border-radius: 18px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; }
-
-  .section-heading { margin: 48px 0 28px; }
-  .section-heading .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(126,241,245,0.80); font-family: 'Syne', sans-serif; margin-bottom: 12px; }
-  .section-heading h2 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-
-  .cta-banner { margin: 32px 0 96px; padding: 56px; border-radius: 32px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-  .cta-banner h2 { font-family: 'Syne', sans-serif; font-size: clamp(24px, 3vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 560px; }
-
-  .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp 0.7s ease forwards; }
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.3s; }
-  .delay-4 { animation-delay: 0.4s; }
-
-  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text); }
-
-  @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 768px) {
-    nav { display: none; }
-    .mobile-menu-btn { display: block; }
-    .page-hero { grid-template-columns: 1fr; }
-    .two-col { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .approach-row { grid-template-columns: 1fr; }
-    .pipeline-grid { grid-template-columns: 1fr; }
-    .cta-banner { flex-direction: column; padding: 36px 24px; }
-    .card { padding: 28px; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --midnight:#05070B; --graphite:#0E1524; --panel:rgba(255,255,255,0.03);
+    --border:rgba(216,220,226,0.10); --border-lit:rgba(30,107,255,0.40);
+    --electric:#1E6BFF; --sky:#44C7FF; --violet:#7C3AED;
+    --stone:#D8DCE2; --infra:#8A93A6; --white:#FFFFFF;
   }
+  html{scroll-behavior:smooth;}
+  body{background:var(--midnight);color:var(--stone);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased;}
+  .serif{font-family:'Cinzel',Georgia,serif;}
+  a{color:inherit;}
+  .bg-depth{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(1000px 600px at 82% -5%, rgba(124,58,237,0.10), transparent 60%),radial-gradient(820px 520px at 70% 90%, rgba(30,107,255,0.10), transparent 62%),var(--midnight);}
+  canvas#ripple{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-  /* Mobile menu overlay */
-  .mobile-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: rgba(4,8,22,0.97);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+  header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;background:transparent;}
+  header.scrolled{background:rgba(5,7,11,0.92);border-bottom:1px solid var(--border);backdrop-filter:saturate(140%);}
+  .header-inner{max-width:1240px;margin:0 auto;padding:0 28px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .logo-brand{height:38px;width:auto;max-width:210px;object-fit:contain;display:block;}
+  nav{display:flex;align-items:center;gap:30px;}
+  nav a{font-size:13.5px;color:var(--stone);text-decoration:none;opacity:.82;transition:opacity .2s;font-weight:500;}
+  nav a:hover{opacity:1;}
+  nav a.active{opacity:1;color:var(--white);border-bottom:2px solid var(--electric);padding-bottom:3px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;border:none;font-family:'Inter',sans-serif;}
+  .btn-primary{background:var(--electric);color:var(--white);box-shadow:0 0 26px rgba(30,107,255,0.30);}
+  .btn-primary:hover{background:#2f79ff;}
+  .btn-ghost{border:1px solid var(--border);color:var(--stone);background:rgba(255,255,255,0.02);}
+  .btn-ghost:hover{border-color:var(--border-lit);color:var(--white);}
+  .mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--white);}
+
+  main{position:relative;z-index:1;padding-top:70px;}
+  .section{max-width:1240px;margin:0 auto;padding:0 28px;}
+
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--infra);padding:24px 0 0;font-family:'IBM Plex Mono',monospace;}
+  .breadcrumb a{color:var(--infra);text-decoration:none;}
+  .breadcrumb svg{width:13px;height:13px;opacity:.5;}
+
+  .page-hero{padding:34px 0 20px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.24em;color:var(--sky);margin-bottom:20px;text-transform:uppercase;}
+  h1{font-family:'Cinzel',Georgia,serif;font-size:clamp(34px,4.6vw,58px);font-weight:700;line-height:1.08;letter-spacing:-0.01em;color:var(--white);max-width:760px;}
+  h1 em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .page-hero p{font-size:16.5px;color:var(--infra);line-height:1.75;max-width:600px;margin-top:20px;}
+
+  .proof{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(14,21,36,0.55),rgba(14,21,36,0.2));margin-top:34px;}
+  .proof-inner{max-width:1240px;margin:0 auto;padding:36px 28px 22px;}
+  .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .stat{text-align:center;padding:6px 12px;border-right:1px solid var(--border);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'IBM Plex Mono',monospace;font-size:clamp(28px,3.2vw,40px);font-weight:500;color:var(--white);line-height:1.05;}
+  .stat .num span{color:var(--sky);}
+  .stat .lbl{font-size:11.5px;color:var(--infra);margin-top:8px;text-transform:uppercase;letter-spacing:0.09em;}
+  .proof-note{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--infra);margin-top:20px;}
+
+  .sec{padding:80px 0;}
+  .sec-label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.2em;color:var(--sky);margin-bottom:14px;text-transform:uppercase;}
+  h2.sec-h{font-size:clamp(26px,3.4vw,40px);font-weight:900;color:var(--white);line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px;}
+  h2.sec-h em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .sec-sub{color:var(--infra);font-size:15px;line-height:1.75;max-width:660px;}
+
+  /* Featured campus cards */
+  .campus{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;margin-top:20px;}
+  .campus.flip .render{order:2;}
+  .campus + .campus{margin-top:56px;}
+  .render{aspect-ratio:16/10;border-radius:12px;overflow:hidden;border:1px solid var(--border-lit);background:#0A0F1A;}
+  .render img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 6s ease;}
+  .render:hover img{transform:scale(1.05);}
+  .status{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:#7CFFB2;border:1px solid rgba(124,255,178,0.4);border-radius:4px;padding:4px 10px;margin-bottom:14px;text-transform:uppercase;}
+  .posline{font-size:12.5px;color:var(--sky);font-family:'IBM Plex Mono',monospace;margin-bottom:10px;}
+  .campus h3{font-size:25px;font-weight:900;color:var(--white);margin-bottom:12px;}
+  .specrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--sky);margin-bottom:14px;letter-spacing:0.03em;}
+  .campus p{font-size:14px;line-height:1.7;color:var(--infra);margin-bottom:18px;}
+  .tagrow{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--stone);border:1px solid var(--border);border-radius:4px;padding:4px 9px;letter-spacing:0.04em;text-transform:uppercase;}
+
+  /* Site Ledger */
+  .ledger-wrap{margin-top:40px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--graphite);}
+  .ledger-head{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:10px;}
+  .ledger-head .t{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--white);letter-spacing:0.08em;text-transform:uppercase;}
+  .ledger-head .asof{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--infra);}
+  .ledger-scroll{overflow-x:auto;}
+  table.ledger{width:100%;border-collapse:collapse;min-width:860px;}
+  table.ledger th{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--infra);text-align:left;padding:16px 20px;border-bottom:1px solid var(--border);font-weight:500;}
+  table.ledger td{padding:20px 20px;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--stone);vertical-align:top;}
+  table.ledger tr:last-child td{border-bottom:none;}
+  table.ledger tbody tr{transition:background .2s;}
+  table.ledger tbody tr:hover{background:rgba(30,107,255,0.05);}
+  .site-name{font-weight:700;color:var(--white);font-size:15px;}
+  .site-sub{font-size:11.5px;color:var(--infra);margin-top:3px;font-family:'IBM Plex Mono',monospace;}
+  td .mono{font-family:'IBM Plex Mono',monospace;color:var(--sky);font-size:13px;}
+  .lstatus{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;padding:4px 9px;border-radius:4px;text-transform:uppercase;white-space:nowrap;}
+  .lstatus.active{color:#7CFFB2;border:1px solid rgba(124,255,178,0.4);background:rgba(124,255,178,0.06);}
+  .lstatus.framework{color:var(--sky);border:1px solid rgba(68,199,255,0.4);background:rgba(68,199,255,0.06);}
+  .lstatus.pipeline{color:#C4B5FD;border:1px solid rgba(124,58,237,0.45);background:rgba(124,58,237,0.08);}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;padding:16px 26px;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--infra);}
+  .legend span{display:flex;align-items:center;gap:7px;}
+  .legend i{width:8px;height:8px;border-radius:2px;display:inline-block;}
+
+  /* Modular cards row */
+  .mods{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}
+  .mod{background:rgba(14,21,36,0.6);border:1px solid var(--border);border-radius:12px;padding:28px;transition:transform .25s,border-color .25s;}
+  .mod:hover{transform:translateY(-4px);border-color:var(--border-lit);}
+  .mod .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .mod-type{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--infra);}
+  .mod h3{font-size:20px;font-weight:800;color:var(--white);margin-bottom:6px;}
+  .mod .loc{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--infra);margin-bottom:12px;}
+  .mod p{font-size:13.5px;color:var(--infra);line-height:1.7;}
+
+  /* Approach */
+  .approach{border:1px solid var(--border);background:var(--panel);border-radius:16px;padding:44px;margin-top:24px;}
+  .approach h2{font-size:clamp(22px,2.6vw,32px);font-weight:900;color:var(--white);line-height:1.2;letter-spacing:-0.01em;margin-bottom:34px;max-width:640px;}
+  .agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .aitem{padding:24px;border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,0.2);}
+  .aitem .n{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sky);margin-bottom:12px;}
+  .aitem h4{font-size:15.5px;font-weight:700;color:var(--white);margin-bottom:8px;}
+  .aitem p{font-size:13px;color:var(--infra);line-height:1.65;}
+
+  /* Closing */
+  .closing{text-align:center;padding:96px 0;background:radial-gradient(620px 320px at 50% 100%, rgba(30,107,255,0.14), transparent 70%);}
+  .closing h2{font-family:'Cinzel',Georgia,serif;font-size:clamp(28px,3.6vw,40px);color:var(--white);margin-bottom:28px;font-weight:700;}
+  .closing h2 em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  footer{background:#030408;border-top:1px solid var(--border);padding:60px 0 28px;position:relative;z-index:1;}
+  .fgrid{max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px;}
+  .fgrid h5{color:var(--white);font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:15px;}
+  .fgrid a,.fgrid p{display:block;color:var(--infra);font-size:13px;line-height:2;text-decoration:none;}
+  .fgrid a:hover{color:var(--stone);}
+  .ftag{color:var(--stone)!important;font-size:13.5px!important;margin:10px 0 14px;max-width:280px;line-height:1.6!important;}
+  .fbottom{max-width:1240px;margin:40px auto 0;padding:20px 28px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11.5px;color:var(--infra);}
+  .fbottom a{color:var(--infra);text-decoration:none;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  .mobile-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,7,11,0.98);flex-direction:column;align-items:center;justify-content:center;gap:18px;}
+  .mobile-overlay.open{display:flex;}
+  .mobile-overlay a{font-size:22px;font-weight:700;color:var(--stone);text-decoration:none;padding:8px 24px;}
+  .mobile-close{position:absolute;top:18px;right:20px;background:none;border:none;color:#fff;cursor:pointer;padding:8px;}
+
+  @media (max-width:960px){
+    .campus,.campus.flip{grid-template-columns:1fr;}
+    .campus.flip .render{order:0;}
+    .proof-grid,.agrid,.mods,.fgrid{grid-template-columns:1fr 1fr;}
   }
-  .mobile-overlay.open { display: flex; }
-  .mobile-overlay a {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    text-decoration: none;
-    padding: 10px 24px;
-    transition: color 0.2s;
-    letter-spacing: -0.01em;
+  @media (max-width:768px){
+    nav{display:none;} .mobile-menu-btn{display:block;}
+    .header-inner .btn-primary{display:none;}
+    .proof-grid,.agrid,.mods{grid-template-columns:1fr;}
+    .stat{border-right:none;border-bottom:1px solid var(--border);padding-bottom:16px;}
+    .stat:last-child{border-bottom:none;}
+    .approach{padding:28px;}
+    .fgrid{grid-template-columns:1fr 1fr;}
   }
-  .mobile-overlay a:hover, .mobile-overlay a.active { color: #58D0FF; }
-  .mobile-close {
-    position: absolute;
-    top: 18px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 8px;
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;} .render img{transition:none;}
   }
-  @media (max-width: 768px) {
-    .header-inner .btn-white { display: none; }
-    .logo-text .sub { font-size: 10px; letter-spacing: 0.25em; }
-    .logo-text .main { font-size: 13px; }
-    
-    .header-inner { height: 58px; padding: 0 16px; }
-    main { padding-top: 58px; }
-  }
-
-
-  .logo-mark { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #39BAEB, #00EDA7, #4A90E2); box-shadow: 0 0 32px rgba(57,186,235,0.35); flex-shrink: 0; }
-  @media (max-width: 768px) { .logo-mark { width: 34px; height: 34px; border-radius: 10px; } }
-
-
-  /* Mouse ripple effect */
-  .ripple-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-
 </style>
 </head>
 <body>
+<div class="bg-depth"></div>
+<canvas id="ripple"></canvas>
 
-<div class="bg-radial"></div>
-<canvas id="rippleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
-
-
-<header>
+<header id="hdr">
   <div class="header-inner">
-    <a href="index.html" class="logo">
-      <img src="images/ovmg-header-logo.png" alt="OneVibe Media Group" class="logo-brand">
-    </a>
+    <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="platform.html">Platform</a>
@@ -216,283 +183,228 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a href="contact.html" class="btn btn-white">Strategic Review</a>
-    <button class="mobile-menu-btn" aria-label="Menu">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-    </button>
+    <a href="contact.html" class="btn btn-primary">Start a Strategic Review</a>
+    <button class="mobile-menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
   </div>
 </header>
 
 <div class="mobile-overlay" id="mobileMenu">
-  <button class="mobile-close" aria-label="Close menu">
-    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  </button>
-  <a href="index.html">Home</a>
-  <a href="platform.html">Platform</a>
-  <a href="netzero.html">NetZero</a>
-  <a href="projects.html" class="active">Projects</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" style="margin-top:12px;padding:12px 28px;border-radius:100px;background:#fff;color:#000;font-size:15px;">Strategic Review</a>
+  <button class="mobile-close" aria-label="Close"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <a href="index.html">Home</a><a href="platform.html">Platform</a><a href="netzero.html">NetZero</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:10px;">Start a Strategic Review</a>
 </div>
 
 <main>
   <div class="section">
-    <div class="breadcrumb fade-up">
-      <a href="index.html">Home</a>
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-      <span>Projects</span>
-    </div>
-
-    <div class="page-hero">
-      <div class="page-hero-left fade-up delay-1">
-        <h1>
-          Active projects,<br>
-          strategic pipeline,<br>
-          <span class="gradient-text">built to grow.</span>
-        </h1>
-      </div>
-
-      <div class="page-hero-right fade-up delay-2">
-        <p>This is a living portfolio — strong featured projects at the top, modular cards below, and a structure that expands as OVMG adds new opportunities across regions and asset types.</p>
-        <div class="btn-row">
-          <a href="#featured" class="btn btn-white">View Featured Project <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="contact.html" class="btn btn-outline">Talk to OVMG</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="anchor-nav fade-up delay-3">
-      <a href="#featured" class="anchor-pill">Featured</a>
-      <a href="#active" class="anchor-pill">Active Projects</a>
-      <a href="#pipeline" class="anchor-pill">Pipeline</a>
-      <a href="#approach" class="anchor-pill">Approach</a>
+    <div class="breadcrumb"><a href="index.html">Home</a><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><span>Projects</span></div>
+    <div class="page-hero reveal in">
+      <div class="eyebrow">OVMG // Portfolio</div>
+      <h1>Active campuses, strategic <em>pipeline</em>.</h1>
+      <p>Active campuses at the top, a growing pipeline behind them, and a structure that expands as OVMG adds new opportunities across regions and asset types.</p>
     </div>
   </div>
 
-  <!-- Featured project -->
-  <div class="section" id="featured">
-    <div class="two-col">
-      <div class="card card-cyan fade-up delay-1">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;">
-          <div class="card-label" style="margin-bottom:0;">Featured Project</div>
-          <span style="font-size:13px;color:var(--text-dim);">North Carolina</span>
-        </div>
-        <h2>Kingsboro NetZero Data Center Campus</h2>
-        <p>A flagship phased, behind-the-meter AI and hyperscale compute campus located in Kingsboro Industrial Park, Edgecombe County, North Carolina. Approximately 360 buildable acres with 300 MW initial phase capacity, targeting 600 MW firm power and designed to scale up to 900 MW. Powered by on-site natural gas turbine generation with Carbon Sponge carbon capture integrated from day one.</p>
-        <div class="tag-row">
-          <span class="tag">300 MW Phase 1</span>
-          <span class="tag">Up to 900 MW</span>
-          <span class="tag">NetZero from Day 1</span>
-          <span class="tag">Shovel Ready</span>
-          <span class="tag">Behind-the-Meter</span>
+  <!-- Proof band -->
+  <section class="proof">
+    <div class="proof-inner">
+      <div class="proof-grid reveal">
+        <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Active Campuses</div></div>
+        <div class="stat"><div class="num" data-count="432" data-suffix="+">0</div><div class="lbl">Acres Secured</div></div>
+        <div class="stat"><div class="num" data-count="900" data-prefix="Up to " data-suffix=" MW">0</div><div class="lbl">Single-Site Capacity</div></div>
+        <div class="stat"><div class="num" data-count="1000" data-suffix=" MWh">0</div><div class="lbl">On-Site Storage</div></div>
+      </div>
+      <div class="proof-note">Portfolio figures as of July 2026.</div>
+    </div>
+  </section>
+
+  <!-- Featured campuses -->
+  <section class="sec" style="padding-bottom:40px;">
+    <div class="section">
+      <div class="reveal"><div class="sec-label">Featured Campuses</div>
+      <h2 class="sec-h">Two Carolinas campuses, powered on <em>site</em>.</h2></div>
+
+      <div class="campus">
+        <div class="render reveal"><img src="images/kingsboro-site.png" alt="Kingsboro AI data campus, 300 MW net-zero AI-optimized shovel-ready site, North Carolina"></div>
+        <div class="reveal">
+          <span class="status">● Campus Active</span>
+          <div class="posline">EDGECOMBE COUNTY, NORTH CAROLINA</div>
+          <h3>Kingsboro NetZero Data Center Campus</h3>
+          <div class="specrow">360 ACRES | 300 MW P1 | UP TO 900 MW | CARBON CAPTURE</div>
+          <p>A flagship phased, behind-the-meter AI and hyperscale compute campus in Kingsboro Industrial Park. Approximately 360 buildable acres with 300 MW initial phase capacity, targeting 600 MW firm power and designed to scale up to 900 MW. Powered by on-site natural gas turbine generation with Carbon Sponge carbon capture integrated from day one.</p>
+          <div class="tagrow"><span class="tag">300 MW Phase 1</span><span class="tag">Up to 900 MW</span><span class="tag">Behind-the-Meter</span><span class="tag">NetZero from Day 1</span><span class="tag">Site Control Secured</span></div>
         </div>
       </div>
 
-      <div class="card fade-up delay-2">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;">
-          <div class="card-label" style="margin-bottom:0;color:rgba(74,144,226,0.80);">Active Project</div>
-          <span style="font-size:13px;color:var(--text-dim);">South Carolina</span>
-        </div>
-        <h2>Salem AI Data & Energy Campus</h2>
-        <p>A phased AI data, power generation, and energy storage campus located near Salem Road in Bennettsville, Marlboro County, South Carolina. Approximately 72 acres with up to 10 phases, targeting 250 MWac / 1,000 MWh with integrated natural gas generation and battery energy storage.</p>
-        <div class="tag-row">
-          <span class="tag">250 MWac Target</span>
-          <span class="tag">1,000 MWh Storage</span>
-          <span class="tag">Up to 10 Phases</span>
-          <span class="tag">AI-Ready</span>
+      <div class="campus flip">
+        <div class="render reveal"><img src="images/salem-site.jpg" alt="Salem AI data and energy campus render, 250 MWac target across up to 10 phases, South Carolina"></div>
+        <div class="reveal">
+          <span class="status">● Campus Active</span>
+          <div class="posline">MARLBORO COUNTY, SOUTH CAROLINA</div>
+          <h3>Salem AI Data &amp; Energy Campus</h3>
+          <div class="specrow">72 ACRES | UP TO 10 PHASES | 250 MWac | 1,000 MWh</div>
+          <p>A phased AI data, power generation, and energy storage campus near Salem Road in Bennettsville. Approximately 72 acres with up to 10 phases, targeting 250 MWac / 1,000 MWh with integrated natural gas generation and battery energy storage.</p>
+          <div class="tagrow"><span class="tag">250 MWac Target</span><span class="tag">1,000 MWh Storage</span><span class="tag">Up to 10 Phases</span><span class="tag">AI-Ready</span></div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;margin-bottom:64px;">
-      <div class="fade-up delay-3" style="border-radius:20px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:#0a0f1a;display:flex;align-items:center;justify-content:center;">
-        <img src="images/kingsboro-site.png" alt="Kingsboro AI Data Campus — 300 MW Net-Zero AI-Optimized Shovel-Ready Site" style="width:100%;height:100%;display:block;object-fit:contain;object-position:center center;">
-      </div>
-      <div class="fade-up delay-4" style="border-radius:20px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:#0a0f1a;display:flex;align-items:center;justify-content:center;">
-        <img src="images/bennettsville-campus.png" alt="Bennettsville AI Data and Energy Campus — 3.0 GW, 10 Phases, South Carolina" style="width:100%;height:100%;display:block;object-fit:contain;object-position:center center;">
-      </div>
-    </div>
-  </div>
+  <!-- Site Ledger -->
+  <section class="sec" style="padding-top:0;">
+    <div class="section">
+      <div class="reveal"><div class="sec-label">The Site Ledger</div>
+      <h2 class="sec-h">Every opportunity, on one <em>sheet</em>.</h2>
+      <p class="sec-sub">The full portfolio at a glance: capacity, land, power path, and stage for each site. Read it like a deal sheet. It grows as OVMG originates new opportunities.</p></div>
 
-  <!-- Filter + Grid -->
-  <div class="section" id="active">
-
-    <div class="section-heading fade-up" style="margin-top:0;">
-      <h2>A modular project grid built for growth.</h2>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card fade-up delay-1">
-        <div class="project-icon">
-          <svg fill="none" stroke="rgba(57,186,235,0.9)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <div class="ledger-wrap reveal">
+        <div class="ledger-head">
+          <div class="t">OVMG Portfolio Ledger</div>
+          <div class="asof">As of July 2026</div>
         </div>
-        <div class="project-status-row">
-          <span class="project-type">Campus</span>
-          <span class="status-badge active">Active</span>
+        <div class="ledger-scroll">
+          <table class="ledger">
+            <thead>
+              <tr><th>Site</th><th>Location</th><th>Status</th><th>Target Capacity</th><th>Land</th><th>Power Path</th><th>Stage</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="site-name">Kingsboro</div><div class="site-sub">NetZero Campus</div></td>
+                <td>Edgecombe County, NC</td>
+                <td><span class="lstatus active">Active</span></td>
+                <td><span class="mono">300 MW P1 → 900 MW</span></td>
+                <td><span class="mono">360 ac</span></td>
+                <td>On-site gas turbine + carbon capture, behind-the-meter</td>
+                <td>Pre-NTP, site control secured</td>
+              </tr>
+              <tr>
+                <td><div class="site-name">Salem</div><div class="site-sub">AI Data &amp; Energy Campus</div></td>
+                <td>Marlboro County, SC</td>
+                <td><span class="lstatus active">Active</span></td>
+                <td><span class="mono">250 MWac / 1,000 MWh</span></td>
+                <td><span class="mono">72 ac</span></td>
+                <td>Integrated natural gas generation + battery storage</td>
+                <td>Phased, up to 10 phases</td>
+              </tr>
+              <tr>
+                <td><div class="site-name">NetZero Campus Model</div><div class="site-sub">Repeatable Framework</div></td>
+                <td>Multi-Region</td>
+                <td><span class="lstatus framework">Framework</span></td>
+                <td><span class="mono">Scalable</span></td>
+                <td><span class="mono">Per site</span></td>
+                <td>Renewable alignment + phased carbon pathway</td>
+                <td>Active framework</td>
+              </tr>
+              <tr>
+                <td><div class="site-name">Data Center in a Box</div><div class="site-sub">Modular Deployment</div></td>
+                <td>Mobile</td>
+                <td><span class="lstatus pipeline">Pipeline</span></td>
+                <td><span class="mono">Enterprise-grade</span></td>
+                <td><span class="mono">Self-contained</span></td>
+                <td>Solar-powered, fully self-contained</td>
+                <td>Deployable in days</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <h3>Kingsboro</h3>
-        <div class="project-region">Edgecombe County, North Carolina</div>
-        <p>360-acre behind-the-meter AI compute campus. 300 MW Phase 1, scaling to 900 MW. On-site gas turbine generation with carbon capture. Pre-NTP, site control secured.</p>
-      </div>
-
-      <div class="project-card fade-up delay-2">
-        <div class="project-icon">
-          <svg fill="none" stroke="rgba(74,144,226,0.9)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        </div>
-        <div class="project-status-row">
-          <span class="project-type">Campus</span>
-          <span class="status-badge active">Active</span>
-        </div>
-        <h3>Salem</h3>
-        <div class="project-region">Marlboro County, South Carolina</div>
-        <p>72-acre phased AI data, power generation, and energy storage campus. Up to 10 phases targeting 250 MWac / 1,000 MWh with integrated gas generation and battery storage.</p>
-      </div>
-
-      <div class="project-card fade-up delay-3">
-        <div class="project-icon">
-          <svg fill="none" stroke="rgba(88,242,228,0.9)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18A9 9 0 0012 3z"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <div class="project-status-row">
-          <span class="project-type">Framework</span>
-          <span class="status-badge active">Active</span>
-        </div>
-        <h3>NetZero Campus Model</h3>
-        <div class="project-region">Multi-Region</div>
-        <p>A repeatable sustainability-led infrastructure model built around transparency, reporting, and net-zero readiness.</p>
-      </div>
-
-      <div class="project-card fade-up delay-4">
-        <div class="project-icon">
-          <svg fill="none" stroke="rgba(45,212,191,0.9)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-        </div>
-        <div class="project-status-row">
-          <span class="project-type">MODULAR</span>
-          <span class="status-badge pipeline">Pipeline</span>
-        </div>
-        <h3>Data Center In A Box</h3>
-        <div class="project-region">Mobile</div>
-        <p>Our modular Data Center in a Box delivers enterprise-grade compute power anywhere in the world — fully self-contained, solar-powered, and deployable in days, not years.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pipeline + Approach -->
-  <div class="section" id="pipeline">
-    <div class="approach-row">
-      <div class="card fade-up delay-1">
-        <div class="label" style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(126,241,245,0.80);font-family:'Syne',sans-serif;margin-bottom:16px;">Pipeline</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(20px,2vw,30px);font-weight:700;line-height:1.2;letter-spacing:-0.01em;margin-bottom:20px;">A growing portfolio of hyperscale infrastructure opportunities.</h2>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.75;margin-bottom:28px;">OVMG's project pipeline spans active developments, early-stage opportunities, and framework-level infrastructure positioning across multiple regions.</p>
-        <div class="pipeline-grid">
-          <div class="pipeline-item">Pipeline opportunities</div>
-          <div class="pipeline-item">Active developments</div>
-          <div class="pipeline-item">Delivered case studies</div>
+        <div class="legend">
+          <span><i style="background:#7CFFB2"></i>Active campus</span>
+          <span><i style="background:#44C7FF"></i>Framework</span>
+          <span><i style="background:#7C3AED"></i>Pipeline</span>
         </div>
       </div>
 
-      <div class="card card-emerald fade-up delay-2" id="approach">
-        <div class="label" style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(134,239,172,0.80);font-family:'Syne',sans-serif;margin-bottom:16px;">Approach</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(20px,2vw,30px);font-weight:700;line-height:1.2;letter-spacing:-0.01em;margin-bottom:24px;">Positioning each project with clarity, credibility, and market relevance.</h2>
-        <div style="display:flex;flex-direction:column;gap:20px;">
-          <div class="approach-item">
-            <h4>Lead with the opportunity</h4>
-            <p>Present each data center project through its strongest commercial advantages, including power, location, scale, timing, and development readiness.</p>
-          </div>
-          <div class="approach-item">
-            <h4>Build market confidence</h4>
-            <p>Frame the story around credible inputs, strategic partnerships, and real project fundamentals that help buyers, investors, and partners take the opportunity seriously.</p>
-          </div>
-          <div class="approach-item">
-            <h4>Match the message to the audience</h4>
-            <p>Tailor the positioning for compute offtakers, capital partners, developers, and strategic stakeholders so each project is communicated in the most relevant way.</p>
-          </div>
+      <!-- Modular / framework cards -->
+      <div class="mods">
+        <div class="mod reveal">
+          <div class="row"><span class="mod-type">Framework</span><span class="lstatus framework">Active</span></div>
+          <h3>NetZero Campus Model</h3>
+          <div class="loc">Multi-Region</div>
+          <p>A repeatable sustainability-led infrastructure model built around transparency, reporting, and net-zero readiness.</p>
+        </div>
+        <div class="mod reveal">
+          <div class="row"><span class="mod-type">Modular</span><span class="lstatus pipeline">Pipeline</span></div>
+          <h3>Data Center in a Box</h3>
+          <div class="loc">Mobile</div>
+          <p>Our modular Data Center in a Box delivers enterprise-grade compute power anywhere in the world, fully self-contained, solar-powered, and deployable in days, not years.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- CTA -->
-  <div class="section">
-    <div class="cta-banner fade-up">
-      <div>
-        <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(126,241,245,0.80);font-family:'Syne',sans-serif;margin-bottom:16px;">Next Step</div>
-        <h2>Present the strongest infrastructure opportunities with clarity and momentum.</h2>
+  <!-- Approach -->
+  <section class="sec" style="padding-top:0;">
+    <div class="section">
+      <div class="approach reveal">
+        <div class="sec-label">Approach</div>
+        <h2>Positioning each project with clarity, credibility, and market relevance.</h2>
+        <div class="agrid">
+          <div class="aitem"><div class="n">01</div><h4>Lead with the opportunity</h4><p>Present each data center project through its strongest commercial advantages, including power, location, scale, timing, and development readiness.</p></div>
+          <div class="aitem"><div class="n">02</div><h4>Build market confidence</h4><p>Frame the story around credible inputs, strategic partnerships, and real project fundamentals that help buyers, investors, and partners take the opportunity seriously.</p></div>
+          <div class="aitem"><div class="n">03</div><h4>Match the message to the audience</h4><p>Tailor the positioning for compute offtakers, capital partners, developers, and strategic stakeholders so each project is communicated in the most relevant way.</p></div>
+        </div>
       </div>
-      <a href="contact.html" class="btn btn-white" style="white-space:nowrap;flex-shrink:0;">
-        Talk to OVMG
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
     </div>
-  </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="closing">
+    <div class="section reveal">
+      <h2 class="serif">Present the strongest infrastructure opportunities with <em>momentum</em>.</h2>
+      <a href="contact.html" class="btn btn-primary">Talk to OVMG <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </section>
 </main>
 
+<footer>
+  <div class="fgrid">
+    <div>
+      <img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" style="height:34px;margin-bottom:6px;">
+      <p class="ftag">Hyperscale infrastructure, originated, funded, and built.</p>
+      <p>P.O. Box 1001 Mayport Rd #330832<br>Atlantic Beach, FL 32233</p>
+    </div>
+    <div><h5>Company</h5><a href="about.html">About</a><a href="platform.html">Platform</a><a href="netzero.html">NetZero</a><a href="contact.html">Contact</a></div>
+    <div><h5>Sites</h5><a href="projects.html">Kingsboro, NC</a><a href="projects.html">Salem, SC</a><a href="projects.html">All Projects</a></div>
+    <div><h5>Connect</h5><a href="contact.html">Start a Strategic Review</a><a href="mailto:tanner@onevibemediagroup.com">tanner@onevibemediagroup.com</a><a href="mailto:carsten@onevibemediagroup.com">carsten@onevibemediagroup.com</a></div>
+  </div>
+  <div class="fbottom">
+    <span>© 2026 OneVibeMediaGroup, Inc. All rights reserved.</span>
+    <span><a href="privacy.html">Privacy</a></span>
+  </div>
+</footer>
+
 <script>
-  // Filter pills removed
+  var hdr=document.getElementById('hdr');
+  function onScroll(){ if(window.scrollY>80) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled'); }
+  window.addEventListener('scroll',onScroll); onScroll();
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.animationPlayState = 'running'; });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => {
-    if (el.getBoundingClientRect().top > window.innerHeight) { el.style.animationPlayState = 'paused'; observer.observe(el); }
-  });
-
-  // Mobile menu toggle
-  var mobileBtn = document.querySelector('.mobile-menu-btn');
-  var mobileMenu = document.getElementById('mobileMenu');
-  if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', function() { mobileMenu.classList.add('open'); });
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce){ document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12});
+    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){io.observe(el);});
   }
-  var mobileClose = document.querySelector('.mobile-close');
-  if (mobileClose && mobileMenu) {
-    mobileClose.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+  function animateCount(el){
+    var target=parseFloat(el.getAttribute('data-count'));
+    var prefix=el.getAttribute('data-prefix')||'',suffix=el.getAttribute('data-suffix')||'';
+    if(reduce){el.textContent=prefix+target.toLocaleString()+suffix;return;}
+    var dur=1200,t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);var val=Math.floor((0.5-Math.cos(p*Math.PI)/2)*target);
+      el.textContent=prefix+val.toLocaleString()+suffix;if(p<1)requestAnimationFrame(step);else el.textContent=prefix+target.toLocaleString()+suffix;}
+    requestAnimationFrame(step);
   }
-  // Close menu when clicking a link
-  if (mobileMenu) {
-    mobileMenu.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
-    });
-  }
+  var cio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){animateCount(e.target);cio.unobserve(e.target);}});},{threshold:0.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
 
+  var mb=document.querySelector('.mobile-menu-btn'),mm=document.getElementById('mobileMenu');
+  if(mb&&mm){mb.addEventListener('click',function(){mm.classList.add('open');});}
+  var mc=document.querySelector('.mobile-close');
+  if(mc&&mm){mc.addEventListener('click',function(){mm.classList.remove('open');});}
+  if(mm){mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});}
 
-  
-
-
-  // Ripple effect
-  (function(){
-    var c = document.getElementById('rippleCanvas');
-    if(!c) return;
-    var ctx = c.getContext('2d');
-    var ripples = [];
-    var last = 0;
-    function sz(){ c.width = window.innerWidth; c.height = window.innerHeight; }
-    sz();
-    window.addEventListener('resize', sz);
-    document.addEventListener('mousemove', function(e){
-      var now = Date.now();
-      if(now - last > 80){
-        ripples.push({x:e.clientX, y:e.clientY, r:0, o:0.3});
-        last = now;
-      }
-    });
-    function draw(){
-      ctx.clearRect(0,0,c.width,c.height);
-      for(var i=ripples.length-1;i>=0;i--){
-        var rp = ripples[i];
-        rp.r += 1.5;
-        rp.o -= 0.004;
-        if(rp.o <= 0){ ripples.splice(i,1); continue; }
-        ctx.beginPath();
-        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
-        ctx.strokeStyle = 'rgba(74,144,226,' + rp.o + ')';
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      }
-      requestAnimationFrame(draw);
-    }
-    draw();
-  })();
-
+  (function(){var c=document.getElementById('ripple');if(!c||reduce)return;var ctx=c.getContext('2d');var rp=[],last=0;
+   function sz(){c.width=innerWidth;c.height=innerHeight;}sz();addEventListener('resize',sz);
+   addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
+   function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
 </script>
 </body>
 </html>
