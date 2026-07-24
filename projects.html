@@ -9,7 +9,7 @@
 <meta property="og:description" content="Active campuses, strategic pipeline, built to grow.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   :root{
@@ -20,7 +20,7 @@
   }
   html{scroll-behavior:smooth;}
   body{background:var(--midnight);color:var(--stone);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased;}
-  .serif{font-family:'Cinzel',Georgia,serif;}
+  .serif{font-family:'Inter',sans-serif;}
   a{color:inherit;}
   .bg-depth{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(1000px 600px at 82% -5%, rgba(124,58,237,0.10), transparent 60%),radial-gradient(820px 520px at 70% 90%, rgba(30,107,255,0.10), transparent 62%),var(--midnight);}
   canvas#ripple{position:fixed;inset:0;z-index:0;pointer-events:none;}
@@ -50,7 +50,7 @@
 
   .page-hero{padding:34px 0 20px;}
   .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.24em;color:var(--sky);margin-bottom:20px;text-transform:uppercase;}
-  h1{font-family:'Cinzel',Georgia,serif;font-size:clamp(34px,4.6vw,58px);font-weight:700;line-height:1.08;letter-spacing:-0.01em;color:var(--white);max-width:760px;}
+  h1{font-family:'Inter',sans-serif;font-size:clamp(34px,4.6vw,58px);font-weight:700;line-height:1.08;letter-spacing:-0.01em;color:var(--white);max-width:760px;}
   h1 em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
   .page-hero p{font-size:16.5px;color:var(--infra);line-height:1.75;max-width:600px;margin-top:20px;}
 
@@ -129,7 +129,7 @@
 
   /* Closing */
   .closing{text-align:center;padding:96px 0;background:radial-gradient(620px 320px at 50% 100%, rgba(30,107,255,0.14), transparent 70%);}
-  .closing h2{font-family:'Cinzel',Georgia,serif;font-size:clamp(28px,3.6vw,40px);color:var(--white);margin-bottom:28px;font-weight:700;}
+  .closing h2{font-family:'Inter',sans-serif;font-size:clamp(28px,3.6vw,40px);color:var(--white);margin-bottom:28px;font-weight:700;}
   .closing h2 em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
 
   footer{background:#030408;border-top:1px solid var(--border);padding:60px 0 28px;position:relative;z-index:1;}
@@ -166,6 +166,16 @@
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none;} .render img{transition:none;}
   }
+
+  /* v2 refinements: professional heading font, no clipping */
+  h1,h1.ph,h1.hero-h1{font-family:'Inter',sans-serif !important;font-weight:900 !important;line-height:1.16 !important;letter-spacing:-0.02em !important;}
+  h1.hero-h1{font-size:clamp(32px,4.2vw,52px) !important;}
+  h1.ph{font-size:clamp(30px,3.9vw,48px) !important;}
+  .closing h2{font-family:'Inter',sans-serif !important;font-weight:900 !important;line-height:1.22 !important;font-size:clamp(26px,3.4vw,38px) !important;}
+  h1 em,h2 em,.sec-h em{padding:0 .06em .05em 0;}
+  .stat .num{font-size:clamp(26px,2.8vw,36px) !important;white-space:nowrap;}
+  .eyebrow{margin-bottom:16px;}
+
 </style>
 </head>
 <body>
@@ -210,7 +220,7 @@
       <div class="proof-grid reveal">
         <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Active Campuses</div></div>
         <div class="stat"><div class="num" data-count="432" data-suffix="+">0</div><div class="lbl">Acres Secured</div></div>
-        <div class="stat"><div class="num" data-count="900" data-prefix="Up to " data-suffix=" MW">0</div><div class="lbl">Single-Site Capacity</div></div>
+        <div class="stat"><div class="num" data-count="900" data-suffix=" MW">0</div><div class="lbl">Max Single-Site Capacity</div></div>
         <div class="stat"><div class="num" data-count="1000" data-suffix=" MWh">0</div><div class="lbl">On-Site Storage</div></div>
       </div>
       <div class="proof-note">Portfolio figures as of July 2026.</div>
@@ -360,7 +370,7 @@
     <div>
       <img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" style="height:34px;margin-bottom:6px;">
       <p class="ftag">Hyperscale infrastructure, originated, funded, and built.</p>
-      <p>P.O. Box 1001 Mayport Rd #330832<br>Atlantic Beach, FL 32233</p>
+      
     </div>
     <div><h5>Company</h5><a href="about.html">About</a><a href="platform.html">Platform</a><a href="netzero.html">NetZero</a><a href="contact.html">Contact</a></div>
     <div><h5>Sites</h5><a href="projects.html">Bennettsville, SC</a><a href="projects.html">Kingsboro, NC</a><a href="projects.html">All Projects</a></div>

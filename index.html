@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   :root{
@@ -21,7 +21,7 @@
   }
   html{scroll-behavior:smooth;}
   body{background:var(--midnight);color:var(--stone);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased;}
-  .serif{font-family:'Cinzel',Georgia,serif;}
+  .serif{font-family:'Inter',sans-serif;}
   .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
   a{color:inherit;}
 
@@ -55,14 +55,14 @@
   .section{max-width:1240px;margin:0 auto;padding:0 28px;}
 
   /* Hero */
-  .hero{position:relative;padding:76px 0 40px;overflow:clip;}
+  .hero{position:relative;padding:54px 0 56px;overflow:clip;}
   .geo{position:absolute;top:-90px;right:-120px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(124,58,237,0.14);animation:spin 240s linear infinite;pointer-events:none;}
   .geo::before,.geo::after{content:"";position:absolute;inset:64px;border-radius:50%;border:1px solid rgba(68,199,255,0.10);}
   .geo::after{inset:150px;border-color:rgba(216,220,226,0.07);}
   @keyframes spin{to{transform:rotate(360deg);}}
   .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.24em;color:var(--sky);margin-bottom:22px;text-transform:uppercase;}
   .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center;}
-  h1.hero-h1{font-family:'Cinzel',Georgia,serif;font-weight:700;color:var(--white);font-size:clamp(38px,5vw,62px);line-height:1.08;letter-spacing:-0.01em;}
+  h1.hero-h1{font-family:'Inter',sans-serif;font-weight:700;color:var(--white);font-size:clamp(38px,5vw,62px);line-height:1.08;letter-spacing:-0.01em;}
   h1.hero-h1 em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
   .hero-right p{font-size:17px;color:var(--infra);line-height:1.75;margin-bottom:28px;max-width:520px;}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
@@ -144,7 +144,7 @@
 
   /* Closing */
   .closing{text-align:center;padding:104px 0;background:radial-gradient(620px 320px at 50% 100%, rgba(30,107,255,0.14), transparent 70%);}
-  .closing h2{font-family:'Cinzel',Georgia,serif;font-size:clamp(30px,4vw,42px);color:var(--white);margin-bottom:30px;font-weight:700;}
+  .closing h2{font-family:'Inter',sans-serif;font-size:clamp(30px,4vw,42px);color:var(--white);margin-bottom:30px;font-weight:700;}
   .closing h2 em{font-style:italic;background:linear-gradient(90deg,var(--sky),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent;}
 
   /* Footer */
@@ -188,6 +188,41 @@
     .reveal{opacity:1;transform:none;transition:none;}
     .render img{transition:none;}
   }
+
+  /* v2 refinements: professional heading font, no clipping */
+  h1,h1.ph,h1.hero-h1{font-family:'Inter',sans-serif !important;font-weight:900 !important;line-height:1.16 !important;letter-spacing:-0.02em !important;}
+  h1.hero-h1{font-size:clamp(32px,4.2vw,52px) !important;}
+  h1.ph{font-size:clamp(30px,3.9vw,48px) !important;}
+  .closing h2{font-family:'Inter',sans-serif !important;font-weight:900 !important;line-height:1.22 !important;font-size:clamp(26px,3.4vw,38px) !important;}
+  h1 em,h2 em,.sec-h em{padding:0 .06em .05em 0;}
+  .stat .num{font-size:clamp(26px,2.8vw,36px) !important;white-space:nowrap;}
+  .eyebrow{margin-bottom:16px;}
+
+  /* Portfolio snapshot panel (hero) */
+  .snap{background:rgba(14,21,36,0.6);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .snap-head{display:flex;justify-content:space-between;padding:15px 22px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--sky);text-transform:uppercase;}
+  .snap-head span:last-child{color:var(--infra);}
+  .snap-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;border-bottom:1px solid var(--border);text-decoration:none;transition:background .2s;}
+  .snap-row:hover{background:rgba(30,107,255,0.06);}
+  .sname{font-size:15px;font-weight:700;color:var(--white);}
+  .sloc{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--infra);margin-top:4px;letter-spacing:.03em;}
+  .sspec{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--sky);text-align:right;line-height:1.6;white-space:nowrap;}
+  .schip{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:4px 9px;border-radius:4px;color:var(--sky);border:1px solid rgba(68,199,255,.45);white-space:nowrap;text-transform:uppercase;}
+  .schip.active{color:#7CFFB2;border-color:rgba(124,255,178,.4);}
+  .schip.pipe{color:#C4B5FD;border-color:rgba(124,58,237,.5);}
+  .snap-more{display:block;padding:15px 22px;font-size:13px;color:var(--sky);text-decoration:none;font-weight:600;transition:color .2s;}
+  .snap-more:hover{color:var(--white);}
+
+  /* Static partner grid */
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px;}
+  .pcard{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:36px 22px;background:rgba(14,21,36,0.6);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:transform .25s,border-color .25s;}
+  .pcard:hover{transform:translateY(-4px);border-color:var(--border-lit);}
+  .pcard img{height:64px;max-width:82%;object-fit:contain;}
+  .pcard span{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--infra);letter-spacing:.05em;transition:color .2s;}
+  .pcard:hover span{color:var(--sky);}
+  @media (max-width:900px){.pgrid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.pgrid{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -224,22 +259,31 @@
         <div class="reveal in">
           <div class="eyebrow">OVMG // Hyperscale Development Platform</div>
           <h1 class="hero-h1">The network that builds, funds, and <em>places</em> the next era of scale.</h1>
-        </div>
-        <div class="hero-right reveal in">
-          <p>OVMG delivers hyperscale-ready infrastructure. We combine site strategy, power alignment, connectivity, and net-zero positioning into one integrated platform, backed by a partner network that has delivered over 50 GW.</p>
+          <p class="hero-sub" style="margin-top:22px;">OVMG delivers hyperscale-ready infrastructure. We combine site strategy, power alignment, connectivity, and net-zero positioning into one integrated platform, backed by a partner network that has delivered over 50 GW.</p>
           <div class="hero-actions">
             <a href="platform.html" class="btn btn-primary">Explore the Platform <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="projects.html" class="btn btn-ghost">View the Sites</a>
           </div>
-          <div class="route" style="margin-top:30px;">
-            <svg viewBox="0 0 380 220" aria-hidden="true">
-              <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#44C7FF"/><stop offset="1" stop-color="#1E6BFF"/></linearGradient></defs>
-              <path d="M40 180 C 110 170, 150 120, 195 100 S 300 55, 338 40" fill="none" stroke="url(#lg)" stroke-width="1.6" class="draw"/>
-              <circle cx="195" cy="100" r="6" fill="#1E6BFF" class="pulse"/><circle cx="195" cy="100" r="13" fill="none" stroke="rgba(30,107,255,.4)" class="pulse"/>
-              <circle cx="338" cy="40" r="6" fill="#44C7FF" class="pulse" style="animation-delay:.7s"/><circle cx="338" cy="40" r="13" fill="none" stroke="rgba(68,199,255,.4)" class="pulse" style="animation-delay:.7s"/>
-              <text x="140" y="122" fill="#D8DCE2" font-family="IBM Plex Mono" font-size="10">BENNETTSVILLE, SC</text>
-              <text x="255" y="32" fill="#D8DCE2" font-family="IBM Plex Mono" font-size="10">KINGSBORO, NC</text>
-            </svg>
+        </div>
+        <div class="reveal in">
+          <div class="snap">
+            <div class="snap-head"><span>Portfolio Snapshot</span><span>July 2026</span></div>
+            <a class="snap-row" href="projects.html">
+              <div><div class="sname">Bennettsville AI/HPC Campus</div><div class="sloc">Marlboro County, SC</div></div>
+              <div class="sspec">250 MWac<br>1,000 MWh</div>
+              <span class="schip">Flagship</span>
+            </a>
+            <a class="snap-row" href="projects.html">
+              <div><div class="sname">Kingsboro NetZero Campus</div><div class="sloc">Edgecombe County, NC</div></div>
+              <div class="sspec">300 MW P1<br>Up to 900 MW</div>
+              <span class="schip active">Active</span>
+            </a>
+            <a class="snap-row" href="projects.html">
+              <div><div class="sname">Data Center in a Box</div><div class="sloc">Modular / Mobile</div></div>
+              <div class="sspec">Solar-powered<br>Deploys in days</div>
+              <span class="schip pipe">Pipeline</span>
+            </a>
+            <a class="snap-more" href="projects.html">View the full Site Ledger <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-1px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
@@ -252,7 +296,7 @@
       <div class="proof-grid reveal">
         <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Active Campuses</div></div>
         <div class="stat"><div class="num" data-count="432" data-suffix="+">0</div><div class="lbl">Acres Secured</div></div>
-        <div class="stat"><div class="num" data-count="900" data-prefix="Up to " data-suffix=" MW">0</div><div class="lbl">Single-Site Capacity</div></div>
+        <div class="stat"><div class="num" data-count="900" data-suffix=" MW">0</div><div class="lbl">Max Single-Site Capacity</div></div>
         <div class="stat"><div class="num" data-count="1000" data-suffix=" MWh">0</div><div class="lbl">On-Site Storage</div></div>
       </div>
       <div class="proof-note">Portfolio figures as of July 2026.</div>
@@ -340,10 +384,14 @@
       <h2 class="sec-h">Powered by the <em>network</em>.</h2>
       <p class="sec-sub">And we are adding partners, capital relationships, and sites all the time.</p>
     </div>
-    <div class="marq-outer reveal">
-      <div class="marq">
-        <img src="images/logo-velatech.png" alt="Vela Tech"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises">
-        <img src="images/logo-velatech.png" alt="Vela Tech"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises">
+    <div class="section">
+      <div class="pgrid reveal">
+        <a class="pcard" href="https://velatech.com" target="_blank" rel="noopener"><img src="images/logo-velatech.png" alt="Vela Tech"><span>velatech.com</span></a>
+        <a class="pcard" href="https://solr.energy" target="_blank" rel="noopener"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><span>solr.energy</span></a>
+        <a class="pcard" href="https://energystoragesolutionsllc.com" target="_blank" rel="noopener"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><span>energystoragesolutionsllc.com</span></a>
+        <a class="pcard" href="https://tlgconsulting.tech" target="_blank" rel="noopener"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"><span>tlgconsulting.tech</span></a>
+        <a class="pcard" href="https://brightsun.solar" target="_blank" rel="noopener"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><span>brightsun.solar</span></a>
+        <a class="pcard" href="https://ramgellc.com" target="_blank" rel="noopener"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises"><span>ramgellc.com</span></a>
       </div>
     </div>
   </section>
@@ -374,7 +422,7 @@
     <div>
       <img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" style="height:34px;margin-bottom:6px;">
       <p class="ftag">Hyperscale infrastructure, originated, funded, and built.</p>
-      <p>P.O. Box 1001 Mayport Rd #330832<br>Atlantic Beach, FL 32233</p>
+      
     </div>
     <div><h5>Company</h5><a href="about.html">About</a><a href="platform.html">Platform</a><a href="netzero.html">NetZero</a><a href="contact.html">Contact</a></div>
     <div><h5>Sites</h5><a href="projects.html">Bennettsville, SC</a><a href="projects.html">Kingsboro, NC</a><a href="projects.html">All Projects</a></div>
