@@ -332,6 +332,22 @@
   .cstep{min-height:58vh!important;}
   .cstep:first-child{min-height:auto!important;justify-content:flex-start!important;padding-top:2px!important;}
   @media(prefers-reduced-motion:reduce){.chiron-track{animation:none!important;}}
+  /* net plus text-parallax scroll */
+  .tpc{padding:0 12px;}
+  .tpc-track{position:relative;height:150vh;}
+  .tpc-sticky{position:sticky;top:12px;height:calc(100vh - 24px);overflow:hidden;border-radius:26px;background-size:cover;background-position:center;z-index:0;will-change:transform;}
+  .tpc-sticky video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .tpc-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,8,12,.34),rgba(6,8,12,.30) 42%,rgba(6,8,12,.62));pointer-events:none;}
+  .tpc-overlay{position:absolute;inset:0;background:rgba(6,8,12,.72);opacity:0;pointer-events:none;}
+  .tpc-copy{position:absolute;left:0;top:0;height:100vh;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:0 20px;will-change:transform,opacity;z-index:2;pointer-events:none;}
+  .tpc-copy .px-sub{font-size:clamp(15px,2.2vw,28px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sky);margin-bottom:14px;}
+  .tpc-copy .px-title{font-size:clamp(38px,7vw,84px);font-weight:900;letter-spacing:-0.02em;line-height:1.02;max-width:15ch;text-shadow:0 6px 40px rgba(0,0,0,.45);}
+  .tpc-body{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:22px;padding:56px 24px 92px;}
+  @media(min-width:880px){.tpc-body{grid-template-columns:4fr 8fr;gap:44px;}}
+  .tpc-body .pnum{font-family:'IBM Plex Mono',monospace;font-size:22px;color:var(--sky);}
+  .tpc-body h3{font-size:clamp(24px,3vw,34px);font-weight:800;color:var(--white);margin:8px 0 0;}
+  .tpc-body p{font-size:clamp(17px,1.35vw,21px);color:var(--infra);line-height:1.62;margin:0 0 22px;}
+  @media(prefers-reduced-motion:reduce){.tpc-track{height:auto;}.tpc-sticky{position:relative;height:52vh;top:0;transform:none!important;}.tpc-copy{position:relative;height:auto;padding:44px 20px;opacity:1!important;transform:none!important;}}
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -359,7 +375,7 @@
     </div>
   </div></section>
 
-  <section class="sec" style="padding-top:0;"><div class="section"><div class="deck-top reveal"><div><div class="sec-label">Our Commitments</div><h2 class="sec-h" style="margin-bottom:0;">Four ideas that define every <em>project</em>.</h2><p class="sec-sub" style="margin-top:12px;">Drag, or use the arrows.</p></div><div class="deck-arrows"><button class="deck-arrow" id="deckPrev" aria-label="Previous"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="deck-arrow" id="deckNext" aria-label="Next"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div></div><div class="deck-stage" id="deckStage" style="margin-top:26px;"><div class="deck-card"><div class="dnum">01</div><h3>Water Stewardship</h3><p>We minimize water use and work to restore water locally as our projects develop, treating every watershed we touch as something to give back to, not just draw from.</p></div><div class="deck-card"><div class="dnum">02</div><h3>Energy Recovery</h3><p>Advanced thermal conversion technologies recover and reuse energy on site, turning what most facilities waste as heat into a resource that powers the campus and the community.</p></div><div class="deck-card"><div class="dnum">03</div><h3>Sustainable Design</h3><p>Green building certification and sustainable design standards guide every campus, from the materials we choose to the way a site sits within its landscape.</p></div><div class="deck-card"><div class="dnum">04</div><h3>Carbon Sequestration</h3><p>We work toward full carbon sequestration across the project lifecycle, designing for a footprint that trends toward regenerative, not just reduced.</p></div></div><div class="deck-dots"><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span></div></div></section>
+  <section class="sec" style="padding-top:6px;"><div class="section reveal"><div class="sec-label">Our Commitments</div><h2 class="sec-h" style="margin-bottom:0;">Four ideas that define every <em>project</em>.</h2><p class="sec-sub" style="margin-top:12px;">Scroll through each.</p></div></section><div class="netplus-parallax"><div class="tpc"><div class="tpc-track"><div class="tpc-sticky" style="background-image:url(images/netplus-water.jpg);"><div class="tpc-scrim"></div><div class="tpc-overlay"></div></div><div class="tpc-copy"><p class="px-sub">Water Stewardship</p><p class="px-title">Give the <em>watershed</em> back.</p></div></div><div class="tpc-body"><div><div class="pnum">01</div><h3>Water Stewardship</h3></div><div><p>We minimize water use and work to restore water locally as our projects develop, treating every watershed we touch as something to give back to, not just draw from.</p></div></div></div><div class="tpc"><div class="tpc-track"><div class="tpc-sticky" style="background-image:url(images/netplus-energy.jpg);"><div class="tpc-scrim"></div><div class="tpc-overlay"></div></div><div class="tpc-copy"><p class="px-sub">Energy Recovery</p><p class="px-title">Turn waste heat into <em>power</em>.</p></div></div><div class="tpc-body"><div><div class="pnum">02</div><h3>Energy Recovery</h3></div><div><p>Advanced thermal conversion technologies recover and reuse energy on site, turning what most facilities waste as heat into a resource that powers the campus and the community.</p></div></div></div><div class="tpc"><div class="tpc-track"><div class="tpc-sticky" style="background-image:url(images/netplus-design.jpg);"><div class="tpc-scrim"></div><div class="tpc-overlay"></div></div><div class="tpc-copy"><p class="px-sub">Sustainable Design</p><p class="px-title">Leave it <em>better</em> than we found it.</p></div></div><div class="tpc-body"><div><div class="pnum">03</div><h3>Sustainable Design</h3></div><div><p>Green building certification and sustainable design standards guide every campus, from the materials we choose to the way a site sits within its landscape.</p></div></div></div><div class="tpc"><div class="tpc-track"><div class="tpc-sticky" style="background-image:url(images/netplus-carbon-poster.jpg);background-size:cover;background-position:center;"><video autoplay muted loop playsinline preload="auto" poster="images/netplus-carbon-poster.jpg"><source src="images/netplus-carbon.mp4" type="video/mp4"></video><div class="tpc-scrim"></div><div class="tpc-overlay"></div></div><div class="tpc-copy"><p class="px-sub">Carbon Sequestration</p><p class="px-title">Toward a <em>regenerative</em> footprint.</p></div></div><div class="tpc-body"><div><div class="pnum">04</div><h3>Carbon Sequestration</h3></div><div><p>We work toward full carbon sequestration across the project lifecycle, designing for a footprint that trends toward regenerative, not just reduced.</p><a href="contact.html?interest=Net%20Plus%20Briefing&msg=Interested%20in%20the%20Net%20Plus%20campus%20model." class="btn btn-primary" style="width:fit-content;">Request a Net Plus Briefing <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div></div>
 
   <section class="sec"><div class="section"><div class="ctaband reveal"><div><div class="lab">Net Plus Briefing</div><h2>See how Net Plus integrates with your sustainability goals.</h2></div><a href="contact.html" class="btn btn-primary" style="flex-shrink:0;">Request a Briefing <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></section>
 </main><footer><div class="fgrid">
@@ -404,8 +420,22 @@
     if(matchMedia('(prefers-reduced-motion:reduce)').matches){steps.forEach(function(s){s.classList.add('active');});set('community');return;}
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
     steps.forEach(function(s){io.observe(s);});set('community');steps[0].classList.add('active');})();
-  (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';
+  (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title em';
    document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');
      var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
+  (function(){var panels=[].slice.call(document.querySelectorAll('.tpc'));if(!panels.length)return;
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    function cl(v){return v<0?0:v>1?1:v;}
+    function upd(){var vh=window.innerHeight;panels.forEach(function(t){
+      var sticky=t.querySelector('.tpc-sticky'),ov=t.querySelector('.tpc-overlay'),copy=t.querySelector('.tpc-copy');
+      var sr=sticky.getBoundingClientRect();var ip=cl((vh-sr.bottom)/vh);
+      sticky.style.transform='scale('+(1-ip*0.15).toFixed(4)+')';if(ov)ov.style.opacity=ip;
+      var cr=copy.getBoundingClientRect();var cp=cl((vh-cr.top)/(vh+cr.height));
+      var y=250-500*cp;var o;if(cp<0.25)o=0;else if(cp<0.5)o=(cp-0.25)/0.25;else if(cp<0.75)o=1-(cp-0.5)/0.25;else o=0;
+      copy.style.transform='translateY('+y.toFixed(1)+'px)';copy.style.opacity=o.toFixed(3);
+      var v=sticky.querySelector('video');if(v){if(sr.bottom>0&&sr.top<vh){if(v.paused)v.play().catch(function(){});}else if(!v.paused)v.pause();}
+    });}
+    var tick=false;function onS(){if(!tick){requestAnimationFrame(function(){upd();tick=false;});tick=true;}}
+    window.addEventListener('scroll',onS,{passive:true});window.addEventListener('resize',onS);upd();})();
 </script>
 </body></html>
