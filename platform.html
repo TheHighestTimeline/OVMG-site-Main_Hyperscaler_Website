@@ -253,22 +253,18 @@
   .spanel h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--white);margin:8px 0 12px;letter-spacing:-0.01em;}
   .spanel p{color:var(--infra);font-size:15.5px;line-height:1.75;max-width:720px;}
 
-  /* interactive city (community) */
-  .city-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:30px;align-items:start;}
-  .city-sticky{position:sticky;top:110px;}
-  .city-svg{width:100%;height:auto;border-radius:16px;border:1px solid var(--border);display:block;}
-  .city-steps{display:flex;flex-direction:column;}
-  .cstep{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.32;transition:opacity .4s;}
-  .cstep.active{opacity:1;}
+  /* pinned community sequence */
+  .city-pin{height:560vh;position:relative;margin-top:6px;}
+  .city-stick{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+  .city-frame{width:100%;}
+  .city-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;}
+  .city-copy{position:relative;height:380px;}
+  .cstep{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(50px);will-change:transform,opacity;}
   .cstep .ck{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
   .cstep h3{font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;}
   .cstep p{color:var(--infra);font-size:15.5px;line-height:1.8;max-width:520px;}
-  .grp{transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .4s;}
-  .glow{opacity:0;transition:opacity .5s;}
-  .city-svg.s-comm #g-comm,.city-svg.s-local #g-local,.city-svg.s-infra #g-infra{transform:translateY(-22px);}
-  .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
-  .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
-  @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
+  @media(max-width:900px){.city-pin{height:auto;} .city-stick{position:relative;height:auto;overflow:visible;align-items:stretch;} .city-grid{grid-template-columns:1fr;} .city-copy{height:auto;} .cstep{position:relative;inset:auto;opacity:1!important;transform:none!important;padding:18px 0;justify-content:flex-start;}}
+  @media(prefers-reduced-motion:reduce){.city-pin{height:auto;} .city-stick{position:relative;height:auto;overflow:visible;} .city-copy{height:auto;} .cstep{position:relative;inset:auto;opacity:1!important;transform:none!important;padding:18px 0;}}
 
   /* stat centering */
   .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;}
@@ -331,12 +327,10 @@
   @keyframes chiron{to{transform:translateX(-50%);}}
   /* community tighten */
   .city-steps{padding-top:0!important;}
-  .cstep{min-height:58vh!important;}
-  .cstep:first-child{min-height:auto!important;justify-content:flex-start!important;padding-top:2px!important;}
   @media(prefers-reduced-motion:reduce){.chiron-track{animation:none!important;}}
   /* net plus text-parallax scroll */
   .tpc{padding:0 12px;}
-  .tpc-track{position:relative;height:150vh;}
+  .tpc-track{position:relative;height:185vh;}
   .tpc-sticky{position:sticky;top:12px;height:calc(100vh - 24px);overflow:hidden;border-radius:26px;background-size:cover;background-position:center;z-index:0;will-change:transform;}
   .tpc-sticky.vid{background:#0A0D15;}
   .tpc-sticky video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
@@ -361,15 +355,15 @@
   @media(max-width:640px){.hcard{flex:0 0 82%;}}
   /* community diorama (layered isometric world, scroll-lifts each item) */
   .diorama{position:relative;width:100%;aspect-ratio:1448/1086;background:url(images/world-base.webp) center/cover no-repeat;border-radius:16px;border:1px solid var(--border);overflow:visible;}
-  .wlayer{position:absolute;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)) brightness(.76);transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .55s ease;will-change:transform,filter;}
-  .wlayer.lift{filter:drop-shadow(0 34px 34px rgba(0,0,0,.62)) brightness(1.18);z-index:6;}
-  #w-cc{left:14%;bottom:40%;width:56%;}
-  #w-mk{left:5%;bottom:28%;width:35%;}
-  #w-sl{left:64%;bottom:26%;width:34%;transform:translateY(-8px);}
-  #w-cc.lift{transform:translateY(-26px) scale(1.02);}
-  #w-mk.lift{transform:translateY(-24px) scale(1.025);}
-  #w-sl.lift{transform:translateY(-34px) scale(1.035);}
-  @media(prefers-reduced-motion:reduce){.wlayer{transition:none;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));}}
+  .wlayer{position:absolute;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)) brightness(.9);will-change:transform,filter;}
+  #w-cc{left:28%;bottom:47%;width:33%;}
+  #w-mk{left:11.5%;bottom:39%;width:24%;}
+  #w-sl{left:0;top:0;right:0;bottom:0;width:auto;pointer-events:none;}
+  #w-sl img{position:absolute;height:auto;}
+  #w-sl .sl1{left:47.7%;bottom:28.7%;width:6%;}
+  #w-sl .sl2{left:60.3%;bottom:33.9%;width:6%;}
+  #w-sl .sl3{left:72.8%;bottom:39.2%;width:6%;}
+  @media(max-width:900px),(prefers-reduced-motion:reduce){.wlayer{filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));transform:none!important;}}
 </style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -398,14 +392,14 @@
   <section class="sec"><div class="section">
     <div class="reveal"><div class="sec-label">Community</div><h2 class="sec-h"><span class="shine">Built with the community in mind.</span></h2>
     <p class="sec-sub">Scroll through what we lift up wherever we build.</p></div>
-    <div class="city-wrap">
-      <div class="city-sticky"><div class="diorama"><img id="w-sl" class="wlayer" src="images/world-sl.webp" alt="Solar street lights"><img id="w-cc" class="wlayer" src="images/world-cc.webp" alt="Community center"><img id="w-mk" class="wlayer" src="images/world-mk.webp" alt="Local market"></div></div>
-      <div class="city-steps">
+    <div class="city-pin" id="cityPin"><div class="city-stick"><div class="city-frame"><div class="city-grid">
+      <div class="diorama"><img id="w-cc" class="wlayer" src="images/world-cc.webp" alt="Community center"><img id="w-mk" class="wlayer" src="images/world-mk.webp" alt="Local market"><div id="w-sl" class="wlayer" aria-label="Solar street lights"><img class="sl1" src="images/world-sl1.webp" alt=""><img class="sl2" src="images/world-sl2.webp" alt=""><img class="sl3" src="images/world-sl3.webp" alt=""></div></div>
+      <div class="city-copy">
         <div class="cstep" data-k="community"><div class="ck">Strengthening Communities</div><h3>The heart of the place.</h3><p>We develop in ways that bring lasting benefit to the communities that host our projects, investing in the civic spaces, the libraries, and the gathering places that make a place worth living in.</p></div>
         <div class="cstep" data-k="local"><div class="ck">Investing Locally</div><h3>Main street, lifted.</h3><p>Local jobs, local suppliers, and local partnerships are part of how we build. When a project lands, the businesses around it should rise with it.</p></div>
         <div class="cstep" data-k="infra"><div class="ck">Enhancing Infrastructure</div><h3>Power, light, and connection.</h3><p>Our projects strengthen the power, connectivity, and infrastructure around them, leaving the grid, the fiber, and the roads better than we found them.</p></div>
       </div>
-    </div>
+    </div></div></div></div>
   </div></section>
 
   <section class="sec" style="padding-top:0;"><div class="section"><div class="ctaband reveal"><div><div class="lab">Get Started</div><h2>See how the OVMG platform maps to your requirements.</h2></div><a href="contact.html" class="btn btn-primary" style="flex-shrink:0;">Request Platform Overview <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></section>
@@ -446,11 +440,40 @@
     var nb=document.getElementById('deckNext'),pb=document.getElementById('deckPrev');if(nb)nb.onclick=next;if(pb)pb.onclick=prev;
     var sx=0,drag=false;stage.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-40)next();else if(dx>40)prev();});
     dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
-  (function(){var dio=document.querySelector('.diorama');if(!dio)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'w-cc',local:'w-mk',infra:'w-sl'};var ids=['w-cc','w-mk','w-sl'];
-    function set(k){ids.forEach(function(id){var el=document.getElementById(id);if(el)el.classList.toggle('lift',id===map[k]);});}
-    if(matchMedia('(prefers-reduced-motion:reduce)').matches){steps.forEach(function(s){s.classList.add('active');});set('community');return;}
-    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
-    steps.forEach(function(s){io.observe(s);});set('community');steps[0].classList.add('active');})();
+  (function(){var pin=document.getElementById('cityPin');if(!pin)return;
+    var steps=[].slice.call(pin.querySelectorAll('.cstep'));
+    var layers=[document.getElementById('w-cc'),document.getElementById('w-mk'),document.getElementById('w-sl')];
+    var dio=pin.querySelector('.diorama');
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;var mob=matchMedia('(max-width:900px)');
+    function cl(v){return v<0?0:v>1?1:v;}
+    function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+    function stat(){steps.forEach(function(st){st.style.opacity='';st.style.transform='';});layers.forEach(function(l){if(l){l.style.transform='';l.style.filter='';l.style.zIndex='';}});}
+    function upd(){
+      if(reduce||mob.matches){stat();return;}
+      var r=pin.getBoundingClientRect();var total=r.height-innerHeight;if(total<=0)return;
+      var P=cl(-r.top/total);var N=3,seg=1/N;var dh=dio?dio.offsetHeight:500;
+      steps.forEach(function(st,i){
+        var t=cl((P-i*seg)/seg),tn=cl((P-(i+1)*seg)/seg),o,y;
+        if(P<=i*seg&&t<=0){o=0;y=54;}
+        else if(t<0.12){var e=ease(t/0.12);o=e;y=54*(1-e);}
+        else if(i<N-1&&tn>0){var x=cl(tn/0.10);o=1-x;y=-24*x;}
+        else{o=1;y=0;}
+        st.style.opacity=o.toFixed(3);st.style.transform='translateY('+y.toFixed(1)+'px)';st.style.zIndex=5+i;
+      });
+      layers.forEach(function(l,i){
+        if(!l)return;var t=cl((P-i*seg)/seg),m;
+        if(t<=0.18||t>=0.88)m=0;
+        else if(t<0.46)m=ease((t-0.18)/0.28);
+        else if(t<0.60)m=1;
+        else m=1-ease((t-0.60)/0.28);
+        var lift=dh*0.10;
+        l.style.transform='translateY('+(-lift*m).toFixed(1)+'px) scale('+(1+0.02*m).toFixed(3)+')';
+        l.style.filter='brightness('+(0.9+0.32*m).toFixed(3)+') drop-shadow(0 '+(14+22*m).toFixed(0)+'px '+(18+18*m).toFixed(0)+'px rgba(0,0,0,'+(0.5+0.14*m).toFixed(2)+'))';
+        l.style.zIndex=m>0.01?6:'';
+      });
+    }
+    var tick=false;function onS(){if(!tick){requestAnimationFrame(function(){upd();tick=false;});tick=true;}}
+    addEventListener('scroll',onS,{passive:true});addEventListener('resize',onS);upd();})();
   (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title em';
    document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');
      var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
@@ -462,7 +485,7 @@
       var sr=sticky.getBoundingClientRect();var ip=cl((vh-sr.bottom)/vh);
       sticky.style.transform='scale('+(1-ip*0.15).toFixed(4)+')';if(ov)ov.style.opacity=ip;
       var cr=copy.getBoundingClientRect();var cp=cl((vh-cr.top)/(vh+cr.height));
-      var y=250-500*cp;var o;if(cp<0.25)o=0;else if(cp<0.5)o=(cp-0.25)/0.25;else if(cp<0.75)o=1-(cp-0.5)/0.25;else o=0;
+      var a=0.36,b=0.64,q;if(cp<a)q=0.5*cp/a;else if(cp>b)q=0.5+0.5*(cp-b)/(1-b);else q=0.5;var y=250-500*q;var o;if(cp<0.16)o=0;else if(cp<0.32)o=(cp-0.16)/0.16;else if(cp<0.70)o=1;else if(cp<0.86)o=1-(cp-0.70)/0.16;else o=0;
       copy.style.transform='translateY('+y.toFixed(1)+'px)';copy.style.opacity=o.toFixed(3);
       var v=sticky.querySelector('video');if(v){if(sr.bottom>0&&sr.top<vh){if(v.paused)v.play().catch(function(){});}else if(!v.paused)v.pause();}
     });}

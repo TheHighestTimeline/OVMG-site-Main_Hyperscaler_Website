@@ -1,0 +1,47 @@
+@echo off
+setlocal enabledelayedexpansion
+title OVMG Site - Sync local main with GitHub
+
+cd /d "C:\Users\south\Desktop\All Websites Backend\github working files\OVMG-site-Main_Hyperscaler_Website"
+if errorlevel 1 ( echo Repo folder not found. & pause & exit /b 1 )
+
+REM clear any stale git locks
+for /r ".git" %%L in (*.lock) do del /f /q "%%L" 2>nul
+
+echo.
+echo   Fetching the real state of GitHub...
+git fetch origin
+if errorlevel 1 goto FAIL
+
+echo.
+echo   These commits are on GitHub main but were NOT in your local folder:
+echo   --------------------------------------------------------------
+git log --oneline main..origin/main
+echo   --------------------------------------------------------------
+echo.
+echo   Re-syncing your local main to match GitHub main (your redesign
+echo   branch redesign-2026-07 stays safe and is already on GitHub)...
+git checkout main
+git reset --hard origin/main
+if errorlevel 1 goto FAIL
+
+REM leave you on the redesign branch
+git checkout redesign-2026-07 2>nul
+
+echo.
+echo   Done. Local main now matches the live site. Nothing was lost.
+echo   The redesign is safe on branch redesign-2026-07 (on GitHub).
+echo.
+echo   Current index.html / projects.html in this folder are now the
+echo   redesign versions (you are on the redesign branch).
+goto END
+
+:FAIL
+echo.
+echo   Something went wrong (see above). If it mentions a GitHub sign-in,
+echo   complete it and run this again.
+
+:END
+echo.
+pause
+endlocal

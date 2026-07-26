@@ -1,0 +1,100 @@
+@echo off
+setlocal enabledelayedexpansion
+title OVMG Site - Push to GitHub
+
+REM ============================================================
+REM  OVMG Hyperscaler Website - push helper (self-healing)
+REM  Fixes: stale git lock + GitHub private-email rejection
+REM  Branch: redesign-2026-07
+REM ============================================================
+
+cd /d "C:\Users\south\Desktop\All Websites Backend\github working files\OVMG-site-Main_Hyperscaler_Website"
+if errorlevel 1 (
+  echo Could not find the repo folder. Check the path in this script.
+  pause
+  exit /b 1
+)
+
+REM --- clear ALL stale git lock files left by an interrupted process ---
+REM (index.lock, HEAD.lock, refs\**\*.lock, config.lock, etc.)
+for /r ".git" %%L in (*.lock) do del /f /q "%%L" 2>nul
+del /f /q ".git\index.lock.stale*" 2>nul
+
+REM --- set the GitHub identity that GitHub accepts (no private email) ---
+git config user.name "TheHighestTimeline"
+git config user.email "291643968+TheHighestTimeline@users.noreply.github.com"
+
+git checkout redesign-2026-07
+if errorlevel 1 goto FAIL
+
+REM --- if the latest commit still has the private email, rewrite its author ---
+for /f "delims=" %%e in ('git log -1 --format^=%%ae') do set "AE=%%e"
+echo !AE! | findstr /i "onevibemediagroup.com" >nul
+if not errorlevel 1 (
+  echo   Fixing commit author email so GitHub will accept it...
+  git commit --amend --reset-author --no-edit
+)
+
+echo.
+echo   Repo: %CD%
+echo   Commit author is now:
+git log -1 --format="   %%an  <%%ae>"
+echo.
+echo   What do you want to do?
+echo.
+echo     [1]  Push the redesign branch only  (safe - Netlify DEPLOY PREVIEW, live site untouched)
+echo     [2]  Go LIVE  (merge redesign into main and push - updates the live site)
+echo     [3]  Cancel
+echo.
+set /p CHOICE=  Enter 1, 2, or 3:
+
+if "%CHOICE%"=="1" goto PUSHBRANCH
+if "%CHOICE%"=="2" goto GOLIVE
+goto END
+
+:PUSHBRANCH
+echo.
+echo   Pushing branch redesign-2026-07 to GitHub...
+git push -u origin redesign-2026-07
+if errorlevel 1 goto FAIL
+echo.
+echo   Done. Check GitHub for the branch, or Netlify for the deploy preview URL.
+goto END
+
+:GOLIVE
+echo.
+echo   This will merge redesign-2026-07 into main and push. The live site WILL update.
+set /p CONFIRM=  Type YES to continue:
+if /i not "%CONFIRM%"=="YES" (
+  echo   Cancelled.
+  goto END
+)
+echo.
+echo   Pushing the branch to GitHub first...
+git push -u origin redesign-2026-07
+if errorlevel 1 goto FAIL
+echo   Switching to main...
+git checkout main
+if errorlevel 1 goto FAIL
+if exist ".git\index.lock" del /f /q ".git\index.lock" 2>nul
+echo   Merging redesign-2026-07 into main...
+git merge redesign-2026-07
+if errorlevel 1 goto FAIL
+echo   Pushing main...
+git push origin main
+if errorlevel 1 goto FAIL
+echo.
+echo   Pushed to main. Netlify should start building the live site now.
+goto END
+
+:FAIL
+echo.
+echo   Something went wrong (see the message above).
+echo   - If it mentions a GitHub sign-in, complete it and run this again.
+echo   - If it mentions index.lock, just run this file again (it clears the lock on start).
+goto END
+
+:END
+echo.
+pause
+endlocal
