@@ -359,7 +359,18 @@
   .hcard h3{font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--white);margin:0 0 10px;}
   .hcard p{color:var(--infra);font-size:15px;line-height:1.68;margin:0;}
   @media(max-width:640px){.hcard{flex:0 0 82%;}}
-</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{line-height:1;padding:.04em .04em .34em .02em;margin-bottom:-.30em;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{display:inline-block;overflow:visible!important}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
+  /* community diorama (layered isometric world, scroll-lifts each item) */
+  .diorama{position:relative;width:100%;aspect-ratio:1448/1086;background:url(images/world-base.webp) center/cover no-repeat;border-radius:16px;border:1px solid var(--border);overflow:visible;}
+  .wlayer{position:absolute;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)) brightness(.76);transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .55s ease;will-change:transform,filter;}
+  .wlayer.lift{filter:drop-shadow(0 34px 34px rgba(0,0,0,.62)) brightness(1.18);z-index:6;}
+  #w-cc{left:14%;bottom:40%;width:56%;}
+  #w-mk{left:5%;bottom:28%;width:35%;}
+  #w-sl{left:64%;bottom:26%;width:34%;transform:translateY(-8px);}
+  #w-cc.lift{transform:translateY(-26px) scale(1.02);}
+  #w-mk.lift{transform:translateY(-24px) scale(1.025);}
+  #w-sl.lift{transform:translateY(-34px) scale(1.035);}
+  @media(prefers-reduced-motion:reduce){.wlayer{transition:none;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));}}
+</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
     <nav><a href="index.html">Home</a><a href="platform.html">Platform</a><a href="netzero.html" class="active">Net Plus</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
@@ -425,8 +436,8 @@
     var nb=document.getElementById('deckNext'),pb=document.getElementById('deckPrev');if(nb)nb.onclick=next;if(pb)pb.onclick=prev;
     var sx=0,drag=false;stage.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-40)next();else if(dx>40)prev();});
     dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
-  (function(){var svg=document.getElementById('citySvg');if(!svg)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'s-comm',local:'s-local',infra:'s-infra'};
-    function set(k){svg.classList.remove('s-comm','s-local','s-infra');svg.classList.add(map[k]);}
+  (function(){var dio=document.querySelector('.diorama');if(!dio)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'w-cc',local:'w-mk',infra:'w-sl'};var ids=['w-cc','w-mk','w-sl'];
+    function set(k){ids.forEach(function(id){var el=document.getElementById(id);if(el)el.classList.toggle('lift',id===map[k]);});}
     if(matchMedia('(prefers-reduced-motion:reduce)').matches){steps.forEach(function(s){s.classList.add('active');});set('community');return;}
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
     steps.forEach(function(s){io.observe(s);});set('community');steps[0].classList.add('active');})();
