@@ -219,6 +219,56 @@
     .reveal{opacity:1;transform:none;transition:none;}
     .rise .rw .w{transform:none;} .px-bg,.px-glow{transform:none!important;}
   }
+
+  /* bouncy question cards */
+  .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+  .bcard{position:relative;min-height:330px;overflow:hidden;border-radius:18px;background:var(--graphite);border:1px solid var(--border);padding:34px;cursor:pointer;text-decoration:none;display:block;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;}
+  .bcard:hover{transform:scale(.96) rotate(-1deg);border-color:var(--border-lit);}
+  .bcard .bt{font-size:clamp(19px,2vw,23px);font-weight:900;color:var(--white);line-height:1.18;position:relative;z-index:3;}
+  .bcard .bp{color:var(--infra);font-size:13.5px;margin-top:12px;position:relative;z-index:3;max-width:88%;line-height:1.6;}
+  .bcard .demo{position:absolute;left:18px;right:18px;top:172px;bottom:0;transform:translateY(34px);border-radius:16px 16px 0 0;background:linear-gradient(135deg,var(--electric),var(--sky));padding:18px 20px;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-end;z-index:2;}
+  .bcard:hover .demo{transform:translateY(16px) rotate(2deg);}
+  .bcard .dl{font-weight:800;color:#eaf3ff;font-size:14px;letter-spacing:.02em;}
+  @media(max-width:900px){.bgrid{grid-template-columns:1fr;} .bcard{min-height:260px;}}
+
+  /* swipe deck (capabilities) */
+  .deck-top{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin:0 0 18px;}
+  .deck-arrows{display:flex;gap:10px;}
+  .deck-arrow{width:46px;height:46px;border-radius:11px;border:1px solid var(--border);background:var(--graphite);color:var(--white);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s;}
+  .deck-arrow:hover{border-color:var(--border-lit);background:#1b2438;}
+  .deck-stage{position:relative;height:290px;}
+  .deck-card{position:absolute;inset:0;border-radius:18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(30,107,255,.12),var(--graphite));padding:36px;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;will-change:transform,opacity;}
+  .deck-card .di{width:48px;height:48px;border-radius:12px;background:rgba(30,107,255,.14);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:16px;color:var(--sky);}
+  .deck-card .di svg{width:22px;height:22px;}
+  .deck-card h3{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;}
+  .deck-card p{color:var(--infra);font-size:14.5px;line-height:1.72;max-width:600px;}
+  .deck-dots{display:flex;gap:7px;margin-top:20px;justify-content:center;}
+  .deck-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .25s;}
+  .deck-dot.on{background:var(--sky);width:22px;border-radius:5px;}
+
+  /* sticky scroll-stack (media) */
+  .stack{margin-top:22px;}
+  .spanel{position:sticky;top:100px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(30,107,255,.06),var(--graphite));padding:40px 44px;margin-bottom:20px;box-shadow:0 -10px 44px rgba(0,0,0,.4);}
+  .spanel .sn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sky);}
+  .spanel h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--white);margin:8px 0 12px;letter-spacing:-0.01em;}
+  .spanel p{color:var(--infra);font-size:15.5px;line-height:1.75;max-width:720px;}
+
+  /* interactive city (community) */
+  .city-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:30px;align-items:start;}
+  .city-sticky{position:sticky;top:110px;}
+  .city-svg{width:100%;height:auto;border-radius:16px;border:1px solid var(--border);display:block;}
+  .city-steps{display:flex;flex-direction:column;}
+  .cstep{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.32;transition:opacity .4s;}
+  .cstep.active{opacity:1;}
+  .cstep .ck{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
+  .cstep h3{font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;}
+  .cstep p{color:var(--infra);font-size:15.5px;line-height:1.8;max-width:520px;}
+  .grp{transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .4s;}
+  .glow{opacity:0;transition:opacity .5s;}
+  .city-svg.s-comm #g-comm,.city-svg.s-local #g-local,.city-svg.s-infra #g-infra{transform:translateY(-22px);}
+  .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
+  .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
+  @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -237,27 +287,73 @@
   </div></div></div>
 
   <section class="sec" style="padding-top:28px;"><div class="section">
-    <div class="reveal"><div class="sec-label">Capabilities</div><h2 class="sec-h"><span class="shine">Everything a deployment needs, aligned.</span></h2>
-    <p class="sec-sub">Hover the cards. Every layer of the OVMG platform works together, delivered with our partners.</p></div>
-    <div class="cards6">
-      <div class="fcard tilt reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>Site Strategy</h3><p>Feasibility, zoning and permitting strategy, and physical readiness planning.</p></div><div class="fcard tilt reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Power Planning</h3><p>Scalable power strategy, utility relationships, transmission, and on-site generation.</p></div><div class="fcard tilt reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12h4l3 8 4-16 3 8h2"/></svg></div><h3>Connectivity</h3><p>Carrier, fiber, and network access planning coordinated with delivery.</p></div><div class="fcard tilt reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Net Plus Positioning</h3><p>Sustainability designed in from day one, aiming to leave every site better.</p></div><div class="fcard tilt reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Portfolio Scale</h3><p>A modular delivery model that grows from single sites to multi-region programs.</p></div><div class="fcard tilt reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h3>Strategic Partnerships</h3><p>Utilities, carriers, and construction partners that accelerate timelines.</p></div>
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;">
+      <div><div class="sec-label">Capabilities</div><h2 class="sec-h" style="margin-bottom:0;"><span class="shine">Everything a deployment needs, aligned.</span></h2></div>
+      <div class="deck-arrows"><button class="deck-arrow" id="deckPrev" aria-label="Previous"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="deck-arrow" id="deckNext" aria-label="Next"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div>
     </div>
+    <p class="sec-sub" style="margin-top:12px;">Drag, or use the arrows. Every layer of the OVMG platform, delivered with our partners.</p>
+    <div class="deck-stage" id="deckStage" style="margin-top:26px;"><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>Site Strategy</h3><p>Feasibility, zoning and permitting strategy, and physical readiness planning. We prove a site against hyperscale requirements before anyone commits, so the fundamentals are solid from the start.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Power Planning</h3><p>Scalable power strategy, utility relationships, transmission, and on-site generation. We map the path to megawatts and secure it, so power is a plan, not a hope.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12h4l3 8 4-16 3 8h2"/></svg></div><h3>Connectivity</h3><p>Carrier, fiber, and network access planning coordinated with delivery, so every site has the connectivity a hyperscale tenant expects on day one.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Net Plus Positioning</h3><p>Sustainability designed in from day one: water stewardship, energy recovery, and regenerative design aimed at leaving every site better than we found it.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Portfolio Scale</h3><p>A modular delivery model that grows from a single site to a multi-region program, with consistent standards and execution at every stage.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h3>Strategic Partnerships</h3><p>Utilities, carriers, EPCs, and construction partners engaged from our network, compressing timelines and reducing execution risk.</p></div></div>
+    <div class="deck-dots"><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span></div>
   </div></section>
 
-  <section class="sec" style="padding-top:0;"><div class="section">
+  <section class="sec" style="padding-top:20px;"><div class="section">
     <div class="reveal"><div class="sec-label">Media &amp; Assets</div><h2 class="sec-h"><span class="shine">Beyond the ground, we build the story.</span></h2>
-    <p class="sec-sub">OVMG is also a media and asset partner. We produce the materials that move a deal, from the first deck to the data room. Expand each to see how.</p></div>
-    <div style="margin-top:32px;">
-      <div class="acc-item reveal"><div class="acc-head"><h3>Deck Building</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Investor-grade decks that present each opportunity with clarity and momentum, structured to hold an investor's attention and answer the questions before they are asked.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Data Room Organization</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Structured, diligence-ready data rooms that keep every party aligned, so the right documents are in the right place from first look through close.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Asset Creation</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Renders, one-pagers, and visual assets that make a project real, giving stakeholders something tangible to react to and share.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Legal Framework</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Support structuring the agreements and frameworks behind the deal, coordinated with counsel so the paper keeps pace with the momentum.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Media &amp; Press Direction</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Positioning, messaging, and press direction for how a project is told, shaping the narrative before it reaches the market.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Blog &amp; Content</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Ongoing content and narrative that keeps the story current and keeps audiences engaged between milestones.</p></div></div>
-    </div>
+    <p class="sec-sub">OVMG is also a media and asset partner. We produce the materials that move a deal, from the first deck to the data room. Scroll through each.</p></div>
+    <div class="stack"><div class="spanel"><div class="sn">01</div><h3>Deck Building</h3><p>Investor-grade decks that present each opportunity with clarity and momentum, structured to hold an investor's attention and answer the questions before they are asked.</p></div><div class="spanel"><div class="sn">02</div><h3>Data Room Organization</h3><p>Structured, diligence-ready data rooms that keep every party aligned, so the right documents are in the right place from first look through close.</p></div><div class="spanel"><div class="sn">03</div><h3>Asset Creation</h3><p>Renders, one-pagers, and visual assets that make a project real, giving stakeholders something tangible to react to and share.</p></div><div class="spanel"><div class="sn">04</div><h3>Legal Framework</h3><p>Support structuring the agreements and frameworks behind the deal, coordinated with counsel so the paper keeps pace with the momentum.</p></div><div class="spanel"><div class="sn">05</div><h3>Media &amp; Press Direction</h3><p>Positioning, messaging, and press direction for how a project is told, shaping the narrative before it reaches the market.</p></div><div class="spanel"><div class="sn">06</div><h3>Blog &amp; Content</h3><p>Ongoing content and narrative that keeps the story current and keeps audiences engaged between milestones.</p></div></div>
   </div></section>
 
-  <section class="sec" style="padding-top:0;"><div class="section">
-    <div class="reveal"><div class="sec-label">Community</div><h2 class="sec-h"><span class="shine">Built with the community in mind.</span></h2></div>
-    <div class="trip">
-      <div class="tcard tilt reveal"><div class="ticon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h3>Strengthening Communities</h3><p>We develop in ways that bring lasting benefit to the communities that host our projects.</p></div>
-      <div class="tcard tilt sky reveal"><div class="ticon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>Investing Locally</h3><p>Local jobs, local suppliers, and local partnerships are part of how we build.</p></div>
-      <div class="tcard tilt violet reveal"><div class="ticon"><svg fill="none" stroke="#7C3AED" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 21h18M6 21V9l6-4 6 4v12"/></svg></div><h3>Enhancing Infrastructure</h3><p>Our projects strengthen the power, connectivity, and infrastructure around them.</p></div>
+  <section class="sec"><div class="section">
+    <div class="reveal"><div class="sec-label">Community</div><h2 class="sec-h"><span class="shine">Built with the community in mind.</span></h2>
+    <p class="sec-sub">Scroll through what we lift up wherever we build.</p></div>
+    <div class="city-wrap">
+      <div class="city-sticky"><svg id="citySvg" class="city-svg s-comm" viewBox="0 0 620 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e1730"/><stop offset="1" stop-color="#0a0f1c"/></linearGradient>
+    <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2540"/><stop offset="1" stop-color="#121a2e"/></linearGradient>
+  </defs>
+  <rect x="0" y="0" width="620" height="400" fill="url(#sky)"/>
+  <!-- backdrop skyline -->
+  <g opacity="0.5">
+    <rect x="30" y="150" width="46" height="160" fill="#141d33"/><rect x="86" y="120" width="40" height="190" fill="#111a2e"/>
+    <rect x="500" y="140" width="44" height="170" fill="#141d33"/><rect x="552" y="170" width="40" height="140" fill="#111a2e"/>
+  </g>
+  <!-- ground -->
+  <rect x="0" y="308" width="620" height="92" fill="#0b1322"/>
+  <line x1="0" y1="308" x2="620" y2="308" stroke="rgba(68,199,255,.18)" stroke-width="1"/>
+  <!-- LOCAL: shops -->
+  <g id="g-local" class="grp">
+    <ellipse class="glow" cx="150" cy="312" rx="90" ry="14" fill="rgba(68,199,255,.28)"/>
+    <rect x="86" y="238" width="60" height="70" rx="3" fill="url(#bld)" stroke="rgba(216,220,226,.10)"/>
+    <rect x="150" y="252" width="52" height="56" rx="3" fill="url(#bld)" stroke="rgba(216,220,226,.10)"/>
+    <rect x="94" y="228" width="44" height="12" rx="2" fill="#1E6BFF"/><rect x="156" y="244" width="40" height="10" rx="2" fill="#44C7FF"/>
+    <rect x="100" y="262" width="14" height="16" fill="#0a0f1c"/><rect x="120" y="262" width="14" height="16" fill="#0a0f1c"/>
+    <rect x="160" y="270" width="12" height="14" fill="#0a0f1c"/><rect x="178" y="270" width="12" height="14" fill="#0a0f1c"/>
+  </g>
+  <!-- COMMUNITY: civic center -->
+  <g id="g-comm" class="grp">
+    <ellipse class="glow" cx="312" cy="312" rx="86" ry="14" fill="rgba(124,58,237,.30)"/>
+    <rect x="258" y="214" width="108" height="94" rx="3" fill="url(#bld)" stroke="rgba(216,220,226,.12)"/>
+    <polygon points="252,214 372,214 312,182" fill="#243154"/>
+    <rect x="304" y="164" width="4" height="20" fill="#44C7FF"/><circle cx="306" cy="162" r="4" fill="#44C7FF"/>
+    <rect x="272" y="236" width="10" height="72" fill="#0e1526"/><rect x="292" y="236" width="10" height="72" fill="#0e1526"/><rect x="312" y="236" width="10" height="72" fill="#0e1526"/><rect x="332" y="236" width="10" height="72" fill="#0e1526"/><rect x="352" y="236" width="10" height="72" fill="#0e1526"/>
+    <rect x="298" y="270" width="28" height="38" fill="#1E6BFF" opacity="0.85"/>
+    <path d="M300 236 h24 v-6 h-24 z" fill="#7C3AED"/>
+  </g>
+  <!-- INFRA: streetlights + power line -->
+  <g id="g-infra" class="grp">
+    <ellipse class="glow" cx="450" cy="314" rx="150" ry="13" fill="rgba(68,199,255,.26)"/>
+    <line x1="392" y1="250" x2="512" y2="250" stroke="rgba(68,199,255,.5)" stroke-width="1.4" stroke-dasharray="4 5"/>
+    
+    <rect x="388" y="250" width="4" height="58" fill="#33405f"/><circle cx="390" cy="246" r="7" fill="#44C7FF"/><circle cx="390" cy="246" r="13" fill="rgba(68,199,255,.25)"/>
+    <rect x="448" y="244" width="4" height="64" fill="#33405f"/><circle cx="450" cy="240" r="7" fill="#44C7FF"/><circle cx="450" cy="240" r="13" fill="rgba(68,199,255,.25)"/>
+    <rect x="508" y="250" width="4" height="58" fill="#33405f"/><circle cx="510" cy="246" r="7" fill="#44C7FF"/><circle cx="510" cy="246" r="13" fill="rgba(68,199,255,.25)"/>
+  </g>
+</svg></div>
+      <div class="city-steps">
+        <div class="cstep" data-k="community"><div class="ck">Strengthening Communities</div><h3>The heart of the place.</h3><p>We develop in ways that bring lasting benefit to the communities that host our projects, investing in the civic spaces, the libraries, and the gathering places that make a place worth living in.</p></div>
+        <div class="cstep" data-k="local"><div class="ck">Investing Locally</div><h3>Main street, lifted.</h3><p>Local jobs, local suppliers, and local partnerships are part of how we build. When a project lands, the businesses around it should rise with it.</p></div>
+        <div class="cstep" data-k="infra"><div class="ck">Enhancing Infrastructure</div><h3>Power, light, and connection.</h3><p>Our projects strengthen the power, connectivity, and infrastructure around them, leaving the grid, the fiber, and the roads better than we found them.</p></div>
+      </div>
     </div>
   </div></section>
 
@@ -292,5 +388,20 @@
   (function(){var c=document.getElementById('ripple');if(!c||reduce)return;var ctx=c.getContext('2d'),rp=[],last=0;function sz(){c.width=innerWidth;c.height=innerHeight;}sz();addEventListener('resize',sz);
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
+</script><script>
+  var _reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // swipe deck
+  (function(){var stage=document.getElementById('deckStage');if(!stage)return;var cards=[].slice.call(stage.querySelectorAll('.deck-card'));var dots=[].slice.call(document.querySelectorAll('.deck-dot'));var n=cards.length,idx=0;
+    function render(){cards.forEach(function(c,i){var pos=(i-idx+n)%n;c.style.zIndex=n-pos;c.style.opacity=pos>2?0:1;c.style.transform='translateY('+(pos*14)+'px) scale('+(1-pos*0.05).toFixed(3)+')';});dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});}
+    function next(){idx=(idx+1)%n;render();}function prev(){idx=(idx-1+n)%n;render();}
+    var nb=document.getElementById('deckNext'),pb=document.getElementById('deckPrev');if(nb)nb.onclick=next;if(pb)pb.onclick=prev;
+    var sx=0,drag=false;stage.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-40)next();else if(dx>40)prev();});
+    dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
+  // interactive city
+  (function(){var svg=document.getElementById('citySvg');if(!svg)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'s-comm',local:'s-local',infra:'s-infra'};
+    function set(k){svg.classList.remove('s-comm','s-local','s-infra');svg.classList.add(map[k]);}
+    if(_reduce){set('comm'in map?'community':'infra');steps.forEach(function(s){s.classList.add('active');});set('community');return;}
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
+    steps.forEach(function(s){io.observe(s);});set('community');})();
 </script>
 </body></html>

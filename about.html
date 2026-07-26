@@ -219,6 +219,56 @@
     .reveal{opacity:1;transform:none;transition:none;}
     .rise .rw .w{transform:none;} .px-bg,.px-glow{transform:none!important;}
   }
+
+  /* bouncy question cards */
+  .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+  .bcard{position:relative;min-height:330px;overflow:hidden;border-radius:18px;background:var(--graphite);border:1px solid var(--border);padding:34px;cursor:pointer;text-decoration:none;display:block;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;}
+  .bcard:hover{transform:scale(.96) rotate(-1deg);border-color:var(--border-lit);}
+  .bcard .bt{font-size:clamp(19px,2vw,23px);font-weight:900;color:var(--white);line-height:1.18;position:relative;z-index:3;}
+  .bcard .bp{color:var(--infra);font-size:13.5px;margin-top:12px;position:relative;z-index:3;max-width:88%;line-height:1.6;}
+  .bcard .demo{position:absolute;left:18px;right:18px;top:172px;bottom:0;transform:translateY(34px);border-radius:16px 16px 0 0;background:linear-gradient(135deg,var(--electric),var(--sky));padding:18px 20px;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-end;z-index:2;}
+  .bcard:hover .demo{transform:translateY(16px) rotate(2deg);}
+  .bcard .dl{font-weight:800;color:#eaf3ff;font-size:14px;letter-spacing:.02em;}
+  @media(max-width:900px){.bgrid{grid-template-columns:1fr;} .bcard{min-height:260px;}}
+
+  /* swipe deck (capabilities) */
+  .deck-top{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin:0 0 18px;}
+  .deck-arrows{display:flex;gap:10px;}
+  .deck-arrow{width:46px;height:46px;border-radius:11px;border:1px solid var(--border);background:var(--graphite);color:var(--white);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s;}
+  .deck-arrow:hover{border-color:var(--border-lit);background:#1b2438;}
+  .deck-stage{position:relative;height:290px;}
+  .deck-card{position:absolute;inset:0;border-radius:18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(30,107,255,.12),var(--graphite));padding:36px;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;will-change:transform,opacity;}
+  .deck-card .di{width:48px;height:48px;border-radius:12px;background:rgba(30,107,255,.14);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:16px;color:var(--sky);}
+  .deck-card .di svg{width:22px;height:22px;}
+  .deck-card h3{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;}
+  .deck-card p{color:var(--infra);font-size:14.5px;line-height:1.72;max-width:600px;}
+  .deck-dots{display:flex;gap:7px;margin-top:20px;justify-content:center;}
+  .deck-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .25s;}
+  .deck-dot.on{background:var(--sky);width:22px;border-radius:5px;}
+
+  /* sticky scroll-stack (media) */
+  .stack{margin-top:22px;}
+  .spanel{position:sticky;top:100px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(30,107,255,.06),var(--graphite));padding:40px 44px;margin-bottom:20px;box-shadow:0 -10px 44px rgba(0,0,0,.4);}
+  .spanel .sn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sky);}
+  .spanel h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--white);margin:8px 0 12px;letter-spacing:-0.01em;}
+  .spanel p{color:var(--infra);font-size:15.5px;line-height:1.75;max-width:720px;}
+
+  /* interactive city (community) */
+  .city-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:30px;align-items:start;}
+  .city-sticky{position:sticky;top:110px;}
+  .city-svg{width:100%;height:auto;border-radius:16px;border:1px solid var(--border);display:block;}
+  .city-steps{display:flex;flex-direction:column;}
+  .cstep{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.32;transition:opacity .4s;}
+  .cstep.active{opacity:1;}
+  .cstep .ck{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
+  .cstep h3{font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;}
+  .cstep p{color:var(--infra);font-size:15.5px;line-height:1.8;max-width:520px;}
+  .grp{transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .4s;}
+  .glow{opacity:0;transition:opacity .5s;}
+  .city-svg.s-comm #g-comm,.city-svg.s-local #g-local,.city-svg.s-infra #g-infra{transform:translateY(-22px);}
+  .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
+  .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
+  @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -240,7 +290,7 @@
     <div class="panel reveal"><h2>Integrated delivery means no gaps, no handoffs, no surprises.</h2><p>OVMG was founded on a simple belief: the coordination gaps between site, power, connectivity, and sustainability teams are the primary reason hyperscale projects run late. With our partners, we close those gaps.</p></div>
   </div></div></section>
   <section class="sec" style="padding-top:0;"><div class="section">
-    <div class="reveal"><div class="sec-label">Our Values</div><h2 class="sec-h">What drives every decision we <em>make</em>.</h2><p class="sec-sub">Expand each to read more.</p></div>
+    <div class="reveal"><div class="sec-label">Our Values</div><h2 class="sec-h">What drives every decision we <em>make</em>.</h2><p class="sec-sub">Open one to read more. Opening another closes it.</p></div>
     <div style="margin-top:30px;">
       <div class="acc-item reveal"><div class="acc-head"><h3>Clarity over complexity</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Infrastructure is complex enough. Our job is to make it legible, to our clients, our partners, and ourselves. We present information clearly, make commitments we can keep, and never obscure risk.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Sustainability by design</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Net Plus is not a reporting exercise, it is an engineering constraint. Every project is designed with sustainability as a foundational input, not a feature added at the end.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Scale with integrity</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Growing the portfolio matters, but not at the expense of execution quality. We take on projects we can deliver well, and we hold ourselves to the same standards at every scale.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Long-term thinking</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Hyperscale infrastructure lasts decades. We make decisions that serve the 20-year life of a campus, not just the development cycle: the right site, the right power strategy, the right partners.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Partnership over transaction</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>The best outcomes come from deep, long-term relationships. We invest in understanding needs before we propose solutions, and we build with partners rather than around them.</p></div></div><div class="acc-item reveal"><div class="acc-head"><h3>Leave it better</h3><span class="acc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="acc-body"><p>Our whole motto: leave every site better than we found it. Regenerative by design, in the communities and landscapes where we build.</p></div></div>
     </div>
@@ -276,5 +326,9 @@
   (function(){var c=document.getElementById('ripple');if(!c||reduce)return;var ctx=c.getContext('2d'),rp=[],last=0;function sz(){c.width=innerWidth;c.height=innerHeight;}sz();addEventListener('resize',sz);
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
+</script><script>
+  // single-open accordion (replace base multi-toggle via clone)
+  document.querySelectorAll('.acc-head').forEach(function(h){var c=h.cloneNode(true);h.parentNode.replaceChild(c,h);});
+  document.querySelectorAll('.acc-head').forEach(function(h){h.addEventListener('click',function(){var it=h.parentElement;var was=it.classList.contains('open');document.querySelectorAll('.acc-item.open').forEach(function(o){o.classList.remove('open');});if(!was)it.classList.add('open');});});
 </script>
 </body></html>

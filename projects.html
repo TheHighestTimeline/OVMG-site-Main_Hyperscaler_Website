@@ -219,6 +219,56 @@
     .reveal{opacity:1;transform:none;transition:none;}
     .rise .rw .w{transform:none;} .px-bg,.px-glow{transform:none!important;}
   }
+
+  /* bouncy question cards */
+  .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+  .bcard{position:relative;min-height:330px;overflow:hidden;border-radius:18px;background:var(--graphite);border:1px solid var(--border);padding:34px;cursor:pointer;text-decoration:none;display:block;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;}
+  .bcard:hover{transform:scale(.96) rotate(-1deg);border-color:var(--border-lit);}
+  .bcard .bt{font-size:clamp(19px,2vw,23px);font-weight:900;color:var(--white);line-height:1.18;position:relative;z-index:3;}
+  .bcard .bp{color:var(--infra);font-size:13.5px;margin-top:12px;position:relative;z-index:3;max-width:88%;line-height:1.6;}
+  .bcard .demo{position:absolute;left:18px;right:18px;top:172px;bottom:0;transform:translateY(34px);border-radius:16px 16px 0 0;background:linear-gradient(135deg,var(--electric),var(--sky));padding:18px 20px;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-end;z-index:2;}
+  .bcard:hover .demo{transform:translateY(16px) rotate(2deg);}
+  .bcard .dl{font-weight:800;color:#eaf3ff;font-size:14px;letter-spacing:.02em;}
+  @media(max-width:900px){.bgrid{grid-template-columns:1fr;} .bcard{min-height:260px;}}
+
+  /* swipe deck (capabilities) */
+  .deck-top{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin:0 0 18px;}
+  .deck-arrows{display:flex;gap:10px;}
+  .deck-arrow{width:46px;height:46px;border-radius:11px;border:1px solid var(--border);background:var(--graphite);color:var(--white);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s;}
+  .deck-arrow:hover{border-color:var(--border-lit);background:#1b2438;}
+  .deck-stage{position:relative;height:290px;}
+  .deck-card{position:absolute;inset:0;border-radius:18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(30,107,255,.12),var(--graphite));padding:36px;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;will-change:transform,opacity;}
+  .deck-card .di{width:48px;height:48px;border-radius:12px;background:rgba(30,107,255,.14);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:16px;color:var(--sky);}
+  .deck-card .di svg{width:22px;height:22px;}
+  .deck-card h3{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;}
+  .deck-card p{color:var(--infra);font-size:14.5px;line-height:1.72;max-width:600px;}
+  .deck-dots{display:flex;gap:7px;margin-top:20px;justify-content:center;}
+  .deck-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .25s;}
+  .deck-dot.on{background:var(--sky);width:22px;border-radius:5px;}
+
+  /* sticky scroll-stack (media) */
+  .stack{margin-top:22px;}
+  .spanel{position:sticky;top:100px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(30,107,255,.06),var(--graphite));padding:40px 44px;margin-bottom:20px;box-shadow:0 -10px 44px rgba(0,0,0,.4);}
+  .spanel .sn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sky);}
+  .spanel h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--white);margin:8px 0 12px;letter-spacing:-0.01em;}
+  .spanel p{color:var(--infra);font-size:15.5px;line-height:1.75;max-width:720px;}
+
+  /* interactive city (community) */
+  .city-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:30px;align-items:start;}
+  .city-sticky{position:sticky;top:110px;}
+  .city-svg{width:100%;height:auto;border-radius:16px;border:1px solid var(--border);display:block;}
+  .city-steps{display:flex;flex-direction:column;}
+  .cstep{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.32;transition:opacity .4s;}
+  .cstep.active{opacity:1;}
+  .cstep .ck{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
+  .cstep h3{font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;}
+  .cstep p{color:var(--infra);font-size:15.5px;line-height:1.8;max-width:520px;}
+  .grp{transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .4s;}
+  .glow{opacity:0;transition:opacity .5s;}
+  .city-svg.s-comm #g-comm,.city-svg.s-local #g-local,.city-svg.s-infra #g-infra{transform:translateY(-22px);}
+  .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
+  .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
+  @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -239,10 +289,10 @@
   <section class="sec" style="padding-top:36px;"><div class="section">
     <div class="reveal"><div class="sec-label">For Site Owners &amp; Developers</div><h2 class="sec-h">Do you have a <em>powered site</em>?</h2>
     <p class="sec-sub">If you have land with power, a powered site, or a project that needs a path forward, bring it to us. We help move it forward with our partner network, capital relationships, and delivery.</p></div>
-    <div class="duo" style="margin-top:32px;">
-      <div class="qcard reveal"><div class="qq">Do you have a powered site?</div><p>Land with power, an interconnection position, or a shovel-ready parcel. We can help you represent it, position it, and bring it to market.</p><a href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Site%20Submission" class="btn btn-primary">Bring Us Your Site <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-      <div class="qcard reveal"><div class="qq">Do you need offtakers?</div><p>We connect sites and projects with hyperscale and enterprise offtakers, capital partners, and the delivery network to get to power.</p><a href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Site%20Submission" class="btn btn-primary">Talk to Us <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="bgrid">
+      <a class="bcard" href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Site%20Submission"><div class="bt">Do you have a powered site?</div><div class="bp">Land with power, an interconnection position, or a shovel-ready parcel. We help you represent, position, and bring it to market.</div><div class="demo"><span class="dl">Bring us your site &rarr;</span></div></a><a class="bcard" href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Site%20Submission"><div class="bt">Do you need offtakers?</div><div class="bp">We connect sites and projects with hyperscale and enterprise offtakers and the delivery network to get to power.</div><div class="demo"><span class="dl">Get connected &rarr;</span></div></a><a class="bcard" href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Site%20Submission"><div class="bt">Need capital to reach power?</div><div class="bp">We bring capital relationships across equity, debt, and structured finance to move a project from land to live.</div><div class="demo"><span class="dl">Let's talk capital &rarr;</span></div></a>
     </div>
+    <div class="ctaband reveal" style="margin-top:26px;"><div><div class="lab">For Site Owners</div><h2>Have a site or a project in motion? Let's move it forward together.</h2></div><a href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Site%20Submission" class="btn btn-primary" style="flex-shrink:0;">Bring Us Your Site <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </div></section>
 
   <section class="sec" style="padding-top:0;"><div class="section">
@@ -253,8 +303,6 @@
       <div style="margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Project%20Information%20Request%20(NDA)" class="btn btn-primary">Request Project Information (NDA) <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="contact.html" class="btn btn-ghost">Start a Strategic Review</a></div>
     </div>
   </div></section>
-
-  <section class="sec" style="padding-top:0;"><div class="section"><div class="ctaband reveal"><div><div class="lab">Next Step</div><h2>Whether you hold a site or need one, the conversation starts here.</h2></div><a href="contact.html" class="btn btn-primary" style="flex-shrink:0;">Talk to OVMG <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></section>
 </main><footer><div class="fgrid">
     <div><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" style="height:34px;margin-bottom:6px;">
       <p class="ftag">Hyperscale infrastructure and media, delivered with our strategic partners.</p></div>
