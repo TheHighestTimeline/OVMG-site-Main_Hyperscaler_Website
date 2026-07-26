@@ -269,7 +269,7 @@
   .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
   .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
   @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
-</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
+.bub .bw{white-space:nowrap;}.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
     <nav><a href="index.html">Home</a><a href="platform.html" class="active">Platform</a><a href="netzero.html">Net Plus</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
@@ -404,4 +404,5 @@
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
     steps.forEach(function(s){io.observe(s);});set('community');})();
 </script>
+<script>(function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();</script>
 </body></html>

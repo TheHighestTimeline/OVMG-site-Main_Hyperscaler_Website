@@ -219,6 +219,42 @@
     .reveal{opacity:1;transform:none;transition:none;}
     .rise .rw .w{transform:none;} .px-bg,.px-glow{transform:none!important;}
   }
+
+  /* stat centering */
+  .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  /* merged cards */
+  .fcard{position:relative;}
+  .fcard.accent{background:linear-gradient(135deg,rgba(30,107,255,.14),var(--graphite));border-color:var(--border-lit);}
+  .fcard .fcta{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--sky);text-decoration:none;}
+  .fcard .fcta:hover{color:var(--white);}
+  .fmono{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--sky);margin-top:10px;}
+  /* bubble */
+.bub .bw{white-space:nowrap;}.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  /* solar ecosystem */
+  .eco3{display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .eco-label{font-weight:600;font-size:12px;letter-spacing:.22em;color:var(--sky);text-transform:uppercase;}
+  .eco3-stage{position:relative;width:520px;height:440px;max-width:100%;}
+  .eco3-rings{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
+  .eco3-core{position:absolute;left:50%;top:50%;width:114px;height:114px;transform:translate(-50%,-50%);z-index:5;}
+  .eco3-core img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 34px rgba(0,0,0,.72));}
+  .eco3-core::after{content:"";position:absolute;left:50%;top:50%;width:172px;height:172px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(30,107,255,.42),transparent 62%);z-index:-1;}
+  .orbiter{position:absolute;top:0;left:0;width:46px;height:46px;offset-rotate:0deg;offset-anchor:50% 50%;animation-name:orbit;animation-timing-function:linear;animation-iteration-count:infinite;}
+  .orbiter img{width:46px;height:46px;object-fit:contain;filter:brightness(1.25) drop-shadow(0 0 12px rgba(68,199,255,.5));}
+  @keyframes orbit{from{offset-distance:0%;}to{offset-distance:100%;}}
+  .o1a,.o1b{offset-path:path('M140,220 a120,46 0 1 0 240 0 a120,46 0 1 0 -240 0');animation-duration:28s;}
+  .o1a{offset-distance:0%;} .o1b{offset-distance:50%;animation-delay:-14s;}
+  .o2a,.o2b{offset-path:path('M75,220 a185,70 0 1 0 370 0 a185,70 0 1 0 -370 0');animation-duration:44s;}
+  .o2a{offset-distance:12%;animation-delay:-5s;} .o2b{offset-distance:62%;animation-delay:-27s;}
+  .o3a,.o3b{offset-path:path('M15,220 a245,92 0 1 0 490 0 a245,92 0 1 0 -490 0');animation-duration:62s;}
+  .o3a{offset-distance:30%;animation-delay:-19s;} .o3b{offset-distance:80%;animation-delay:-50s;}
+  @supports not (offset-path: path('M0 0 h1')){ .orbiter{display:none;} }
+  @media(max-width:560px){ .eco3-stage{transform:scale(.6);transform-origin:top center;height:280px;} }
+  /* velocity text */
+  .velo{height:200vh;position:relative;}
+  .velo-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+  .velo-track{white-space:nowrap;font-weight:900;font-size:clamp(40px,9vw,116px);color:var(--white);letter-spacing:-0.02em;line-height:1;will-change:transform;}
+  .velo-track b{color:transparent;-webkit-text-stroke:1.4px var(--sky);font-weight:900;}
+  @media (prefers-reduced-motion:reduce){ .orbiter{animation:none!important;} .velo-track{transform:none!important;} }
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -236,36 +272,30 @@
       <p class="hero-sub">OVMG brings hyperscale opportunities forward with our strategic partners, aligning site, power, capital, and delivery, and building the media and assets behind the deal.</p>
       <div class="hero-actions"><a href="platform.html" class="btn btn-primary">Explore the Platform <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="projects.html" class="btn btn-ghost">View the Projects</a></div>
     </div>
-    <div class="reveal in"><div class="ecosystem"><div class="eco-label">The Ecosystem</div><div class="orbit-stage"><div class="orbit o1"><div class="node" style="transform:rotate(0deg) translateY(-101px);"><div class="up" style="transform:rotate(-0deg);"><div class="chip"><img src="images/logo-velatech.png" alt="Vela Tech"></div></div></div><div class="node" style="transform:rotate(180deg) translateY(-101px);"><div class="up" style="transform:rotate(-180deg);"><div class="chip"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"></div></div></div></div><div class="orbit o2"><div class="node" style="transform:rotate(60deg) translateY(-166px);"><div class="up" style="transform:rotate(-60deg);"><div class="chip"><img src="images/logo-solr-energy.png" alt="SOLR Energy"></div></div></div><div class="node" style="transform:rotate(240deg) translateY(-166px);"><div class="up" style="transform:rotate(-240deg);"><div class="chip"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"></div></div></div></div><div class="orbit o3"><div class="node" style="transform:rotate(120deg) translateY(-230px);"><div class="up" style="transform:rotate(-120deg);"><div class="chip"><img src="images/logo-ess.png" alt="Energy Storage Solutions"></div></div></div><div class="node" style="transform:rotate(300deg) translateY(-230px);"><div class="up" style="transform:rotate(-300deg);"><div class="chip"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises"></div></div></div></div><div class="eco-core"><img src="ovmg-o-logo.png" alt="OneVibeMediaGroup"></div></div></div></div>
+    <div class="reveal in"><div class="eco3"><div class="eco-label">The Ecosystem</div><div class="eco3-stage"><svg class="eco3-rings" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet"><ellipse cx="260" cy="220" rx="120" ry="46" fill="none" stroke="rgba(216,220,226,.16)"/><ellipse cx="260" cy="220" rx="185" ry="70" fill="none" stroke="rgba(68,199,255,.16)"/><ellipse cx="260" cy="220" rx="245" ry="92" fill="none" stroke="rgba(216,220,226,.11)"/><circle cx="60" cy="72" r="1.3" fill="#8aa0c0"/><circle cx="470" cy="96" r="1.2" fill="#8aa0c0"/><circle cx="436" cy="352" r="1.4" fill="#8aa0c0"/><circle cx="92" cy="344" r="1.1" fill="#8aa0c0"/><circle cx="498" cy="228" r="1.2" fill="#8aa0c0"/><circle cx="40" cy="220" r="1" fill="#8aa0c0"/></svg><div class="orbiter o1a"><img src="images/logo-velatech.png" alt="Vela Tech"></div><div class="orbiter o1b"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"></div><div class="orbiter o2a"><img src="images/logo-solr-energy.png" alt="SOLR Energy"></div><div class="orbiter o2b"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"></div><div class="orbiter o3a"><img src="images/logo-ess.png" alt="Energy Storage Solutions"></div><div class="orbiter o3b"><img src="images/logo-ram-global.png" alt="RAM Global"></div><div class="eco3-core"><img src="ovmg-o-logo.png" alt="OneVibeMediaGroup"></div></div></div></div>
   </div></div></section>
 
   <section class="proof"><div class="proof-inner"><div class="proof-grid reveal">
     <div class="stat"><div class="num" data-count="6" data-suffix="+">0</div><div class="lbl">Strategic Partners</div></div>
     <div class="stat"><div class="num" data-count="50" data-suffix="+ GW">0</div><div class="lbl">Delivered by Our Network</div></div>
-    <div class="stat"><div class="num" data-count="4" data-suffix=" Continents">0</div><div class="lbl">Partner Footprint</div></div>
-    <div class="stat"><div class="num" data-count="1" data-prefix="" data-suffix=" Platform">0</div><div class="lbl">Site to Story</div></div>
+    <div class="stat"><div class="num" data-count="4">0</div><div class="lbl">Continents of Reach</div></div>
+    <div class="stat"><div class="num" data-count="1">0</div><div class="lbl">Platform, Site to Story</div></div>
   </div><div class="proof-note">Partner network figures as of July 2026.</div></div></section>
 
   <section class="sec"><div class="section">
     <div class="reveal"><div class="sec-label">Why OVMG</div><h2 class="sec-h">One firm. The whole <em>transaction</em>.</h2>
-    <p class="sec-sub">Most firms bring one piece of a data center deal. With our strategic partners, OVMG brings the network that builds it, the capital that funds it, the sites it stands on, and the media that tells its story.</p></div>
-    <div class="cards3">
-      <div class="ucard reveal"><div class="uicon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3>The Network</h3><p>Deep relationships with energy, engineering, construction, and storage partners bring every technical capability a data center requires.</p><div class="chips"><span class="chip">Energy</span><span class="chip">Engineering</span><span class="chip">Construction</span></div></div>
-      <div class="ucard sky reveal"><div class="uicon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>The Capital</h3><p>Institutional capital, family offices, and private equity connected at the right moment. Relationships span the full stack: equity, debt, and structured.</p><div class="chips"><span class="chip">Equity</span><span class="chip">Debt</span><span class="chip">Structured</span></div></div>
-      <div class="ucard violet reveal"><div class="uicon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>The Sites &amp; Story</h3><p>A curated portfolio advanced with our partners, plus the decks, data rooms, and media assets that carry each opportunity forward.</p><div class="chips"><span class="chip">Portfolio</span><span class="chip">Media</span><span class="chip">Assets</span></div></div>
+    <p class="sec-sub">Most firms bring one piece of a data center deal. OVMG brings the network that builds it, the capital that funds it, the sites it stands on, and the media that tells its story, all with our strategic partners.</p></div>
+    <div class="cards6" style="margin-top:40px;">
+      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div><h3>The Network</h3><p>Deep relationships across energy, engineering, construction, and storage, including partners like Vela Tech, bring every capability a data center requires without building it in-house.</p></div>
+      <div class="fcard accent reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>The Capital</h3><p>Committed capital across the full stack: equity, debt, and structured finance. Institutional capital, family offices, and private equity are engaged alongside every project and connected at the right moment, so funding is a relationship we already hold, not a search that starts at zero.</p></div>
+      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Full-Stack Financing</h3><p>Equity, debt, and structured instruments matched to the right moment in each deal, so the capital fits the stage the project is in.</p></div>
+      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/></svg></div><h3>Commitments in Place</h3><p>Capital commitments standing behind the portfolio to move projects forward with confidence.</p></div>
+      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h3>Speed to Power</h3><p>On-site generation and an assembled partner network compress the path to power.</p><div class="fmono">Months, not years.</div></div>
+      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>The Sites &amp; Story</h3><p>A curated portfolio advanced with our partners, plus the decks, data rooms, and media that carry each opportunity forward.</p><a class="fcta" href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Inquiry">Reach out <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
     </div>
   </div></section>
 
-  <section class="sec" style="padding-top:0;"><div class="section">
-    <div class="reveal"><div class="sec-label">Capital &amp; Speed</div><h2 class="sec-h">Backed by capital that <em>closes</em>.</h2>
-    <p class="sec-sub">OVMG and its partners bring committed capital across the full stack, equity, debt, and structured finance, connected at the right moment in the deal cycle. Projects advance with relationships already in place, not sourced from scratch.</p></div>
-    <div class="cards3">
-      <div class="ucard reveal"><div class="uicon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>Committed Capital Partners</h3><p>Institutional capital, family offices, and private equity engaged alongside every project, so funding is a relationship, not a search.</p></div>
-      <div class="ucard sky reveal"><div class="uicon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Full-Stack Financing</h3><p>Equity, debt, and structured finance across the capital stack, matched to the right moment in each deal.</p></div>
-      <div class="ucard violet reveal"><div class="uicon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/></svg></div><h3>Commitments in Place</h3><p>Capital commitments standing behind the portfolio to move projects forward with confidence.</p></div>
-    </div>
-    <div class="mission-box reveal" style="margin-top:22px;text-align:center;padding:40px;"><div class="mission-motto shine" style="margin-bottom:6px;">Powered on site in months, not years.</div><p style="margin:0 auto;color:var(--stone);">On-site generation and an assembled partner network compress the path to power.</p></div>
-  </div></section>
+  <section class="velo" id="veloSec"><div class="velo-sticky"><div class="velo-track" id="veloTrack">Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;</div></div></section>
 
   <section class="sec" style="padding-top:0;padding-bottom:64px;"><div class="section reveal">
     <div class="sec-label">The Network</div><h2 class="sec-h">Powered by the <em>network</em>.</h2><p class="sec-sub">And we are adding partners, capital relationships, and sites all the time.</p>
@@ -310,5 +340,16 @@
   (function(){var c=document.getElementById('ripple');if(!c||reduce)return;var ctx=c.getContext('2d'),rp=[],last=0;function sz(){c.width=innerWidth;c.height=innerHeight;}sz();addEventListener('resize',sz);
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
+</script><script>
+  // bubble hover on blue words (no color change, just a scale wave)
+  (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';
+   document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');
+     var ls=[].slice.call(em.querySelectorAll('.bl'));
+     ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});
+     em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
+  // velocity scrolling text
+  (function(){var sec=document.getElementById('veloSec'),track=document.getElementById('veloTrack');if(!sec||!track||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var last=scrollY,vel=0;
+   function loop(){var vh=innerHeight;var total=sec.offsetHeight-vh;var passed=Math.min(Math.max(-sec.getBoundingClientRect().top,0),total);var prog=total>0?passed/total:0;var dist=Math.max(0,track.scrollWidth-innerWidth);var cur=scrollY;var dv=cur-last;last=cur;vel+=(dv-vel)*0.15;var sk=Math.max(-14,Math.min(14,-vel*0.5));track.style.transform='translateX('+(-(prog*dist))+'px) skewX('+sk.toFixed(2)+'deg)';requestAnimationFrame(loop);}
+   requestAnimationFrame(loop);})();
 </script>
 </body></html>
