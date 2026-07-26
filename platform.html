@@ -269,7 +269,70 @@
   .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
   .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
   @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
-.bub .bw{white-space:nowrap;}.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
+
+  /* stat centering */
+  .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  /* merged cards */
+  .fcard{position:relative;}
+  .fcard.accent{background:linear-gradient(135deg,rgba(30,107,255,.14),var(--graphite));border-color:var(--border-lit);}
+  .fcard .fcta{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--sky);text-decoration:none;}
+  .fcard .fcta:hover{color:var(--white);}
+  .fmono{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--sky);margin-top:10px;}
+  /* bubble */
+.bub .bw{white-space:nowrap;}.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  /* solar ecosystem */
+  .eco3{display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .eco-label{font-weight:600;font-size:12px;letter-spacing:.22em;color:var(--sky);text-transform:uppercase;}
+  .eco3-stage{position:relative;width:520px;height:440px;max-width:100%;}
+  .eco3-rings{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
+  .eco3-core{position:absolute;left:50%;top:50%;width:114px;height:114px;transform:translate(-50%,-50%);z-index:5;}
+  .eco3-core img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 34px rgba(0,0,0,.72));}
+  .eco3-core::after{content:"";position:absolute;left:50%;top:50%;width:172px;height:172px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(30,107,255,.42),transparent 62%);z-index:-1;}
+  .orbiter{position:absolute;top:0;left:0;width:46px;height:46px;offset-rotate:0deg;offset-anchor:50% 50%;animation-name:orbit;animation-timing-function:linear;animation-iteration-count:infinite;}
+  .orbiter img{width:46px;height:46px;object-fit:contain;filter:brightness(1.25) drop-shadow(0 0 12px rgba(68,199,255,.5));}
+  @keyframes orbit{from{offset-distance:0%;}to{offset-distance:100%;}}
+  .o1a,.o1b{offset-path:path('M140,220 a120,46 0 1 0 240 0 a120,46 0 1 0 -240 0');animation-duration:28s;}
+  .o1a{offset-distance:0%;} .o1b{offset-distance:50%;animation-delay:-14s;}
+  .o2a,.o2b{offset-path:path('M75,220 a185,70 0 1 0 370 0 a185,70 0 1 0 -370 0');animation-duration:44s;}
+  .o2a{offset-distance:12%;animation-delay:-5s;} .o2b{offset-distance:62%;animation-delay:-27s;}
+  .o3a,.o3b{offset-path:path('M15,220 a245,92 0 1 0 490 0 a245,92 0 1 0 -490 0');animation-duration:62s;}
+  .o3a{offset-distance:30%;animation-delay:-19s;} .o3b{offset-distance:80%;animation-delay:-50s;}
+  @supports not (offset-path: path('M0 0 h1')){ .orbiter{display:none;} }
+  @media(max-width:560px){ .eco3-stage{transform:scale(.6);transform-origin:top center;height:280px;} }
+  /* velocity text */
+  .velo{height:200vh;position:relative;}
+  .velo-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+  .velo-track{white-space:nowrap;font-weight:900;font-size:clamp(40px,9vw,116px);color:var(--white);letter-spacing:-0.02em;line-height:1;will-change:transform;}
+  .velo-track b{color:transparent;-webkit-text-stroke:1.4px var(--sky);font-weight:900;}
+  @media (prefers-reduced-motion:reduce){ .orbiter{animation:none!important;} .velo-track{transform:none!important;} }
+
+  /* v7 overrides */
+  /* opaque deck cards */
+  .deck-stage{height:344px;}
+  .deck-card{background:#141b2b!important;box-shadow:0 22px 54px rgba(0,0,0,.55);overflow:hidden;}
+  .deck-card::after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(135deg,rgba(30,107,255,.12),transparent 55%);pointer-events:none;}
+  .deck-card>*{position:relative;z-index:1;}
+  .deck-card .dnum{font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--sky);margin-bottom:12px;}
+  .deck-card .fmono{margin-top:12px;}
+  .deck-card .fcta{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--sky);text-decoration:none;}
+  .deck-card .fcta:hover{color:var(--white);}
+  .deck-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  /* bubble clip fix: give blue letters descender room */
+  .bub .bl{padding-bottom:.2em;margin-bottom:-.16em;line-height:1;}
+  h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em{padding-bottom:.22em;}
+  /* chiron ticker */
+  .chiron{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;background:linear-gradient(180deg,rgba(22,29,44,.45),transparent);}
+  .chiron-track{display:inline-flex;white-space:nowrap;animation:chiron 26s linear infinite;}
+  .chiron:hover .chiron-track{animation-play-state:paused;}
+  .chiron-track span{font-weight:900;font-size:clamp(28px,6vw,80px);color:var(--white);letter-spacing:-0.02em;padding:0 .55em;line-height:1.1;}
+  .chiron-track b{color:var(--sky);font-weight:900;}
+  @keyframes chiron{to{transform:translateX(-50%);}}
+  /* community tighten */
+  .city-steps{padding-top:0!important;}
+  .cstep{min-height:58vh!important;}
+  .cstep:first-child{min-height:auto!important;justify-content:flex-start!important;padding-top:2px!important;}
+  @media(prefers-reduced-motion:reduce){.chiron-track{animation:none!important;}}
+</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
     <nav><a href="index.html">Home</a><a href="platform.html" class="active">Platform</a><a href="netzero.html">Net Plus</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
@@ -277,24 +340,7 @@
     <button class="mobile-menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
     </div></header>
     <div class="mobile-overlay" id="mobileMenu"><button class="mobile-close"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button><a href="index.html">Home</a><a href="platform.html">Platform</a><a href="netzero.html">Net Plus</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn btn-primary" style="margin-top:10px;">Start a Strategic Review</a></div>
-
-<main>
-<div class="section"><div class="breadcrumb"><a href="index.html">Home</a><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><span>Platform</span></div></div>
-  <div class="section"><div class="page-hero" style="padding:34px 0 8px;"><div class="hero-grid" style="grid-template-columns:1.08fr .92fr;align-items:end;">
-    <div class="reveal in"><div class="eyebrow">OneVibeMediaGroup &middot; The Platform</div><h1 class="ph">One platform, from site to <em>story</em>.</h1></div>
-    <div class="reveal in"><p class="ph-sub">OVMG integrates site strategy, power, connectivity, and Net Plus positioning end to end, and brings the media, assets, and community investment that carry every project forward, all with our strategic partners.</p>
-      <div class="hero-actions" style="margin-top:20px;"><a href="contact.html" class="btn btn-primary">Request a Platform Overview <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="projects.html" class="btn btn-ghost">View Projects</a></div></div>
-  </div></div></div>
-
-  <section class="sec" style="padding-top:28px;"><div class="section">
-    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;">
-      <div><div class="sec-label">Capabilities</div><h2 class="sec-h" style="margin-bottom:0;"><span class="shine">Everything a deployment needs, aligned.</span></h2></div>
-      <div class="deck-arrows"><button class="deck-arrow" id="deckPrev" aria-label="Previous"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="deck-arrow" id="deckNext" aria-label="Next"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div>
-    </div>
-    <p class="sec-sub" style="margin-top:12px;">Drag, or use the arrows. Every layer of the OVMG platform, delivered with our partners.</p>
-    <div class="deck-stage" id="deckStage" style="margin-top:26px;"><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>Site Strategy</h3><p>Feasibility, zoning and permitting strategy, and physical readiness planning. We prove a site against hyperscale requirements before anyone commits, so the fundamentals are solid from the start.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Power Planning</h3><p>Scalable power strategy, utility relationships, transmission, and on-site generation. We map the path to megawatts and secure it, so power is a plan, not a hope.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12h4l3 8 4-16 3 8h2"/></svg></div><h3>Connectivity</h3><p>Carrier, fiber, and network access planning coordinated with delivery, so every site has the connectivity a hyperscale tenant expects on day one.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Net Plus Positioning</h3><p>Sustainability designed in from day one: water stewardship, energy recovery, and regenerative design aimed at leaving every site better than we found it.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Portfolio Scale</h3><p>A modular delivery model that grows from a single site to a multi-region program, with consistent standards and execution at every stage.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h3>Strategic Partnerships</h3><p>Utilities, carriers, EPCs, and construction partners engaged from our network, compressing timelines and reducing execution risk.</p></div></div>
-    <div class="deck-dots"><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span></div>
-  </div></section>
+<section class="sec" style="padding-top:28px;"><div class="section"><div class="deck-top reveal"><div><div class="sec-label">Capabilities</div><h2 class="sec-h" style="margin-bottom:0;"><span class="shine">Everything a deployment needs, aligned.</span></h2><p class="sec-sub" style="margin-top:12px;">Drag, or use the arrows. Every layer of the OVMG platform, delivered with our partners.</p></div><div class="deck-arrows"><button class="deck-arrow" id="deckPrev" aria-label="Previous"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="deck-arrow" id="deckNext" aria-label="Next"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div></div><div class="deck-stage" id="deckStage" style="margin-top:26px;"><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>Site Strategy</h3><p>Feasibility, zoning and permitting strategy, and physical readiness planning. We prove a site against hyperscale requirements before anyone commits, so the fundamentals are solid from the start.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Power Planning</h3><p>Scalable power strategy, utility relationships, transmission, and on-site generation. We map the path to megawatts and secure it, so power is a plan, not a hope.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12h4l3 8 4-16 3 8h2"/></svg></div><h3>Connectivity</h3><p>Carrier, fiber, and network access planning coordinated with delivery, so every site has the connectivity a hyperscale tenant expects on day one.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Net Plus Positioning</h3><p>Sustainability designed in from day one: water stewardship, energy recovery, and regenerative design aimed at leaving every site better than we found it.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Portfolio Scale</h3><p>A modular delivery model that grows from a single site to a multi-region program, with consistent standards and execution at every stage.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h3>Strategic Partnerships</h3><p>Utilities, carriers, EPCs, and construction partners engaged from our network, compressing timelines and reducing execution risk.</p></div></div><div class="deck-dots"><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span></div></div></section>
 
   <section class="sec" style="padding-top:20px;"><div class="section">
     <div class="reveal"><div class="sec-label">Media &amp; Assets</div><h2 class="sec-h"><span class="shine">Beyond the ground, we build the story.</span></h2>
@@ -389,20 +435,19 @@
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
 </script><script>
-  var _reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  // swipe deck
   (function(){var stage=document.getElementById('deckStage');if(!stage)return;var cards=[].slice.call(stage.querySelectorAll('.deck-card'));var dots=[].slice.call(document.querySelectorAll('.deck-dot'));var n=cards.length,idx=0;
-    function render(){cards.forEach(function(c,i){var pos=(i-idx+n)%n;c.style.zIndex=n-pos;c.style.opacity=pos>2?0:1;c.style.transform='translateY('+(pos*14)+'px) scale('+(1-pos*0.05).toFixed(3)+')';});dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});}
+    function render(){cards.forEach(function(c,i){var pos=(i-idx+n)%n;c.style.zIndex=n-pos;c.style.opacity=pos>2?0:1;c.style.transform='translateY('+(pos*16)+'px) scale('+(1-pos*0.05).toFixed(3)+')';});dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});}
     function next(){idx=(idx+1)%n;render();}function prev(){idx=(idx-1+n)%n;render();}
     var nb=document.getElementById('deckNext'),pb=document.getElementById('deckPrev');if(nb)nb.onclick=next;if(pb)pb.onclick=prev;
     var sx=0,drag=false;stage.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-40)next();else if(dx>40)prev();});
     dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
-  // interactive city
   (function(){var svg=document.getElementById('citySvg');if(!svg)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'s-comm',local:'s-local',infra:'s-infra'};
     function set(k){svg.classList.remove('s-comm','s-local','s-infra');svg.classList.add(map[k]);}
-    if(_reduce){set('comm'in map?'community':'infra');steps.forEach(function(s){s.classList.add('active');});set('community');return;}
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){steps.forEach(function(s){s.classList.add('active');});set('community');return;}
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
-    steps.forEach(function(s){io.observe(s);});set('community');})();
+    steps.forEach(function(s){io.observe(s);});set('community');steps[0].classList.add('active');})();
+  (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';
+   document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');
+     var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
 </script>
-<script>(function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();</script>
 </body></html>

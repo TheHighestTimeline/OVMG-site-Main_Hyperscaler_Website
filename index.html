@@ -220,6 +220,56 @@
     .rise .rw .w{transform:none;} .px-bg,.px-glow{transform:none!important;}
   }
 
+  /* bouncy question cards */
+  .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+  .bcard{position:relative;min-height:330px;overflow:hidden;border-radius:18px;background:var(--graphite);border:1px solid var(--border);padding:34px;cursor:pointer;text-decoration:none;display:block;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;}
+  .bcard:hover{transform:scale(.96) rotate(-1deg);border-color:var(--border-lit);}
+  .bcard .bt{font-size:clamp(19px,2vw,23px);font-weight:900;color:var(--white);line-height:1.18;position:relative;z-index:3;}
+  .bcard .bp{color:var(--infra);font-size:13.5px;margin-top:12px;position:relative;z-index:3;max-width:88%;line-height:1.6;}
+  .bcard .demo{position:absolute;left:18px;right:18px;top:172px;bottom:0;transform:translateY(34px);border-radius:16px 16px 0 0;background:linear-gradient(135deg,var(--electric),var(--sky));padding:18px 20px;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-end;z-index:2;}
+  .bcard:hover .demo{transform:translateY(16px) rotate(2deg);}
+  .bcard .dl{font-weight:800;color:#eaf3ff;font-size:14px;letter-spacing:.02em;}
+  @media(max-width:900px){.bgrid{grid-template-columns:1fr;} .bcard{min-height:260px;}}
+
+  /* swipe deck (capabilities) */
+  .deck-top{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin:0 0 18px;}
+  .deck-arrows{display:flex;gap:10px;}
+  .deck-arrow{width:46px;height:46px;border-radius:11px;border:1px solid var(--border);background:var(--graphite);color:var(--white);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s;}
+  .deck-arrow:hover{border-color:var(--border-lit);background:#1b2438;}
+  .deck-stage{position:relative;height:290px;}
+  .deck-card{position:absolute;inset:0;border-radius:18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(30,107,255,.12),var(--graphite));padding:36px;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;will-change:transform,opacity;}
+  .deck-card .di{width:48px;height:48px;border-radius:12px;background:rgba(30,107,255,.14);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:16px;color:var(--sky);}
+  .deck-card .di svg{width:22px;height:22px;}
+  .deck-card h3{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;}
+  .deck-card p{color:var(--infra);font-size:14.5px;line-height:1.72;max-width:600px;}
+  .deck-dots{display:flex;gap:7px;margin-top:20px;justify-content:center;}
+  .deck-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .25s;}
+  .deck-dot.on{background:var(--sky);width:22px;border-radius:5px;}
+
+  /* sticky scroll-stack (media) */
+  .stack{margin-top:22px;}
+  .spanel{position:sticky;top:100px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(30,107,255,.06),var(--graphite));padding:40px 44px;margin-bottom:20px;box-shadow:0 -10px 44px rgba(0,0,0,.4);}
+  .spanel .sn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sky);}
+  .spanel h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--white);margin:8px 0 12px;letter-spacing:-0.01em;}
+  .spanel p{color:var(--infra);font-size:15.5px;line-height:1.75;max-width:720px;}
+
+  /* interactive city (community) */
+  .city-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:30px;align-items:start;}
+  .city-sticky{position:sticky;top:110px;}
+  .city-svg{width:100%;height:auto;border-radius:16px;border:1px solid var(--border);display:block;}
+  .city-steps{display:flex;flex-direction:column;}
+  .cstep{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.32;transition:opacity .4s;}
+  .cstep.active{opacity:1;}
+  .cstep .ck{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
+  .cstep h3{font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;}
+  .cstep p{color:var(--infra);font-size:15.5px;line-height:1.8;max-width:520px;}
+  .grp{transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .4s;}
+  .glow{opacity:0;transition:opacity .5s;}
+  .city-svg.s-comm #g-comm,.city-svg.s-local #g-local,.city-svg.s-infra #g-infra{transform:translateY(-22px);}
+  .city-svg.s-comm #g-comm .glow,.city-svg.s-local #g-local .glow,.city-svg.s-infra #g-infra .glow{opacity:1;}
+  .city-svg.s-comm #g-local,.city-svg.s-comm #g-infra,.city-svg.s-local #g-comm,.city-svg.s-local #g-infra,.city-svg.s-infra #g-comm,.city-svg.s-infra #g-local{opacity:.5;}
+  @media(max-width:900px){.city-wrap{grid-template-columns:1fr;} .city-sticky{position:relative;top:0;margin-bottom:24px;} .cstep{min-height:auto;padding:18px 0;opacity:1;}}
+
   /* stat centering */
   .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;}
   /* merged cards */
@@ -255,6 +305,33 @@
   .velo-track{white-space:nowrap;font-weight:900;font-size:clamp(40px,9vw,116px);color:var(--white);letter-spacing:-0.02em;line-height:1;will-change:transform;}
   .velo-track b{color:transparent;-webkit-text-stroke:1.4px var(--sky);font-weight:900;}
   @media (prefers-reduced-motion:reduce){ .orbiter{animation:none!important;} .velo-track{transform:none!important;} }
+
+  /* v7 overrides */
+  /* opaque deck cards */
+  .deck-stage{height:344px;}
+  .deck-card{background:#141b2b!important;box-shadow:0 22px 54px rgba(0,0,0,.55);overflow:hidden;}
+  .deck-card::after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(135deg,rgba(30,107,255,.12),transparent 55%);pointer-events:none;}
+  .deck-card>*{position:relative;z-index:1;}
+  .deck-card .dnum{font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--sky);margin-bottom:12px;}
+  .deck-card .fmono{margin-top:12px;}
+  .deck-card .fcta{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--sky);text-decoration:none;}
+  .deck-card .fcta:hover{color:var(--white);}
+  .deck-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  /* bubble clip fix: give blue letters descender room */
+  .bub .bl{padding-bottom:.2em;margin-bottom:-.16em;line-height:1;}
+  h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em{padding-bottom:.22em;}
+  /* chiron ticker */
+  .chiron{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;background:linear-gradient(180deg,rgba(22,29,44,.45),transparent);}
+  .chiron-track{display:inline-flex;white-space:nowrap;animation:chiron 26s linear infinite;}
+  .chiron:hover .chiron-track{animation-play-state:paused;}
+  .chiron-track span{font-weight:900;font-size:clamp(28px,6vw,80px);color:var(--white);letter-spacing:-0.02em;padding:0 .55em;line-height:1.1;}
+  .chiron-track b{color:var(--sky);font-weight:900;}
+  @keyframes chiron{to{transform:translateX(-50%);}}
+  /* community tighten */
+  .city-steps{padding-top:0!important;}
+  .cstep{min-height:58vh!important;}
+  .cstep:first-child{min-height:auto!important;justify-content:flex-start!important;padding-top:2px!important;}
+  @media(prefers-reduced-motion:reduce){.chiron-track{animation:none!important;}}
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
@@ -282,22 +359,11 @@
     <div class="stat"><div class="num" data-count="1">0</div><div class="lbl">Platform, Site to Story</div></div>
   </div><div class="proof-note">Partner network figures as of July 2026.</div></div></section>
 
-  <section class="sec"><div class="section">
-    <div class="reveal"><div class="sec-label">Why OVMG</div><h2 class="sec-h">One firm. The whole <em>transaction</em>.</h2>
-    <p class="sec-sub">Most firms bring one piece of a data center deal. OVMG brings the network that builds it, the capital that funds it, the sites it stands on, and the media that tells its story, all with our strategic partners.</p></div>
-    <div class="cards6" style="margin-top:40px;">
-      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div><h3>The Network</h3><p>Deep relationships across energy, engineering, construction, and storage, including partners like Vela Tech, bring every capability a data center requires without building it in-house.</p></div>
-      <div class="fcard accent reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>The Capital</h3><p>Committed capital across the full stack: equity, debt, and structured finance. Institutional capital, family offices, and private equity are engaged alongside every project and connected at the right moment, so funding is a relationship we already hold, not a search that starts at zero.</p></div>
-      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Full-Stack Financing</h3><p>Equity, debt, and structured instruments matched to the right moment in each deal, so the capital fits the stage the project is in.</p></div>
-      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/></svg></div><h3>Commitments in Place</h3><p>Capital commitments standing behind the portfolio to move projects forward with confidence.</p></div>
-      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h3>Speed to Power</h3><p>On-site generation and an assembled partner network compress the path to power.</p><div class="fmono">Months, not years.</div></div>
-      <div class="fcard reveal"><div class="ficon"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>The Sites &amp; Story</h3><p>A curated portfolio advanced with our partners, plus the decks, data rooms, and media that carry each opportunity forward.</p><a class="fcta" href="mailto:tanner@onevibemediagroup.com,carsten@onevibemediagroup.com?subject=OVMG%20Inquiry">Reach out <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-    </div>
-  </div></section>
+  <section class="sec"><div class="section"><div class="deck-top reveal"><div><div class="sec-label">Why OVMG</div><h2 class="sec-h" style="margin-bottom:0;">One firm. The whole <em>transaction</em>.</h2><p class="sec-sub" style="margin-top:12px;">Most firms bring one piece of a data center deal. Step through what OVMG brings, all with our strategic partners.</p></div><div class="deck-arrows"><button class="deck-arrow" id="deckPrev" aria-label="Previous"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="deck-arrow" id="deckNext" aria-label="Next"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div></div><div class="deck-stage" id="deckStage" style="margin-top:26px;"><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div><h3>The Network</h3><p>Deep relationships across energy, engineering, construction, and storage, including partners like Vela Tech, bring every capability a data center requires without building it in-house.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>The Capital</h3><p>Committed capital across the full stack: equity, debt, and structured finance. Institutional capital, family offices, and private equity are engaged alongside every project and connected at the right moment, so funding is a relationship we already hold, not a search that starts at zero.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Full-Stack Financing</h3><p>Equity, debt, and structured instruments matched to the right moment in each deal, so the capital fits the stage the project is in.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/></svg></div><h3>Commitments in Place</h3><p>Capital commitments standing behind the portfolio to move projects forward with confidence.</p></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h3>Speed to Power</h3><p>On-site generation and an assembled partner network compress the path to power.</p><div class="fmono">Months, not years.</div></div><div class="deck-card"><div class="di"><svg fill="none" stroke="#44C7FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>The Sites &amp; Story</h3><p>A curated portfolio advanced with our partners, plus the decks, data rooms, and media that carry each opportunity forward.</p><a class="fcta" href="contact.html?interest=Site%20Evaluation&msg=Interested%20in%20your%20sites%20and%20portfolio.">Reach out <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div><div class="deck-dots"><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span></div></div></section>
 
-  <section class="velo" id="veloSec"><div class="velo-sticky"><div class="velo-track" id="veloTrack">Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;Powered on site in <b>months</b>, not years.&nbsp;&nbsp;&bull;&nbsp;&nbsp;</div></div></section>
+  <div class="chiron"><div class="chiron-track"><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span><span>Powered on site in <b>months</b>, not years.</span></div></div>
 
-  <section class="sec" style="padding-top:0;padding-bottom:64px;"><div class="section reveal">
+  <section class="sec" style="padding-top:64px;padding-bottom:64px;"><div class="section reveal">
     <div class="sec-label">The Network</div><h2 class="sec-h">Powered by the <em>network</em>.</h2><p class="sec-sub">And we are adding partners, capital relationships, and sites all the time.</p>
     <div class="pgrid reveal"><a class="pcard" href="https://velatech.com" target="_blank" rel="noopener"><img src="images/logo-velatech.png" alt="Vela Tech"><span>velatech.com</span></a><a class="pcard" href="https://solr.energy" target="_blank" rel="noopener"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><span>solr.energy</span></a><a class="pcard" href="https://energystoragesolutionsllc.com" target="_blank" rel="noopener"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><span>energystoragesolutionsllc.com</span></a><a class="pcard" href="https://tlgconsulting.tech" target="_blank" rel="noopener"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"><span>tlgconsulting.tech</span></a><a class="pcard" href="https://brightsun.solar" target="_blank" rel="noopener"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><span>brightsun.solar</span></a><a class="pcard" href="https://ramgellc.com" target="_blank" rel="noopener"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises"><span>ramgellc.com</span></a></div>
   </div></section>
@@ -341,15 +407,19 @@
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
 </script><script>
-  // bubble hover on blue words (no color change, just a scale wave)
+  (function(){var stage=document.getElementById('deckStage');if(!stage)return;var cards=[].slice.call(stage.querySelectorAll('.deck-card'));var dots=[].slice.call(document.querySelectorAll('.deck-dot'));var n=cards.length,idx=0;
+    function render(){cards.forEach(function(c,i){var pos=(i-idx+n)%n;c.style.zIndex=n-pos;c.style.opacity=pos>2?0:1;c.style.transform='translateY('+(pos*16)+'px) scale('+(1-pos*0.05).toFixed(3)+')';});dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});}
+    function next(){idx=(idx+1)%n;render();}function prev(){idx=(idx-1+n)%n;render();}
+    var nb=document.getElementById('deckNext'),pb=document.getElementById('deckPrev');if(nb)nb.onclick=next;if(pb)pb.onclick=prev;
+    var sx=0,drag=false;stage.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-40)next();else if(dx>40)prev();});
+    dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
+  (function(){var svg=document.getElementById('citySvg');if(!svg)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'s-comm',local:'s-local',infra:'s-infra'};
+    function set(k){svg.classList.remove('s-comm','s-local','s-infra');svg.classList.add(map[k]);}
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){steps.forEach(function(s){s.classList.add('active');});set('community');return;}
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
+    steps.forEach(function(s){io.observe(s);});set('community');steps[0].classList.add('active');})();
   (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';
    document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');
-     var ls=[].slice.call(em.querySelectorAll('.bl'));
-     ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});
-     em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
-  // velocity scrolling text
-  (function(){var sec=document.getElementById('veloSec'),track=document.getElementById('veloTrack');if(!sec||!track||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var last=scrollY,vel=0;
-   function loop(){var vh=innerHeight;var total=sec.offsetHeight-vh;var passed=Math.min(Math.max(-sec.getBoundingClientRect().top,0),total);var prog=total>0?passed/total:0;var dist=Math.max(0,track.scrollWidth-innerWidth);var cur=scrollY;var dv=cur-last;last=cur;vel+=(dv-vel)*0.15;var sk=Math.max(-14,Math.min(14,-vel*0.5));track.style.transform='translateX('+(-(prog*dist))+'px) skewX('+sk.toFixed(2)+'deg)';requestAnimationFrame(loop);}
-   requestAnimationFrame(loop);})();
+     var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
 </script>
 </body></html>
