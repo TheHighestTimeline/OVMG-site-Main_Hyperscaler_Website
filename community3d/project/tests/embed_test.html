@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City3D Embed Test Harness</title>
+<!-- Recreates the standalone embed page structure (600vh track + sticky stage +
+     #city3d-root) that the production OVMG site provides around city3d.js.
+     Copied into dist-embed/ by tests/run_tests.py before serving. -->
+<style>
+  html,body{margin:0;background:#0A0D15;}
+  #city3d-track{height:600vh;position:relative;}
+  #city3d-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;}
+  #city3d-root{width:min(94vw,1100px);height:min(80vh,760px);}
+</style>
+  <script type="module" crossorigin src="./city3d.js"></script>
+</head><body>
+<div id="city3d-track"><div id="city3d-sticky"><div id="city3d-root"></div></div></div>
+</body></html>

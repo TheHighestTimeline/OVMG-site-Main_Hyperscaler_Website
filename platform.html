@@ -496,10 +496,15 @@
         else if(t<0.60)m=1;
         else m=1-ease((t-0.60)/0.28);
         var lift=dh*0.10;
-        g.forEach(function(l){
-          l.style.transform='translateY('+(-lift*m).toFixed(1)+'px) scale('+(1+0.02*m).toFixed(3)+')';
-          l.style.filter='brightness('+(0.9+0.32*m).toFixed(3)+') drop-shadow(0 '+(14+22*m).toFixed(0)+'px '+(18+18*m).toFixed(0)+'px rgba(0,0,0,'+(0.5+0.14*m).toFixed(2)+'))';
-        });
+        if(window.City3D&&window.City3D.instance){
+          var kinds=['communityCenter','market','streetLamps'];
+          window.City3D.instance.setLift(kinds[i],m);
+        } else {
+          g.forEach(function(l){
+            l.style.transform='translateY('+(-lift*m).toFixed(1)+'px) scale('+(1+0.02*m).toFixed(3)+')';
+            l.style.filter='brightness('+(0.9+0.32*m).toFixed(3)+') drop-shadow(0 '+(14+22*m).toFixed(0)+'px '+(18+18*m).toFixed(0)+'px rgba(0,0,0,'+(0.5+0.14*m).toFixed(2)+'))';
+          });
+        }
       });
     }
     var tick=false;function onS(){if(!tick){requestAnimationFrame(function(){upd();tick=false;});tick=true;}}
@@ -530,5 +535,22 @@
     sc.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();})();
   (function(){function reveal(){document.querySelectorAll('.reveal:not(.in),.rise:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*1.1&&r.bottom>-50)el.classList.add('in');});}
     window.addEventListener('load',function(){setTimeout(reveal,60);});setTimeout(reveal,600);window.addEventListener('scroll',reveal,{passive:true});})();
+</script>
+<script type="module">
+(function(){try{
+  var t=document.createElement('canvas');
+  var gl=t.getContext('webgl2')||t.getContext('webgl');
+  var dio=document.querySelector('.diorama');
+  if(!gl||!dio)return;
+  var host=document.createElement('div');
+  host.id='city3d-root';
+  host.style.cssText='position:absolute;inset:0;border-radius:16px;overflow:hidden;';
+  dio.appendChild(host);
+  import('./community3d/city3d.js').then(function(){
+    var inst=window.City3D&&window.City3D.instance;
+    if(!inst)return;
+    dio.querySelectorAll('.wlayer,.wbase').forEach(function(el){el.style.transition='opacity .5s';el.style.opacity='0';});
+  }).catch(function(){host.remove();});
+}catch(e){}})();
 </script>
 </body></html>

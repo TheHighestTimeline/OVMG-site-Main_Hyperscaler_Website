@@ -1,0 +1,87 @@
+/* Dev asset viewer chrome — minimal, monospace, cyan accents. */
+
+.av-root {
+  position: fixed;
+  inset: 0;
+  background: #1a1e26;
+  font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+.av-canvas-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.av-toolbar {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(10, 13, 21, 0.88);
+  border: 1px solid rgba(79, 216, 255, 0.25);
+  border-radius: 6px;
+  max-width: calc(100vw - 24px);
+}
+
+.av-title {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4fd8ff;
+  user-select: none;
+}
+
+.av-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.av-label {
+  font-size: 10px;
+  color: #6b7690;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 2px 0 0;
+  user-select: none;
+}
+
+.av-btn {
+  appearance: none;
+  font: inherit;
+  font-size: 11px;
+  color: #c6cede;
+  background: #131826;
+  border: 1px solid #2a3348;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.av-btn:hover {
+  border-color: #4fd8ff;
+  color: #eaf6ff;
+}
+
+.av-btn.av-on {
+  background: rgba(79, 216, 255, 0.14);
+  border-color: #4fd8ff;
+  color: #4fd8ff;
+}
+
+.av-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.av-meta {
+  font-size: 10px;
+  color: #6b7690;
+  white-space: pre;
+  user-select: none;
+}
