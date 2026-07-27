@@ -33,7 +33,7 @@ echo   Step 1 of 3: switching to main and committing everything...
 git checkout main
 if errorlevel 1 goto FAIL
 git add -A
-git commit -m "Publish: mobile layout + animation fixes, new community base plate, reseated diorama, contact form fixes" 2>nul
+git commit -m "Publish: community scene depth order, JS orbit engine, mobile blue-word paint fix" 2>nul
 
 echo.
 echo   Step 2 of 3: syncing with GitHub first (avoids fetch-first errors)...
