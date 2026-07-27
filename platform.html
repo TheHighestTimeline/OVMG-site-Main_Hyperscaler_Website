@@ -365,21 +365,28 @@
   .hcard p{color:var(--infra);font-size:15px;line-height:1.68;margin:0;}
   @media(max-width:640px){.hcard{flex:0 0 82%;}}
   /* community diorama (layered isometric world, scroll-lifts each item) */
-  .diorama{position:relative;width:100%;aspect-ratio:1448/1086;background:url(images/world-base.webp) center/cover no-repeat;border-radius:16px;border:1px solid var(--border);overflow:visible;}
+  .diorama{position:relative;width:100%;border-radius:16px;border:1px solid var(--border);overflow:visible;}
+  .wbase{display:block;width:100%;height:auto;border-radius:16px;}
   .wlayer{position:absolute;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)) brightness(.9);will-change:transform,filter;}
-  #w-cc{left:33%;bottom:50%;width:30.5%;}
+  #w-cc{left:27%;bottom:53%;width:30.5%;}
   #w-mk{left:12%;bottom:41%;width:22.8%;}
-  #w-sl{left:0;top:0;right:0;bottom:0;width:auto;pointer-events:none;}
-  #w-sl img{position:absolute;height:auto;}
-  #w-sl .sl1{left:46%;bottom:18%;width:5.6%;}
-  #w-sl .sl2{left:60%;bottom:63.5%;width:5.6%;}
-  #w-sl .sl3{left:83.5%;bottom:62%;width:5.6%;}
+  #w-sl2{left:61.9%;bottom:42.4%;width:5.6%;z-index:4;}
+  #w-cc{z-index:2;}
+  #w-mk{z-index:3;}
+  #w-sl3{left:83.5%;bottom:70%;width:5.6%;z-index:4;}
+  #w-sl1{left:46%;bottom:30%;width:5.6%;z-index:5;}
   @media(prefers-reduced-motion:reduce){.wlayer{filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));transform:none!important;}}
 </style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}  @media(max-width:700px){.spanel{padding:24px 20px 28px;}}
 </style><style id="mobilefix">
 @media (max-width:900px){html{overflow-x:clip;}}
 @media (hover:none),(max-width:900px){
-  h1 em,h2 em,.q em,.hero-h1 em,.ph em,.sec-h em,.mission-lead em,.mission-motto em,.px-title em{display:inline!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0 .05em 0 0!important;margin:0!important;overflow:visible!important;}
+  .bub,.bub .bw,.bub .bl{overflow:visible!important;}
+  .bub .bw{padding:0.06em 0.18em 0.16em 0.05em;margin:0 -0.18em -0.16em -0.05em;}
+  .bub .bl{padding:0.02em 0.09em 0.15em 0.03em!important;margin:0 -0.09em -0.15em -0.03em!important;}
+}
+
+@media (hover:none),(max-width:900px){
+  h1 em,h2 em,.q em,.hero-h1 em,.ph em,.sec-h em,.mission-lead em,.mission-motto em,.px-title em{display:inline!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0 .08em 0 .02em!important;margin:0!important;overflow:visible!important;letter-spacing:.02em!important;font-synthesis:none;}
 }
 @media (hover:none){
   .bub .bl{transition:none;}
@@ -415,7 +422,7 @@
     <div class="reveal"><div class="sec-label">Community</div><h2 class="sec-h"><span class="shine">Built with the community in mind.</span></h2>
     <p class="sec-sub">Scroll through what we lift up wherever we build.</p></div>
     <div class="city-pin" id="cityPin"><div class="city-stick"><div class="city-frame"><div class="city-grid">
-      <div class="diorama"><img id="w-cc" class="wlayer" src="images/world-cc.webp" alt="Community center"><img id="w-mk" class="wlayer" src="images/world-mk.webp" alt="Local market"><div id="w-sl" class="wlayer" aria-label="Solar street lights"><img class="sl1" src="images/world-sl1.webp" alt=""><img class="sl2" src="images/world-sl2.webp" alt=""><img class="sl3" src="images/world-sl3.webp" alt=""></div></div>
+      <div class="diorama"><img class="wbase" src="images/world-base.webp" alt="Community block"><img id="w-sl2" class="wlayer wl-lamp" src="images/world-sl2.webp" alt="Solar street light"><img id="w-cc" class="wlayer" src="images/world-cc.webp" alt="Community center"><img id="w-mk" class="wlayer" src="images/world-mk.webp" alt="Local market"><img id="w-sl3" class="wlayer wl-lamp" src="images/world-sl3.webp" alt="Solar street light"><img id="w-sl1" class="wlayer wl-lamp" src="images/world-sl1.webp" alt="Solar street light"></div>
       <div class="city-copy">
         <div class="cstep" data-k="community"><div class="ck">Strengthening Communities</div><h3>The heart of the place.</h3><p>We develop in ways that bring lasting, long-term benefit to the communities that host our projects, from the civic spaces to the libraries to the gathering places that make a place worth living in.</p></div>
         <div class="cstep" data-k="local"><div class="ck">Investing Locally</div><h3>Main street, lifted.</h3><p>Local jobs, local suppliers, and local partnerships are part of how we build. When a project lands, the businesses around it should rise with it.</p></div>
@@ -464,12 +471,12 @@
     dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
   (function(){var pin=document.getElementById('cityPin');if(!pin)return;
     var steps=[].slice.call(pin.querySelectorAll('.cstep'));
-    var layers=[document.getElementById('w-cc'),document.getElementById('w-mk'),document.getElementById('w-sl')];
+    var layers=[[document.getElementById('w-cc')],[document.getElementById('w-mk')],[document.getElementById('w-sl1'),document.getElementById('w-sl2'),document.getElementById('w-sl3')]];
     var dio=pin.querySelector('.diorama');
     var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
     function cl(v){return v<0?0:v>1?1:v;}
     function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-    function stat(){steps.forEach(function(st){st.style.opacity='';st.style.transform='';});layers.forEach(function(l){if(l){l.style.transform='';l.style.filter='';l.style.zIndex='';}});}
+    function stat(){steps.forEach(function(st){st.style.opacity='';st.style.transform='';});layers.forEach(function(g){g.forEach(function(l){l.style.transform='';l.style.filter='';});});}
     function upd(){
       if(reduce){stat();return;}
       var r=pin.getBoundingClientRect();var total=r.height-innerHeight;if(total<=0)return;
@@ -482,21 +489,22 @@
         else{o=1;y=0;}
         st.style.opacity=o.toFixed(3);st.style.transform='translateY('+y.toFixed(1)+'px)';st.style.zIndex=5+i;
       });
-      layers.forEach(function(l,i){
-        if(!l)return;var t=cl((P-i*seg)/seg),m;
+      layers.forEach(function(g,i){
+        var t=cl((P-i*seg)/seg),m;
         if(t<=0.18||t>=0.88)m=0;
         else if(t<0.46)m=ease((t-0.18)/0.28);
         else if(t<0.60)m=1;
         else m=1-ease((t-0.60)/0.28);
         var lift=dh*0.10;
-        l.style.transform='translateY('+(-lift*m).toFixed(1)+'px) scale('+(1+0.02*m).toFixed(3)+')';
-        l.style.filter='brightness('+(0.9+0.32*m).toFixed(3)+') drop-shadow(0 '+(14+22*m).toFixed(0)+'px '+(18+18*m).toFixed(0)+'px rgba(0,0,0,'+(0.5+0.14*m).toFixed(2)+'))';
-        l.style.zIndex=m>0.01?6:'';
+        g.forEach(function(l){
+          l.style.transform='translateY('+(-lift*m).toFixed(1)+'px) scale('+(1+0.02*m).toFixed(3)+')';
+          l.style.filter='brightness('+(0.9+0.32*m).toFixed(3)+') drop-shadow(0 '+(14+22*m).toFixed(0)+'px '+(18+18*m).toFixed(0)+'px rgba(0,0,0,'+(0.5+0.14*m).toFixed(2)+'))';
+        });
       });
     }
     var tick=false;function onS(){if(!tick){requestAnimationFrame(function(){upd();tick=false;});tick=true;}}
     addEventListener('scroll',onS,{passive:true});addEventListener('resize',onS);upd();})();
-  (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title em';
+  (function(){if(matchMedia('(hover:none)').matches)return;var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title em';
    document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');var ns=em.nextSibling;if(ns&&ns.nodeType===3&&/^[.?!,;:]/.test(ns.nodeValue)){var pch=ns.nodeValue.charAt(0);ns.nodeValue=ns.nodeValue.slice(1);var bws=em.querySelectorAll('.bw');var lb=bws[bws.length-1];if(lb){var ps=document.createElement('span');ps.className='bl';ps.textContent=pch;lb.appendChild(ps);}}
      var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});if(matchMedia('(hover:none)').matches){var bio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){[].slice.call(e.target.querySelectorAll('.bl')).forEach(function(l,k){l.style.animationDelay=(k*0.035)+'s';});e.target.classList.add('bub-go');bio.unobserve(e.target);}});},{threshold:0.6});document.querySelectorAll('.bub').forEach(function(b){bio.observe(b);});}})();
   (function(){var panels=[].slice.call(document.querySelectorAll('.tpc'));if(!panels.length)return;
