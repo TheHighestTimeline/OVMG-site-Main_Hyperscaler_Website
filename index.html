@@ -286,9 +286,8 @@
   .eco3-stage{position:relative;width:520px;height:440px;max-width:100%;}
   .eco3-rings{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
   .eco3-core{position:absolute;left:50%;top:50%;width:114px;height:114px;transform:translate(-50%,-50%);z-index:5;}
-  .eco3-core img{width:100%;height:100%;object-fit:contain;filter:brightness(1.65) contrast(1.15) drop-shadow(0 0 14px rgba(68,199,255,.35)) drop-shadow(0 10px 34px rgba(0,0,0,.72));}
-  .eco3-core::after{content:"";position:absolute;left:50%;top:50%;width:186px;height:186px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(30,107,255,.5),rgba(30,107,255,.16) 46%,transparent 64%);z-index:-1;}
-  .eco3-core::before{content:"";position:absolute;left:50%;top:50%;width:138px;height:138px;margin:-69px 0 0 -69px;border-radius:50%;background:conic-gradient(from 0deg,rgba(68,199,255,0) 0%,rgba(68,199,255,.9) 12%,rgba(30,107,255,.15) 30%,rgba(30,107,255,.8) 55%,rgba(68,199,255,.12) 74%,rgba(68,199,255,.85) 90%,rgba(68,199,255,0) 100%);-webkit-mask:radial-gradient(closest-side circle,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(closest-side circle,transparent calc(100% - 3px),#000 calc(100% - 2px));animation:spin 16s linear infinite;z-index:-1;opacity:.9;}
+  .eco3-core img{width:100%;height:100%;object-fit:contain;filter:brightness(1.04) contrast(1.06) drop-shadow(0 0 16px rgba(68,199,255,.4)) drop-shadow(0 10px 30px rgba(0,0,0,.7));}
+  .eco3-core::after{content:"";position:absolute;left:50%;top:50%;width:190px;height:190px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(30,107,255,.44),rgba(30,107,255,.14) 48%,transparent 70%);z-index:-1;}
   .eco3-rings .tw{animation:twinkle 3.8s ease-in-out infinite;}
   .eco3-rings .tw2{animation:twinkle 5.2s ease-in-out 1.3s infinite;}
   .eco3-rings .tw3{animation:twinkle 4.4s ease-in-out 2.4s infinite;}
@@ -303,7 +302,7 @@
   .o3a,.o3b{offset-path:path('M15,220 a245,92 0 1 0 490 0 a245,92 0 1 0 -490 0');animation-duration:62s;}
   .o3a{offset-distance:30%;animation-delay:-19s;} .o3b{offset-distance:80%;animation-delay:-50s;}
   @supports not (offset-path: path('M0 0 h1')){ .orbiter{display:none;} }
-  @media(max-width:560px){ .eco3-stage{transform:scale(.6);transform-origin:top center;height:280px;} }
+  @media(max-width:560px){ .eco3{width:100%;} .eco3-stage{margin:0 calc((100% - 520px)/2);transform:scale(.6);transform-origin:top center;height:272px;} }
   /* velocity text */
   .velo{height:200vh;position:relative;}
   .velo-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
@@ -369,9 +368,10 @@
   /* media sticky-stack: fully opaque so no bleed-through when they cross over */
   .spanel{background:#141b2b!important;}
   /* horizontal capabilities carousel (arrows) */
-  .hcar{overflow:hidden;margin-top:26px;padding:6px 2px 8px;}
-  .hcar-track{display:flex;gap:22px;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform;}
-  .hcard{flex:0 0 clamp(270px,31%,410px);background:#141b2b;border:1px solid var(--border);border-radius:18px;padding:30px 30px 34px;box-shadow:0 22px 54px rgba(0,0,0,.4);}
+  .hcar{overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-top:26px;padding:6px 2px 14px;}
+  .hcar::-webkit-scrollbar{display:none;}
+  .hcar-track{display:flex;gap:22px;}
+  .hcard{scroll-snap-align:start;flex:0 0 clamp(270px,31%,410px);background:#141b2b;border:1px solid var(--border);border-radius:18px;padding:30px 30px 34px;box-shadow:0 22px 54px rgba(0,0,0,.4);}
   .hcard .di{margin-bottom:16px;}
   .hcard h3{font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--white);margin:0 0 10px;}
   .hcard p{color:var(--infra);font-size:15px;line-height:1.68;margin:0;}
@@ -387,7 +387,16 @@
   #w-mk.lift{transform:translateY(-24px) scale(1.025);}
   #w-sl.lift{transform:translateY(-34px) scale(1.035);}
   @media(prefers-reduced-motion:reduce){.wlayer{transition:none;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));}}
-</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
+</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style><style id="mobilefix">
+@media (hover:none),(max-width:900px){
+  h1 em,h2 em,.q em,.hero-h1 em,.ph em,.sec-h em,.mission-lead em,.mission-motto em,.px-title em{display:inline!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0 .05em 0 0!important;margin:0!important;overflow:visible!important;}
+}
+@media (hover:none){
+  .bub .bl{transition:none;}
+  .bub.bub-go .bl{animation:blpop .6s cubic-bezier(.2,.7,.2,1) both;}
+  @keyframes blpop{0%{transform:scale(1);}45%{transform:scale(1.32);}100%{transform:scale(1);}}
+}
+</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
     <nav><a href="index.html" class="active">Home</a><a href="platform.html">Platform</a><a href="netzero.html">Net Plus</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
@@ -399,12 +408,12 @@
 <main>
   <section class="hero"><div class="section"><div class="hero-grid">
     <div class="reveal in">
-      <div class="eyebrow">OneVibeMediaGroup &middot; Hyperscale Development Platform</div>
+      
       <h1 class="hero-h1">The network that builds, funds, and <em>places</em> the next era of scale.</h1>
       <p class="hero-sub">OVMG brings hyperscale opportunities forward with our strategic partners, aligning site, power, capital, and delivery, and building the media and assets behind the deal.</p>
       <div class="hero-actions"><a href="platform.html" class="btn btn-primary">Explore the Platform <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="projects.html" class="btn btn-ghost">View the Projects</a></div>
     </div>
-    <div class="reveal in"><div class="eco3"><div class="eco-label">The Ecosystem</div><div class="eco3-stage"><svg class="eco3-rings" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet"><ellipse cx="260" cy="220" rx="120" ry="46" fill="none" stroke="rgba(216,220,226,.16)"/><ellipse cx="260" cy="220" rx="185" ry="70" fill="none" stroke="rgba(68,199,255,.16)"/><ellipse cx="260" cy="220" rx="245" ry="92" fill="none" stroke="rgba(216,220,226,.11)"/><circle cx="60" cy="72" r="1.3" fill="#8aa0c0"/><circle cx="470" cy="96" r="1.2" fill="#8aa0c0"/><circle cx="436" cy="352" r="1.4" fill="#8aa0c0"/><circle cx="92" cy="344" r="1.1" fill="#8aa0c0"/><circle cx="498" cy="228" r="1.2" fill="#8aa0c0"/><circle cx="40" cy="220" r="1" fill="#8aa0c0"/><circle class="tw" cx="128" cy="46" r="1.5" fill="#cfe3ff"/><circle cx="204" cy="28" r="1" fill="#8aa0c0"/><circle class="tw2" cx="318" cy="40" r="1.6" fill="#cfe3ff"/><circle cx="402" cy="58" r="1.1" fill="#8aa0c0"/><circle class="tw3" cx="500" cy="150" r="1.4" fill="#cfe3ff"/><circle cx="30" cy="120" r="1.2" fill="#8aa0c0"/><circle class="tw2" cx="16" cy="300" r="1.4" fill="#cfe3ff"/><circle cx="150" cy="404" r="1.2" fill="#8aa0c0"/><circle class="tw" cx="262" cy="424" r="1.5" fill="#cfe3ff"/><circle cx="352" cy="408" r="1" fill="#8aa0c0"/><circle class="tw3" cx="486" cy="318" r="1.3" fill="#cfe3ff"/><circle cx="236" cy="120" r="1" fill="#7c93b5"/><circle class="tw" cx="384" cy="140" r="1.2" fill="#cfe3ff"/><circle cx="120" cy="170" r="1.1" fill="#7c93b5"/><circle class="tw3" cx="82" cy="250" r="1.2" fill="#cfe3ff"/><circle cx="430" cy="250" r="1" fill="#7c93b5"/><circle class="tw2" cx="300" cy="330" r="1.3" fill="#cfe3ff"/><circle cx="180" cy="310" r="1" fill="#7c93b5"/><circle cx="52" cy="30" r="1" fill="#7c93b5"/><circle class="tw" cx="466" cy="30" r="1.3" fill="#cfe3ff"/></svg><div class="orbiter o1a"><img src="images/logo-velatech.png" alt="Vela Tech"></div><div class="orbiter o1b"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"></div><div class="orbiter o2a"><img src="images/logo-solr-energy.png" alt="SOLR Energy"></div><div class="orbiter o2b"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"></div><div class="orbiter o3a"><img src="images/logo-ess.png" alt="Energy Storage Solutions"></div><div class="orbiter o3b"><img src="images/logo-ram-global.png" alt="RAM Global"></div><div class="eco3-core"><img src="ovmg-o-logo.png" alt="OneVibeMediaGroup"></div></div></div></div>
+    <div class="reveal in"><div class="eco3"><div class="eco3-stage"><svg class="eco3-rings" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet"><ellipse cx="260" cy="220" rx="120" ry="46" fill="none" stroke="rgba(216,220,226,.16)"/><ellipse cx="260" cy="220" rx="185" ry="70" fill="none" stroke="rgba(68,199,255,.16)"/><ellipse cx="260" cy="220" rx="245" ry="92" fill="none" stroke="rgba(216,220,226,.11)"/><circle cx="60" cy="72" r="1.3" fill="#8aa0c0"/><circle cx="470" cy="96" r="1.2" fill="#8aa0c0"/><circle cx="436" cy="352" r="1.4" fill="#8aa0c0"/><circle cx="92" cy="344" r="1.1" fill="#8aa0c0"/><circle cx="498" cy="228" r="1.2" fill="#8aa0c0"/><circle cx="40" cy="220" r="1" fill="#8aa0c0"/><circle class="tw" cx="128" cy="46" r="1.5" fill="#cfe3ff"/><circle cx="204" cy="28" r="1" fill="#8aa0c0"/><circle class="tw2" cx="318" cy="40" r="1.6" fill="#cfe3ff"/><circle cx="402" cy="58" r="1.1" fill="#8aa0c0"/><circle class="tw3" cx="500" cy="150" r="1.4" fill="#cfe3ff"/><circle cx="30" cy="120" r="1.2" fill="#8aa0c0"/><circle class="tw2" cx="16" cy="300" r="1.4" fill="#cfe3ff"/><circle cx="150" cy="404" r="1.2" fill="#8aa0c0"/><circle class="tw" cx="262" cy="424" r="1.5" fill="#cfe3ff"/><circle cx="352" cy="408" r="1" fill="#8aa0c0"/><circle class="tw3" cx="486" cy="318" r="1.3" fill="#cfe3ff"/><circle cx="236" cy="120" r="1" fill="#7c93b5"/><circle class="tw" cx="384" cy="140" r="1.2" fill="#cfe3ff"/><circle cx="120" cy="170" r="1.1" fill="#7c93b5"/><circle class="tw3" cx="82" cy="250" r="1.2" fill="#cfe3ff"/><circle cx="430" cy="250" r="1" fill="#7c93b5"/><circle class="tw2" cx="300" cy="330" r="1.3" fill="#cfe3ff"/><circle cx="180" cy="310" r="1" fill="#7c93b5"/><circle cx="52" cy="30" r="1" fill="#7c93b5"/><circle class="tw" cx="466" cy="30" r="1.3" fill="#cfe3ff"/></svg><div class="orbiter o1a"><img src="images/logo-velatech.png" alt="Vela Tech"></div><div class="orbiter o1b"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"></div><div class="orbiter o2a"><img src="images/logo-solr-energy.png" alt="SOLR Energy"></div><div class="orbiter o2b"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"></div><div class="orbiter o3a"><img src="images/logo-ess.png" alt="Energy Storage Solutions"></div><div class="orbiter o3b"><img src="images/logo-ram-global.png" alt="RAM Global"></div><div class="eco3-core"><img src="images/ovmg-o-stone.webp" alt="OneVibeMediaGroup"></div></div></div></div>
   </div></div></section>
 
   <section class="proof"><div class="proof-inner"><div class="proof-grid reveal">
@@ -423,12 +432,7 @@
     <div class="pgrid reveal"><a class="pcard" href="https://velatech.com" target="_blank" rel="noopener"><img src="images/logo-velatech.png" alt="Vela Tech"><span>velatech.com</span></a><a class="pcard" href="https://solr.energy" target="_blank" rel="noopener"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><span>solr.energy</span></a><a class="pcard" href="https://energystoragesolutionsllc.com" target="_blank" rel="noopener"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><span>energystoragesolutionsllc.com</span></a><a class="pcard" href="https://tlgconsulting.tech" target="_blank" rel="noopener"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"><span>tlgconsulting.tech</span></a><a class="pcard" href="https://brightsun.solar" target="_blank" rel="noopener"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><span>brightsun.solar</span></a><a class="pcard" href="https://ramgellc.com" target="_blank" rel="noopener"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises"><span>ramgellc.com</span></a></div>
   </div></section>
 
-  <section class="sec" style="padding-top:0;"><div class="section"><div class="stew reveal">
-    <div><div class="num">Renewable-Aligned</div><div class="lbl">Power Strategy</div></div>
-    <div><div class="num">Net Plus</div><div class="lbl">Campus Design</div></div>
-    <div><div class="num">Regenerative</div><div class="lbl">By Design</div></div>
-    <div><a href="netzero.html" class="btn btn-ghost">Our Net Plus Standard <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-  </div></div></section>
+  
 
   <section class="closing"><div class="section reveal"><h2>Present the strongest infrastructure opportunities with <em>momentum</em>.</h2><a href="contact.html" class="btn btn-primary">Request a Strategic Review <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></section>
 </main><footer><div class="fgrid">
@@ -469,8 +473,8 @@
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.remove('active');});e.target.classList.add('active');set(e.target.dataset.k);}});},{threshold:0.55});
     steps.forEach(function(s){io.observe(s);});set('community');steps[0].classList.add('active');})();
   (function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title em';
-   document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');
-     var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();
+   document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';t.split(' ').forEach(function(word,wi){if(wi>0)em.appendChild(document.createTextNode(' '));var bw=document.createElement('span');bw.className='bw';for(var i=0;i<word.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=word[i];bw.appendChild(s);}em.appendChild(bw);});em.classList.add('bub');var ns=em.nextSibling;if(ns&&ns.nodeType===3&&/^[.?!,;:]/.test(ns.nodeValue)){var pch=ns.nodeValue.charAt(0);ns.nodeValue=ns.nodeValue.slice(1);var bws=em.querySelectorAll('.bw');var lb=bws[bws.length-1];if(lb){var ps=document.createElement('span');ps.className='bl';ps.textContent=pch;lb.appendChild(ps);}}
+     var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});if(matchMedia('(hover:none)').matches){var bio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){[].slice.call(e.target.querySelectorAll('.bl')).forEach(function(l,k){l.style.animationDelay=(k*0.035)+'s';});e.target.classList.add('bub-go');bio.unobserve(e.target);}});},{threshold:0.6});document.querySelectorAll('.bub').forEach(function(b){bio.observe(b);});}})();
   (function(){var panels=[].slice.call(document.querySelectorAll('.tpc'));if(!panels.length)return;
     if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
     function cl(v){return v<0?0:v>1?1:v;}
@@ -485,14 +489,13 @@
     });}
     var tick=false;function onS(){if(!tick){requestAnimationFrame(function(){upd();tick=false;});tick=true;}}
     window.addEventListener('scroll',onS,{passive:true});window.addEventListener('resize',onS);upd();})();
-  (function(){var tr=document.getElementById('hcarTrack');if(!tr)return;var cards=[].slice.call(tr.children);if(!cards.length)return;var i=0;
-    function step(){var w=cards[0].getBoundingClientRect().width;var g=parseFloat(getComputedStyle(tr).columnGap||getComputedStyle(tr).gap||22)||22;return w+g;}
-    function vis(){return Math.max(1,Math.round(tr.parentElement.clientWidth/step()));}
-    function maxi(){return Math.max(0,cards.length-vis());}
-    function go(){i=Math.max(0,Math.min(i,maxi()));tr.style.transform='translateX('+(-i*step())+'px)';var pb=document.getElementById('hcarPrev'),nb=document.getElementById('hcarNext');if(pb)pb.style.opacity=i<=0?0.35:1;if(nb)nb.style.opacity=i>=maxi()?0.35:1;}
-    var nb=document.getElementById('hcarNext'),pb=document.getElementById('hcarPrev');if(nb)nb.onclick=function(){i++;go();};if(pb)pb.onclick=function(){i--;go();};
-    var sx=0,drag=false;tr.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-50){i++;go();}else if(dx>50){i--;go();}});
-    window.addEventListener('resize',go);go();})();
+  (function(){var tr=document.getElementById('hcarTrack');if(!tr)return;var sc=tr.parentElement;var cards=[].slice.call(tr.children);if(!cards.length)return;
+    function step(){var w=cards[0].getBoundingClientRect().width;var g=parseFloat(getComputedStyle(tr).gap)||22;return w+g;}
+    function upd(){var pb=document.getElementById('hcarPrev'),nb=document.getElementById('hcarNext');if(pb)pb.style.opacity=sc.scrollLeft<=4?0.35:1;if(nb)nb.style.opacity=sc.scrollLeft>=sc.scrollWidth-sc.clientWidth-4?0.35:1;}
+    var nb=document.getElementById('hcarNext'),pb=document.getElementById('hcarPrev');
+    if(nb)nb.onclick=function(){sc.scrollBy({left:step(),behavior:'smooth'});};
+    if(pb)pb.onclick=function(){sc.scrollBy({left:-step(),behavior:'smooth'});};
+    sc.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();})();
   (function(){function reveal(){document.querySelectorAll('.reveal:not(.in),.rise:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*1.1&&r.bottom>-50)el.classList.add('in');});}
     window.addEventListener('load',function(){setTimeout(reveal,60);});setTimeout(reveal,600);window.addEventListener('scroll',reveal,{passive:true});})();
 </script>

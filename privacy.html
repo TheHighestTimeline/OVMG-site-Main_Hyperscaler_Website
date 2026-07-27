@@ -241,7 +241,16 @@
     .ctaband{flex-direction:column;align-items:flex-start;}
   }
   @media (prefers-reduced-motion:reduce){ .geo{animation:none;} .reveal{opacity:1;transform:none;transition:none;} .render img{transition:none;} }
-.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
+.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style><style id="mobilefix">
+@media (hover:none),(max-width:900px){
+  h1 em,h2 em,.q em,.hero-h1 em,.ph em,.sec-h em,.mission-lead em,.mission-motto em,.px-title em{display:inline!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0 .05em 0 0!important;margin:0!important;overflow:visible!important;}
+}
+@media (hover:none){
+  .bub .bl{transition:none;}
+  .bub.bub-go .bl{animation:blpop .6s cubic-bezier(.2,.7,.2,1) both;}
+  @keyframes blpop{0%{transform:scale(1);}45%{transform:scale(1.32);}100%{transform:scale(1);}}
+}
+</style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
 <header id="hdr"><div class="header-inner">
     <a href="index.html" class="logo"><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" class="logo-brand"></a>
     <nav><a href="index.html">Home</a><a href="platform.html">Platform</a><a href="netzero.html">Net Plus</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
@@ -252,7 +261,7 @@
 
 <main>
 <div class="section"><div class="breadcrumb"><a href="index.html">Home</a><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><span>Privacy Policy</span></div></div>
-  <div class="section"><div class="page-hero reveal in" style="padding:30px 0 20px;"><div class="eyebrow">OneVibeMediaGroup &middot; Legal</div><h1 class="ph">Privacy <em>Policy</em></h1></div></div>
+  <div class="section"><div class="page-hero reveal in" style="padding:30px 0 20px;"><h1 class="ph">Privacy <em>Policy</em></h1></div></div>
   <div class="section"><div class="reveal in" style="max-width:820px;">
     <div style="font-weight:600;font-size:12px;color:var(--sky);margin-bottom:26px;">Last Updated: March 18, 2026</div>
     <div class="policybody"><p>OVMG / OneVibeMediaGroup ("OVMG," "we," "us," or "our") respects your privacy and is committed to protecting the information you provide through our website. This Privacy Policy explains what information we collect, how we use it, and the choices available to you.</p>
@@ -287,5 +296,5 @@
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
 </script>
-<script>(function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';for(var i=0;i<t.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=t[i]===' '?'\u00A0':t[i];em.appendChild(s);}em.classList.add('bub');var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});})();</script>
+<script>(function(){var sels='h1 em,h2 em,.sec-h em,.ph em,.hero-h1 em,.mission-lead em,.px-title';document.querySelectorAll(sels).forEach(function(em){if(em.dataset.bub)return;em.dataset.bub=1;var t=em.textContent;em.textContent='';for(var i=0;i<t.length;i++){var s=document.createElement('span');s.className='bl';s.textContent=t[i]===' '?'\u00A0':t[i];em.appendChild(s);}em.classList.add('bub');var ns=em.nextSibling;if(ns&&ns.nodeType===3&&/^[.?!,;:]/.test(ns.nodeValue)){var pch=ns.nodeValue.charAt(0);ns.nodeValue=ns.nodeValue.slice(1);var bws=em.querySelectorAll('.bw');var lb=bws[bws.length-1];if(lb){var ps=document.createElement('span');ps.className='bl';ps.textContent=pch;lb.appendChild(ps);}}var ls=[].slice.call(em.querySelectorAll('.bl'));ls.forEach(function(l,idx){l.addEventListener('mouseenter',function(){ls.forEach(function(o,j){var d=Math.abs(j-idx);var sc=d===0?1.45:d===1?1.26:d===2?1.12:1;o.style.transform='scale('+sc+')';});});});em.addEventListener('mouseleave',function(){ls.forEach(function(o){o.style.transform='';});});});if(matchMedia('(hover:none)').matches){var bio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){[].slice.call(e.target.querySelectorAll('.bl')).forEach(function(l,k){l.style.animationDelay=(k*0.035)+'s';});e.target.classList.add('bub-go');bio.unobserve(e.target);}});},{threshold:0.6});document.querySelectorAll('.bub').forEach(function(b){bio.observe(b);});}})();</script>
 </body></html>
