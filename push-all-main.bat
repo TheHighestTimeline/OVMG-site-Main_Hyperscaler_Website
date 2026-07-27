@@ -6,8 +6,7 @@ REM ============================================================
 REM  Commits EVERYTHING in this folder (respecting .gitignore)
 REM  straight onto main and pushes. Live site = main.
 REM  Netlify rebuilds on push.
-REM  This round: community scroll section, Why OVMG stack,
-REM  ecosystem O + stars, Net Plus spacing/dwell, lamp images.
+REM  Reusable: run any time to publish the current folder state.
 REM ============================================================
 
 cd /d "C:\Users\south\Desktop\All Websites Backend\github working files\OVMG-site-Main_Hyperscaler_Website"
@@ -34,7 +33,7 @@ echo   Step 1 of 3: switching to main and committing everything...
 git checkout main
 if errorlevel 1 goto FAIL
 git add -A
-git commit -m "Publish: pinned community scroll + seated diorama, Why OVMG scroll-stack, ecosystem O + stars, Net Plus spacing and text dwell" 2>nul
+git commit -m "Publish: mobile layout + animation fixes, new community base plate, reseated diorama, contact form fixes" 2>nul
 
 echo.
 echo   Step 2 of 3: syncing with GitHub first (avoids fetch-first errors)...

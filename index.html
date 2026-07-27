@@ -302,7 +302,15 @@
   .o3a,.o3b{offset-path:path('M15,220 a245,92 0 1 0 490 0 a245,92 0 1 0 -490 0');animation-duration:62s;}
   .o3a{offset-distance:30%;animation-delay:-19s;} .o3b{offset-distance:80%;animation-delay:-50s;}
   @supports not (offset-path: path('M0 0 h1')){ .orbiter{display:none;} }
-  @media(max-width:560px){ .eco3{width:100%;} .eco3-stage{margin:0 calc((100% - 520px)/2);transform:scale(.6);transform-origin:top center;height:272px;} }
+  @media(max-width:900px){.hero-grid>*{min-width:0;}}
+  @media(max-width:560px){
+  .eco3{position:relative;width:100%;max-width:100%;min-width:0;overflow:hidden;height:352px;display:block;}
+  .eco3-stage{position:absolute;left:50%;top:0;width:520px;height:440px;margin:0;transform:translateX(-50%) scale(.8);transform-origin:top center;}
+  }
+  @media(max-width:480px){ .eco3{height:308px;} .eco3-stage{transform:translateX(-50%) scale(.7);} }
+  @media(max-width:420px){ .eco3{height:273px;} .eco3-stage{transform:translateX(-50%) scale(.62);} }
+  @media(max-width:380px){ .eco3{height:242px;} .eco3-stage{transform:translateX(-50%) scale(.55);} }
+  @media(max-width:340px){ .eco3{height:220px;} .eco3-stage{transform:translateX(-50%) scale(.5);} }
   /* velocity text */
   .velo{height:200vh;position:relative;}
   .velo-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden;}
