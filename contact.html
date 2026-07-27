@@ -84,6 +84,10 @@
   .ucard.sky .uicon{border-color:var(--sky);} .ucard.violet .uicon{border-color:var(--violet);}
   .ucard h3{color:var(--white);font-size:19px;font-weight:800;margin:16px 0 10px;}
   .ucard p{font-size:13.5px;line-height:1.7;color:var(--infra);}
+  .iopt{transition:border-color .2s,background .2s,color .2s;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;}
+  .iopt:hover{border-color:var(--border-lit)!important;}
+  .iopt.selected{border-color:var(--sky)!important;background:rgba(30,107,255,.20)!important;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(68,199,255,.4);}
+  .iopt.selected::after{content:"\2713";position:absolute;top:4px;right:8px;font-size:10px;color:var(--sky);}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
   .chip{font-family:'Inter',sans-serif;font-weight:600;font-size:10.5px;color:var(--sky);border:1px solid rgba(68,199,255,0.32);border-radius:5px;padding:4px 10px;letter-spacing:0.06em;text-transform:uppercase;}
 
@@ -242,6 +246,7 @@
   }
   @media (prefers-reduced-motion:reduce){ .geo{animation:none;} .reveal{opacity:1;transform:none;transition:none;} .render img{transition:none;} }
 .bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}</style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style><style id="mobilefix">
+@media (max-width:900px){html,body{overflow-x:hidden;}}
 @media (hover:none),(max-width:900px){
   h1 em,h2 em,.q em,.hero-h1 em,.ph em,.sec-h em,.mission-lead em,.mission-motto em,.px-title em{display:inline!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0 .05em 0 0!important;margin:0!important;overflow:visible!important;}
 }

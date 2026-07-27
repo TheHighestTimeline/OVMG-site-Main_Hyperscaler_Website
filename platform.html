@@ -366,15 +366,16 @@
   /* community diorama (layered isometric world, scroll-lifts each item) */
   .diorama{position:relative;width:100%;aspect-ratio:1448/1086;background:url(images/world-base.webp) center/cover no-repeat;border-radius:16px;border:1px solid var(--border);overflow:visible;}
   .wlayer{position:absolute;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)) brightness(.9);will-change:transform,filter;}
-  #w-cc{left:31.5%;bottom:49.5%;width:30.5%;}
-  #w-mk{left:14%;bottom:40%;width:22.8%;}
+  #w-cc{left:29.5%;bottom:50%;width:30.5%;}
+  #w-mk{left:14%;bottom:41%;width:22.8%;}
   #w-sl{left:0;top:0;right:0;bottom:0;width:auto;pointer-events:none;}
   #w-sl img{position:absolute;height:auto;}
-  #w-sl .sl1{left:47.7%;bottom:27.7%;width:6%;}
-  #w-sl .sl2{left:60.3%;bottom:32.9%;width:6%;}
-  #w-sl .sl3{left:72.8%;bottom:38.2%;width:6%;}
+  #w-sl .sl1{left:48.3%;bottom:27.1%;width:6%;}
+  #w-sl .sl2{left:61%;bottom:32.3%;width:6%;}
+  #w-sl .sl3{left:73.5%;bottom:37.6%;width:6%;}
   @media(prefers-reduced-motion:reduce){.wlayer{filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));transform:none!important;}}
 </style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}</style><style id="mobilefix">
+@media (max-width:900px){html,body{overflow-x:hidden;}}
 @media (hover:none),(max-width:900px){
   h1 em,h2 em,.q em,.hero-h1 em,.ph em,.sec-h em,.mission-lead em,.mission-motto em,.px-title em{display:inline!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0 .05em 0 0!important;margin:0!important;overflow:visible!important;}
 }
@@ -414,7 +415,7 @@
     <div class="city-pin" id="cityPin"><div class="city-stick"><div class="city-frame"><div class="city-grid">
       <div class="diorama"><img id="w-cc" class="wlayer" src="images/world-cc.webp" alt="Community center"><img id="w-mk" class="wlayer" src="images/world-mk.webp" alt="Local market"><div id="w-sl" class="wlayer" aria-label="Solar street lights"><img class="sl1" src="images/world-sl1.webp" alt=""><img class="sl2" src="images/world-sl2.webp" alt=""><img class="sl3" src="images/world-sl3.webp" alt=""></div></div>
       <div class="city-copy">
-        <div class="cstep" data-k="community"><div class="ck">Strengthening Communities</div><h3>The heart of the place.</h3><p>We develop in ways that bring lasting benefit to the communities that host our projects, investing in the civic spaces, the libraries, and the gathering places that make a place worth living in.</p></div>
+        <div class="cstep" data-k="community"><div class="ck">Strengthening Communities</div><h3>The heart of the place.</h3><p>We build with the third spaces in mind: the community centers, the gathering places, and the shared spaces where neighbors actually cross paths. Wherever we develop, the places that bring people together should come out stronger.</p></div>
         <div class="cstep" data-k="local"><div class="ck">Investing Locally</div><h3>Main street, lifted.</h3><p>Local jobs, local suppliers, and local partnerships are part of how we build. When a project lands, the businesses around it should rise with it.</p></div>
         <div class="cstep" data-k="infra"><div class="ck">Enhancing Infrastructure</div><h3>Power, light, and connection.</h3><p>Our projects strengthen the power, connectivity, and infrastructure around them, leaving the grid, the fiber, and the roads better than we found them.</p></div>
       </div>
