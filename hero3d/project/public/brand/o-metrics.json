@@ -1,0 +1,13 @@
+{
+  "sourceWidth": 460,
+  "sourceHeight": 460,
+  "centerX": 229.5,
+  "centerY": 229.5,
+  "outerRadiusPx": 228.69,
+  "innerRadiusPx": 127.41,
+  "outerRadiusNorm": 0.9943,
+  "innerRadiusNorm": 0.5571,
+  "patternInnerNorm": 0.5599,
+  "patternOuterNorm": 0.9936,
+  "notes": "Measured from ovmg-o-stone.webp (actual decoded size 460x460px; note the brief assumed 464x464, the real asset is 460x460). Center located via alpha>25 bounding box (229.5, 229.5), cross-checked against the alpha-weighted centroid (229.5, 229.5) - both agree. Outer/inner radii are the mean alpha=127 crossing over 720 angular samples (outer std=0.23px, inner std=0.24px, i.e. the silhouette and hole are both very close to circular). The inner hole is TRANSPARENT (mean alpha=0.0/255, mean luminance=0.0/255 at r=63.7px). The engraved Greek-key band was found (via angular-luminance-variance thresholding) to occupy almost the entire ring width, from 0.560 to 0.994 of outerRadius - there is no flat undecorated lip on either side of the carving."
+}

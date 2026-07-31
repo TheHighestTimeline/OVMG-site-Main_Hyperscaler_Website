@@ -1,0 +1,13 @@
+{
+  "name": "hero3d-asset-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone asset-preparation tooling for the hero3d Three.js build. Not part of the hero3d/project app bundle.",
+  "scripts": {
+    "prepare-assets": "node prepare-assets.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}

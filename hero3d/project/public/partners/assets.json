@@ -1,0 +1,80 @@
+[
+  {
+    "id": "velatech",
+    "file": "velatech.webp",
+    "width": 512,
+    "height": 73,
+    "aspect": 7.0137,
+    "meanLuminance": 0.5224,
+    "opaquePixelRatio": 0.285,
+    "tone": "mixed",
+    "sourceFile": "images/logo-velatech.png",
+    "sourceWidth": 1050,
+    "sourceHeight": 149
+  },
+  {
+    "id": "tlg-consulting",
+    "file": "tlg-consulting.webp",
+    "width": 496,
+    "height": 360,
+    "aspect": 1.3778,
+    "meanLuminance": 0.5807,
+    "opaquePixelRatio": 0.4176,
+    "tone": "mixed",
+    "sourceFile": "images/logo-tlg-consulting.png",
+    "sourceWidth": 496,
+    "sourceHeight": 360
+  },
+  {
+    "id": "solr-energy",
+    "file": "solr-energy.webp",
+    "width": 445,
+    "height": 360,
+    "aspect": 1.2361,
+    "meanLuminance": 0.8011,
+    "opaquePixelRatio": 0.2719,
+    "tone": "light",
+    "sourceFile": "images/logo-solr-energy.png",
+    "sourceWidth": 445,
+    "sourceHeight": 360
+  },
+  {
+    "id": "bright-sun-solar",
+    "file": "bright-sun-solar.webp",
+    "width": 512,
+    "height": 353,
+    "aspect": 1.4504,
+    "meanLuminance": 0.674,
+    "opaquePixelRatio": 0.3211,
+    "tone": "light",
+    "sourceFile": "images/logo-bright-sun-solar.png",
+    "sourceWidth": 522,
+    "sourceHeight": 360
+  },
+  {
+    "id": "ess",
+    "file": "ess.webp",
+    "width": 512,
+    "height": 146,
+    "aspect": 3.5068,
+    "meanLuminance": 0.3901,
+    "opaquePixelRatio": 0.3439,
+    "tone": "mixed",
+    "sourceFile": "images/logo-ess.png",
+    "sourceWidth": 878,
+    "sourceHeight": 251
+  },
+  {
+    "id": "ram-global",
+    "file": "ram-global.webp",
+    "width": 347,
+    "height": 347,
+    "aspect": 1,
+    "meanLuminance": 0.8494,
+    "opaquePixelRatio": 0.3497,
+    "tone": "light",
+    "sourceFile": "images/logo-ram-global.png",
+    "sourceWidth": 347,
+    "sourceHeight": 347
+  }
+]

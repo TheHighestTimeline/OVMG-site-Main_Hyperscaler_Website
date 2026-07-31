@@ -280,36 +280,19 @@
   .fmono{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--sky);margin-top:10px;}
   /* bubble */
 .bub .bw{white-space:nowrap;}.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  /* solar ecosystem */
-  .eco3{display:flex;flex-direction:column;align-items:center;gap:16px;}
-  .eco-label{font-weight:600;font-size:12px;letter-spacing:.22em;color:var(--sky);text-transform:uppercase;}
-  .eco3-stage{position:relative;width:520px;height:440px;max-width:100%;}
-  .eco3-rings{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
-  .eco3-core{position:absolute;left:50%;top:50%;width:114px;height:114px;transform:translate(-50%,-50%);z-index:5;}
-  .eco3-core img{width:100%;height:100%;object-fit:contain;filter:brightness(1.04) contrast(1.06) drop-shadow(0 0 16px rgba(68,199,255,.4)) drop-shadow(0 10px 30px rgba(0,0,0,.7));}
-  .eco3-core::after{content:"";position:absolute;left:50%;top:50%;width:190px;height:190px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(30,107,255,.44),rgba(30,107,255,.14) 48%,transparent 70%);z-index:-1;}
-  .eco3-rings .tw{animation:twinkle 3.8s ease-in-out infinite;}
-  .eco3-rings .tw2{animation:twinkle 5.2s ease-in-out 1.3s infinite;}
-  .eco3-rings .tw3{animation:twinkle 4.4s ease-in-out 2.4s infinite;}
-  @keyframes twinkle{0%,100%{opacity:.25;}50%{opacity:1;}}
-  .orbiter{position:absolute;top:0;left:0;width:46px;height:46px;will-change:transform;}
-  .orbiter img{width:46px;height:46px;object-fit:contain;filter:brightness(1.25) drop-shadow(0 0 12px rgba(68,199,255,.5));}
-  @keyframes orbit{from{offset-distance:0%;}to{offset-distance:100%;}}
+  /* 3D partner-ecosystem hero (hero3d/) */
+  .hero3d-mount{position:relative;width:100%;height:clamp(400px,58vh,620px);}
+  #hero3d-root{position:absolute;inset:0;}
+  @media(max-width:900px){.hero3d-mount{height:clamp(340px,46vh,470px);}}
+  @media(max-width:560px){.hero3d-mount{height:380px;}}
+  @media(max-width:380px){.hero3d-mount{height:340px;}}
   @media(max-width:900px){.hero-grid>*{min-width:0;}}
-  @media(max-width:560px){
-  .eco3{position:relative;width:100%;max-width:100%;min-width:0;overflow:hidden;height:352px;display:block;}
-  .eco3-stage{position:absolute;left:50%;top:0;width:520px;height:440px;margin:0;transform:translateX(-50%) scale(.8);transform-origin:top center;}
-  }
-  @media(max-width:480px){ .eco3{height:308px;} .eco3-stage{transform:translateX(-50%) scale(.7);} }
-  @media(max-width:420px){ .eco3{height:273px;} .eco3-stage{transform:translateX(-50%) scale(.62);} }
-  @media(max-width:380px){ .eco3{height:242px;} .eco3-stage{transform:translateX(-50%) scale(.55);} }
-  @media(max-width:340px){ .eco3{height:220px;} .eco3-stage{transform:translateX(-50%) scale(.5);} }
   /* velocity text */
   .velo{height:200vh;position:relative;}
   .velo-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden;}
   .velo-track{white-space:nowrap;font-weight:900;font-size:clamp(40px,9vw,116px);color:var(--white);letter-spacing:-0.02em;line-height:1;will-change:transform;}
   .velo-track b{color:transparent;-webkit-text-stroke:1.4px var(--sky);font-weight:900;}
-  @media (prefers-reduced-motion:reduce){ .orbiter{animation:none!important;} .velo-track{transform:none!important;} }
+  @media (prefers-reduced-motion:reduce){ .velo-track{transform:none!important;} }
 
   /* why-ovmg sticky scroll-stack */
   .stack{margin-top:26px;}
@@ -427,7 +410,7 @@
       <p class="hero-sub">OVMG brings hyperscale opportunities forward with our strategic partners, aligning site, power, capital, and delivery, and building the media and assets behind the deal.</p>
       <div class="hero-actions"><a href="platform.html" class="btn btn-primary">Explore the Platform <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="projects.html" class="btn btn-ghost">View the Projects</a></div>
     </div>
-    <div class="reveal in"><div class="eco3"><div class="eco3-stage"><svg class="eco3-rings" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet"><ellipse cx="260" cy="220" rx="120" ry="46" fill="none" stroke="rgba(216,220,226,.16)"/><ellipse cx="260" cy="220" rx="185" ry="70" fill="none" stroke="rgba(68,199,255,.16)"/><ellipse cx="260" cy="220" rx="245" ry="92" fill="none" stroke="rgba(216,220,226,.11)"/><circle cx="60" cy="72" r="1.3" fill="#8aa0c0"/><circle cx="470" cy="96" r="1.2" fill="#8aa0c0"/><circle cx="436" cy="352" r="1.4" fill="#8aa0c0"/><circle cx="92" cy="344" r="1.1" fill="#8aa0c0"/><circle cx="498" cy="228" r="1.2" fill="#8aa0c0"/><circle cx="40" cy="220" r="1" fill="#8aa0c0"/><circle class="tw" cx="128" cy="46" r="1.5" fill="#cfe3ff"/><circle cx="204" cy="28" r="1" fill="#8aa0c0"/><circle class="tw2" cx="318" cy="40" r="1.6" fill="#cfe3ff"/><circle cx="402" cy="58" r="1.1" fill="#8aa0c0"/><circle class="tw3" cx="500" cy="150" r="1.4" fill="#cfe3ff"/><circle cx="30" cy="120" r="1.2" fill="#8aa0c0"/><circle class="tw2" cx="16" cy="300" r="1.4" fill="#cfe3ff"/><circle cx="150" cy="404" r="1.2" fill="#8aa0c0"/><circle class="tw" cx="262" cy="424" r="1.5" fill="#cfe3ff"/><circle cx="352" cy="408" r="1" fill="#8aa0c0"/><circle class="tw3" cx="486" cy="318" r="1.3" fill="#cfe3ff"/><circle cx="236" cy="120" r="1" fill="#7c93b5"/><circle class="tw" cx="384" cy="140" r="1.2" fill="#cfe3ff"/><circle cx="120" cy="170" r="1.1" fill="#7c93b5"/><circle class="tw3" cx="82" cy="250" r="1.2" fill="#cfe3ff"/><circle cx="430" cy="250" r="1" fill="#7c93b5"/><circle class="tw2" cx="300" cy="330" r="1.3" fill="#cfe3ff"/><circle cx="180" cy="310" r="1" fill="#7c93b5"/><circle cx="52" cy="30" r="1" fill="#7c93b5"/><circle class="tw" cx="466" cy="30" r="1.3" fill="#cfe3ff"/></svg><div class="orbiter o1a"><img src="images/logo-velatech.png" alt="Vela Tech"></div><div class="orbiter o1b"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"></div><div class="orbiter o2a"><img src="images/logo-solr-energy.png" alt="SOLR Energy"></div><div class="orbiter o2b"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"></div><div class="orbiter o3a"><img src="images/logo-ess.png" alt="Energy Storage Solutions"></div><div class="orbiter o3b"><img src="images/logo-ram-global.png" alt="RAM Global"></div><div class="eco3-core"><img src="images/ovmg-o-stone.webp" alt="OneVibeMediaGroup"></div></div></div></div>
+    <div class="reveal in"><div class="hero3d-mount"><div id="hero3d-root" data-hero-background="transparent" data-hero-height="100%"></div></div></div></div>
   </div></div></section>
 
   <section class="proof"><div class="proof-inner"><div class="proof-grid reveal">
@@ -513,19 +496,6 @@
   (function(){function reveal(){document.querySelectorAll('.reveal:not(.in),.rise:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*1.1&&r.bottom>-50)el.classList.add('in');});}
     window.addEventListener('load',function(){setTimeout(reveal,60);});setTimeout(reveal,600);window.addEventListener('scroll',reveal,{passive:true});})();
 </script>
-<script>
-(function(){var st=document.querySelector('.eco3-stage');if(!st)return;
-  var defs=[['o1a',120,46,28,0],['o1b',120,46,28,180],['o2a',185,70,44,40],['o2b',185,70,44,220],['o3a',245,92,62,110],['o3b',245,92,62,290]];
-  var els=defs.map(function(d){var e=st.querySelector('.'+d[0]);return e?{e:e,rx:d[1],ry:d[2],T:d[3]*1000,ph:d[4]*Math.PI/180}:null;}).filter(Boolean);
-  if(!els.length)return;
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function place(t){els.forEach(function(o){var a=o.ph+2*Math.PI*((t%o.T)/o.T);
-    var x=260+o.rx*Math.cos(a)-23, y=220+o.ry*Math.sin(a)-23;
-    o.e.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';});}
-  if(reduce){place(0);return;}
-  var vis=true;
-  if('IntersectionObserver' in window){new IntersectionObserver(function(en){vis=en[0].isIntersecting;}).observe(st);}
-  function loop(t){if(vis)place(t);requestAnimationFrame(loop);}
-  requestAnimationFrame(loop);})();
-</script>
+
+<script type="module" src="hero3d/hero3d.js"></script>
 </body></html>

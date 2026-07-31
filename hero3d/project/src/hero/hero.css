@@ -1,0 +1,117 @@
+/* PartnerOrbitHero — DOM shell only. No scene styling lives here. */
+
+.ovmg-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  contain: layout paint;
+}
+
+.ovmg-hero--bg-dark {
+  background:
+    radial-gradient(1100px 700px at 50% 42%, rgba(18, 35, 63, 0.55), transparent 68%),
+    radial-gradient(900px 600px at 82% 8%, rgba(124, 58, 237, 0.1), transparent 62%),
+    linear-gradient(180deg, #05070d 0%, #070b14 55%, #05070d 100%);
+}
+
+.ovmg-hero--bg-transparent {
+  background: transparent;
+}
+
+.ovmg-hero__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.ovmg-hero__canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: pan-y;
+}
+
+/* Edge falloff so the hero dissolves into the page rather than ending at a
+   hard rectangle, plus a deeper fade along the bottom edge so the handoff to
+   the next section has no visible tonal step. */
+.ovmg-hero__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, transparent 72%, rgba(5, 7, 13, 0.6) 90%, rgba(5, 7, 13, 0.95) 100%),
+    radial-gradient(120% 100% at 50% 50%, transparent 58%, rgba(5, 7, 13, 0.5) 100%);
+}
+
+.ovmg-hero--bg-transparent .ovmg-hero__veil {
+  display: none;
+}
+
+/* Embedded in a page that supplies its own background, the canvas must not
+   read as a rectangle sitting on top of it. Feathering the canvas edges is
+   what makes the starfield and orbits dissolve into the surrounding section
+   instead of stopping at a visible border. */
+.ovmg-hero--bg-transparent .ovmg-hero__canvas {
+  -webkit-mask-image: radial-gradient(125% 118% at 50% 50%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(125% 118% at 50% 50%, #000 58%, transparent 100%);
+}
+
+/* Loading state: a single hairline ring that fades out on first frame. */
+.ovmg-hero__loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  transition: opacity 0.5s ease 0.1s;
+}
+
+.ovmg-hero__loader.is-done {
+  opacity: 0;
+}
+
+.ovmg-hero__loader-ring {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1px solid rgba(216, 220, 226, 0.16);
+  border-top-color: rgba(68, 199, 255, 0.75);
+  animation: ovmg-hero-spin 1.4s linear infinite;
+}
+
+@keyframes ovmg-hero-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ovmg-hero__loader-ring {
+    animation: none;
+    border-top-color: rgba(216, 220, 226, 0.16);
+  }
+}
+
+/* Accessible partner list: available to assistive tech, invisible on screen. */
+.ovmg-hero__a11y {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Safe zones keep the orbital composition clear of hero copy. The canvas is
+   full-bleed; these paddings are consumed by the surrounding page layout. */
+.ovmg-hero--copy-left .ovmg-hero__canvas {
+  left: var(--ovmg-safe-left, 0%);
+}
+
+.ovmg-hero--copy-right .ovmg-hero__canvas {
+  right: var(--ovmg-safe-right, 0%);
+}
