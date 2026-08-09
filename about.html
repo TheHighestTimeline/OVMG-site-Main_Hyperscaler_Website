@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OVMG | About</title><meta name="description" content="OneVibeMediaGroup is a hyperscale infrastructure and media platform that develops with strategic partners and designs sustainability in from day one.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   :root{
@@ -10,9 +10,11 @@
     --border:rgba(216,220,226,0.12); --border-lit:rgba(30,107,255,0.42);
     --electric:#1E6BFF; --sky:#44C7FF; --violet:#7C3AED;
     --stone:#D8DCE2; --infra:#98A2B6; --white:#FFFFFF;
+    --sl-col:140px; --sl-pad:28px; --sl-gap:34px;
   }
-  html{scroll-behavior:smooth;}
-  body{background:var(--midnight);color:var(--stone);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased;}
+  /* overflow-x lives on html, never on body: body-level clipping kills position:sticky on iOS */
+  html{scroll-behavior:smooth;overflow-x:clip;}
+  body{background:var(--midnight);color:var(--stone);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
   a{color:inherit;}
   .bg-depth{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(1000px 620px at 82% -5%, rgba(124,58,237,0.12), transparent 60%),radial-gradient(840px 520px at 70% 90%, rgba(30,107,255,0.12), transparent 62%),var(--midnight);}
   canvas#ripple{position:fixed;inset:0;z-index:0;pointer-events:none;}
@@ -32,7 +34,6 @@
   .mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--white);}
   main{position:relative;z-index:1;padding-top:70px;}
   .section{max-width:1240px;margin:0 auto;padding:0 28px;}
-  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
 
   .eyebrow{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;color:var(--sky);margin-bottom:20px;text-transform:uppercase;}
   .breadcrumb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--infra);padding:24px 0 0;font-weight:500;}
@@ -56,7 +57,7 @@
   .proof-inner{max-width:1240px;margin:0 auto;padding:40px 28px 26px;}
   .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
   .stat{text-align:center;padding:6px 12px;border-right:1px solid var(--border);} .stat:last-child{border-right:none;}
-  .stat .num{font-family:'IBM Plex Mono',monospace;font-size:clamp(26px,2.8vw,36px);font-weight:500;color:var(--white);line-height:1.05;white-space:nowrap;}
+  .stat .num{font-family:'Inter',sans-serif;font-size:clamp(26px,2.8vw,36px);font-weight:500;color:var(--white);line-height:1.05;white-space:nowrap;}
   .stat .num span{color:var(--sky);}
   .stat .lbl{font-size:11.5px;color:var(--infra);margin-top:8px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
   .proof-note{text-align:center;font-size:11.5px;color:var(--infra);margin-top:22px;}
@@ -179,7 +180,7 @@
      repeating-linear-gradient(0deg,rgba(216,220,226,.045) 0 1px,transparent 1px 64px);}
   .px-glow{position:absolute;inset:0;z-index:0;will-change:transform;}
   .px-panel .inner{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 28px;}
-  .px-num{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--sky);margin-bottom:12px;}
+  .px-num{font-family:'Inter',sans-serif;font-size:14px;color:var(--sky);margin-bottom:12px;}
   .px-title{font-size:clamp(30px,4.4vw,52px);font-weight:900;color:var(--white);line-height:1.08;letter-spacing:-0.02em;margin-bottom:18px;}
   .px-desc{font-size:16.5px;color:var(--stone);line-height:1.85;max-width:640px;}
 
@@ -231,25 +232,10 @@
   .bcard .dl{font-weight:800;color:#eaf3ff;font-size:14px;letter-spacing:.02em;}
   @media(max-width:900px){.bgrid{grid-template-columns:1fr;} .bcard{min-height:260px;}}
 
-  /* swipe deck (capabilities) */
-  .deck-top{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin:0 0 18px;}
-  .deck-arrows{display:flex;gap:10px;}
-  .deck-arrow{width:46px;height:46px;border-radius:11px;border:1px solid var(--border);background:var(--graphite);color:var(--white);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s;}
-  .deck-arrow:hover{border-color:var(--border-lit);background:#1b2438;}
-  .deck-stage{position:relative;height:290px;}
-  .deck-card{position:absolute;inset:0;border-radius:18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(30,107,255,.12),var(--graphite));padding:36px;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;will-change:transform,opacity;}
-  .deck-card .di{width:48px;height:48px;border-radius:12px;background:rgba(30,107,255,.14);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:16px;color:var(--sky);}
-  .deck-card .di svg{width:22px;height:22px;}
-  .deck-card h3{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;}
-  .deck-card p{color:var(--infra);font-size:14.5px;line-height:1.72;max-width:600px;}
-  .deck-dots{display:flex;gap:7px;margin-top:20px;justify-content:center;}
-  .deck-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .25s;}
-  .deck-dot.on{background:var(--sky);width:22px;border-radius:5px;}
-
   /* sticky scroll-stack (media) */
   .stack{margin-top:22px;}
   .spanel{position:sticky;top:100px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(30,107,255,.06),var(--graphite));padding:40px 44px;margin-bottom:20px;box-shadow:0 -10px 44px rgba(0,0,0,.4);}
-  .spanel .sn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sky);}
+  .spanel .sn{font-family:'Inter',sans-serif;font-size:13px;color:var(--sky);}
   .spanel h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--white);margin:8px 0 12px;letter-spacing:-0.01em;}
   .spanel p{color:var(--infra);font-size:15.5px;line-height:1.75;max-width:720px;}
 
@@ -277,7 +263,7 @@
   .fcard.accent{background:linear-gradient(135deg,rgba(30,107,255,.14),var(--graphite));border-color:var(--border-lit);}
   .fcard .fcta{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--sky);text-decoration:none;}
   .fcard .fcta:hover{color:var(--white);}
-  .fmono{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--sky);margin-top:10px;}
+  .fmono{font-family:'Inter',sans-serif;font-size:12.5px;color:var(--sky);margin-top:10px;}
   /* bubble */
 .bub .bw{white-space:nowrap;}.bub .bl{display:inline-block;transition:transform .16s cubic-bezier(.2,.7,.2,1);will-change:transform;background:linear-gradient(90deg,#44C7FF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;}
   /* solar ecosystem */
@@ -307,16 +293,6 @@
   @media (prefers-reduced-motion:reduce){ .orbiter{animation:none!important;} .velo-track{transform:none!important;} }
 
   /* v7 overrides */
-  /* opaque deck cards */
-  .deck-stage{height:344px;}
-  .deck-card{background:#141b2b!important;box-shadow:0 22px 54px rgba(0,0,0,.55);overflow:hidden;}
-  .deck-card::after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(135deg,rgba(30,107,255,.12),transparent 55%);pointer-events:none;}
-  .deck-card>*{position:relative;z-index:1;}
-  .deck-card .dnum{font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--sky);margin-bottom:12px;}
-  .deck-card .fmono{margin-top:12px;}
-  .deck-card .fcta{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--sky);text-decoration:none;}
-  .deck-card .fcta:hover{color:var(--white);}
-  .deck-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
   /* bubble clip fix: the clipped box must fully enclose italic glyphs + descenders */
   .bub{overflow:visible!important;}
   .bub .bw{overflow:visible!important;}
@@ -344,7 +320,7 @@
   .tpc-overlay{position:absolute;inset:0;background:rgba(6,8,12,.72);opacity:0;pointer-events:none;z-index:1;}
   .tpc-copy{position:absolute;left:0;top:0;height:100vh;height:100svh;width:100%;display:flex;align-items:center;justify-content:center;padding:0 24px;will-change:transform,opacity;z-index:3;pointer-events:none;}
   .tpc-copy-inner{max-width:860px;text-align:center;color:#fff;}
-  .px-num{font-family:'IBM Plex Mono',monospace;font-size:clamp(14px,1.5vw,18px);color:var(--sky);margin-bottom:10px;letter-spacing:.1em;}
+  .px-num{font-family:'Inter',sans-serif;font-size:clamp(14px,1.5vw,18px);color:var(--sky);margin-bottom:10px;letter-spacing:.1em;}
   .tpc-copy .px-sub{font-size:clamp(14px,2vw,24px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:14px;}
   .tpc-copy .px-title{font-size:clamp(40px,7vw,86px);font-weight:900;letter-spacing:-0.02em;line-height:1.03;text-shadow:0 6px 44px rgba(0,0,0,.5);margin:0 auto;pointer-events:auto;}
   .tpc-copy .px-desc{font-size:clamp(16px,1.5vw,21px);line-height:1.6;color:rgba(232,236,242,.92);max-width:660px;margin:22px auto 0;text-shadow:0 2px 20px rgba(0,0,0,.6);}
@@ -371,6 +347,91 @@
   #w-mk.lift{transform:translateY(-24px) scale(1.025);}
   #w-sl.lift{transform:translateY(-34px) scale(1.035);}
   @media(prefers-reduced-motion:reduce){.wlayer{transition:none;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));}}
+
+  /* ============================================================
+     THE SIGNAL LINE (about page only, all rules namespaced .sl-)
+     One continuous stroke: waveform -> signal -> conductor -> roots
+     ============================================================ */
+  .sl-frame{position:relative;max-width:1240px;margin:0 auto;padding:0 var(--sl-pad);}
+  #slLayer{position:absolute;top:0;left:var(--sl-pad);width:var(--sl-col);pointer-events:none;z-index:0;overflow:visible;}
+  .sl-col{margin-left:var(--sl-col);padding-left:var(--sl-gap);position:relative;z-index:1;min-width:0;}
+  .sl-sec{padding:88px 0;position:relative;}
+  .sl-sec:first-child{padding-top:30px;}
+  .sl-lede{font-size:16.5px;color:var(--infra);line-height:1.75;margin-top:18px;max-width:620px;}
+
+  /* -- 02 the three eras -- */
+  .sl-era-track{position:relative;height:300vh;}
+  .sl-era-pin{position:sticky;top:70px;height:calc(100vh - 70px);height:calc(100svh - 70px);display:flex;align-items:center;overflow:hidden;}
+  /* flex:0 0 auto is load-bearing: as a flex item the rail would shrink its 300% back to one column */
+  .sl-era-rail{display:flex;flex:0 0 auto;width:300%;will-change:transform;}
+  .sl-era{flex:0 0 33.3333%;width:33.3333%;min-width:0;padding-right:44px;border-left:2px solid var(--gray,#2A3448);padding-left:26px;transition:border-color .45s ease,opacity .45s ease;opacity:.42;}
+  .sl-era.on{border-left-color:var(--sky);opacity:1;}
+  .sl-era-num{font-weight:600;font-size:12px;letter-spacing:.18em;color:var(--infra);}
+  .sl-era-kick{font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--electric);margin-top:12px;}
+  .sl-era h3{font-size:clamp(22px,2.8vw,32px);font-weight:900;color:var(--white);line-height:1.16;letter-spacing:-0.02em;margin:8px 0 14px;}
+  .sl-era p{font-size:15.5px;color:var(--infra);line-height:1.8;max-width:560px;}
+
+  /* -- 03 the statement -- */
+  .sl-stmt{font-size:clamp(23px,3.1vw,37px);font-weight:800;color:var(--white);line-height:1.28;letter-spacing:-0.02em;max-width:780px;}
+
+  /* -- 04 values as decisions -- */
+  .sl-vlist{margin-top:34px;}
+  .sl-vrow{display:flex;align-items:flex-start;gap:18px;padding:24px 0;border-bottom:1px solid var(--border);}
+  .sl-vrow:last-child{border-bottom:none;}
+  .sl-vidx{font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--infra);width:28px;flex:0 0 28px;padding-top:4px;}
+  .sl-vbody{min-width:0;}
+  .sl-vprin{font-weight:700;font-size:17px;color:var(--white);letter-spacing:-0.01em;}
+  .sl-vdec{margin-top:6px;font-size:14.5px;color:var(--infra);line-height:1.7;}
+  .sl-vdec b{color:var(--sky);font-weight:600;}
+
+  /* -- 05 the team -- */
+  .sl-team{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:36px;}
+  .sl-person{background:var(--graphite);border:1px solid var(--border);border-radius:13px;padding:16px;min-width:0;transition:transform .3s,border-color .3s;outline:none;}
+  .sl-person:hover,.sl-person:focus-visible{transform:translateY(-4px);border-color:var(--border-lit);}
+  .sl-person:focus-visible{box-shadow:0 0 0 2px var(--sky);}
+  /* unresolved portrait: sparse point cloud, resolves to photo on hover/focus. no blur filters. */
+  .sl-av{position:relative;height:152px;border-radius:9px;overflow:hidden;background-color:#0E1523;
+    background-image:
+      radial-gradient(circle at 50% 40%, rgba(68,199,255,.20), transparent 64%),
+      radial-gradient(rgba(216,220,226,.32) 1px, transparent 1.3px),
+      radial-gradient(rgba(30,107,255,.30) 1px, transparent 1.3px);
+    background-size:100% 100%, 7px 7px, 12px 12px;
+    background-position:0 0, 0 0, 3px 5px;}
+  .sl-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;}
+  .sl-person:hover .sl-av img,.sl-person:focus-within .sl-av img,.sl-person:focus-visible .sl-av img{opacity:1;}
+  .sl-carry{font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-top:15px;}
+  .sl-name{font-weight:700;font-size:16px;color:var(--white);margin-top:7px;}
+  .sl-role{font-size:12.5px;color:var(--infra);margin-top:3px;line-height:1.5;}
+
+  /* -- 06 into the ground -- */
+  .sl-media{width:100%;aspect-ratio:16/7;border-radius:16px;border:1px solid var(--border);background:var(--graphite);margin-top:34px;}
+  .sl-media[hidden]{display:none;}
+
+  @media (max-width:960px){
+    .sl-team{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media (max-width:900px){
+    :root{--sl-col:60px;--sl-gap:20px;}
+    .sl-sec{padding:64px 0;}
+    /* no pin below 900: three panels stack, same line morph, driven by page scroll */
+    .sl-era-track{height:auto;}
+    .sl-era-pin{position:relative;top:0;height:auto;display:block;overflow:visible;}
+    .sl-era-rail{display:block;width:auto;transform:none!important;transition:none;}
+    .sl-era{width:auto;flex:none;padding-right:0;opacity:1;margin-top:26px;}
+    .sl-era p{max-width:none;}
+  }
+  @media (max-width:600px){
+    :root{--sl-pad:18px;--sl-gap:16px;}
+    .sl-person{padding:14px;} .sl-av{height:128px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    /* line renders complete and static, all nodes lit, everything readable with zero motion */
+    .sl-era-track{height:auto;}
+    .sl-era-pin{position:relative;top:0;height:auto;display:block;overflow:visible;}
+    .sl-era-rail{display:block;width:auto;transform:none!important;transition:none;}
+    .sl-era{width:auto;flex:none;padding-right:0;opacity:1;margin-top:26px;border-left-color:var(--sky);transition:none;}
+    .sl-person{transition:none;} .sl-av img{transition:none;}
+  }
 </style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}  @media(max-width:700px){.spanel{padding:24px 20px 28px;}}
 </style><style id="mobilefix">
 @media (max-width:900px){html{overflow-x:clip;}}
@@ -399,17 +460,155 @@
 
 <main>
 <div class="section"><div class="breadcrumb"><a href="index.html">Home</a><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><span>About</span></div></div>
-  <div class="section"><div class="page-hero reveal in" style="padding:30px 0 24px;">
-    
-    <h1 class="ph">Infrastructure built on <em>conviction, not compromise</em>.</h1>
-    <p class="ph-sub" style="max-width:760px;">OneVibeMediaGroup is a hyperscale infrastructure and media platform. With our strategic partners, we design power, site, connectivity, and sustainability together from day one, and we build the story and assets behind every project.</p>
-  </div></div>
-  <section class="sec" style="padding-top:16px;"><div class="section"><div class="duo">
-    <div class="panel accent reveal"><h2>Making hyperscale infrastructure more accessible, sustainable, and certain.</h2><p>The largest computing platforms in the world need infrastructure that can grow with them, and partners who can deliver it without the delays, misalignments, and compromises that define traditional development.</p></div>
-    <div class="panel reveal"><h2>Integrated delivery means no gaps, no handoffs, no surprises.</h2><p>OVMG was founded on a simple belief: the coordination gaps between site, power, connectivity, and sustainability teams are the primary reason hyperscale projects run late. With our partners, we close those gaps.</p></div>
-  </div></div></section>
-  <section class="sec" style="padding-top:0;"><div class="section"><div class="deck-top reveal"><div><div class="sec-label">Our Values</div><h2 class="sec-h" style="margin-bottom:0;">What drives every decision we <em>make</em>.</h2><p class="sec-sub" style="margin-top:12px;">Drag, or use the arrows.</p></div><div class="deck-arrows"><button class="deck-arrow" id="deckPrev" aria-label="Previous"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="deck-arrow" id="deckNext" aria-label="Next"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div></div><div class="deck-stage" id="deckStage" style="margin-top:26px;"><div class="deck-card"><div class="dnum">01</div><h3>Clarity over complexity</h3><p>Infrastructure is complex enough. Our job is to make it legible, to our clients, our partners, and ourselves. We present information clearly, make commitments we can keep, and never obscure risk.</p></div><div class="deck-card"><div class="dnum">02</div><h3>Sustainability by design</h3><p>Net Plus is not a reporting exercise, it is an engineering constraint. Every project is designed with sustainability as a foundational input, not a feature added at the end.</p></div><div class="deck-card"><div class="dnum">03</div><h3>Scale with integrity</h3><p>Growing the portfolio matters, but not at the expense of execution quality. We take on projects we can deliver well, and we hold ourselves to the same standards at every scale.</p></div><div class="deck-card"><div class="dnum">04</div><h3>Long-term thinking</h3><p>Hyperscale infrastructure lasts decades. We make decisions that serve the 20-year life of a campus, not just the development cycle: the right site, the right power strategy, the right partners.</p></div><div class="deck-card"><div class="dnum">05</div><h3>Partnership over transaction</h3><p>The best outcomes come from deep, long-term relationships. We invest in understanding needs before we propose solutions, and we build with partners rather than around them.</p></div><div class="deck-card"><div class="dnum">06</div><h3>Leave it better</h3><p>Our whole motto: leave every site better than we found it. Regenerative by design, in the communities and landscapes where we build.</p></div></div><div class="deck-dots"><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span><span class="deck-dot"></span></div></div></section>
-  <section class="sec" style="padding-top:0;"><div class="section"><div class="ctaband reveal"><div><div class="lab">Work With Us</div><h2>We're building something that matters. If that resonates, let's talk.</h2></div><a href="contact.html" class="btn btn-primary" style="flex-shrink:0;">Get in Touch <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></section>
+  <div class="sl-frame" id="slFrame">
+    <svg id="slLayer" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="slGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#44C7FF"/>
+          <stop offset="45%" stop-color="#1E6BFF"/>
+          <stop offset="100%" stop-color="#1E6BFF"/>
+        </linearGradient>
+      </defs>
+      <path id="slGhost" fill="none" stroke="rgba(152,162,182,.16)" stroke-width="2"/>
+      <g id="slRoots"></g>
+      <path id="slSignal" fill="none" stroke="url(#slGrad)" stroke-width="2.4" stroke-linecap="round"/>
+      <g id="slNodes"></g>
+      <circle id="slPulse" r="4.5" fill="#44C7FF" opacity="0"/>
+    </svg>
+
+    <div class="sl-col">
+
+      <!-- 00 HERO -->
+      <section class="sl-sec" id="s-hero">
+        <div class="page-hero reveal in">
+          <h1 class="ph">Infrastructure built on <em>conviction, not compromise</em>.</h1>
+          <p class="ph-sub" style="max-width:760px;">OneVibeMediaGroup is a hyperscale infrastructure and media platform. With our strategic partners, we design power, site, connectivity, and sustainability together from day one, and we build the story and assets behind every project.</p>
+        </div>
+      </section>
+
+      <!-- 01 WHO WE ARE -->
+      <section class="sl-sec" id="s-who" style="padding-top:24px;">
+        <div class="duo">
+          <div class="panel accent reveal"><h2>Making hyperscale infrastructure more accessible, sustainable, and certain.</h2><p>The largest computing platforms in the world need infrastructure that can grow with them, and partners who can deliver it without the delays, misalignments, and compromises that define traditional development.</p></div>
+          <div class="panel reveal"><h2>Integrated delivery means no gaps, no handoffs, no surprises.</h2><p>OVMG was founded on a simple belief: the coordination gaps between site, power, connectivity, and sustainability teams are the primary reason hyperscale projects run late. With our partners, we close those gaps.</p></div>
+        </div>
+      </section>
+
+      <!-- 02 THE THREE ERAS -->
+      <section class="sl-sec" id="s-eras">
+        <div class="reveal">
+          <div class="sec-label">Where we came from</div>
+          <h2 class="sec-h">The line was a <em>waveform</em> before it was a conductor.</h2>
+        </div>
+        <div class="sl-era-track" id="slEraTrack" style="margin-top:30px;">
+          <div class="sl-era-pin">
+            <div class="sl-era-rail" id="slEraRail">
+              <div class="sl-era on" data-era>
+                <div class="sl-era-num">01</div>
+                <div class="sl-era-kick">Era One</div>
+                <h3>Media, culture and signal</h3>
+                <p>Shows, audience, attention, storytelling, digital presence, and learning how to turn a concept into felt momentum. A carbon-negative festival, a tree planted per ticket, and the question that started everything: if an event can put back more than it takes, why can't a campus?</p>
+              </div>
+              <div class="sl-era" data-era>
+                <div class="sl-era-num">02</div>
+                <div class="sl-era-kick">Transition</div>
+                <h3>Media as strategic infrastructure support</h3>
+                <p>From online presence to enterprise positioning. From content ecosystems to project ecosystems. From brand conversion to partner and investor alignment. The same instincts that build a strong brand turn out to make a complicated infrastructure opportunity understandable, credible, and forwardable.</p>
+              </div>
+              <div class="sl-era" data-era>
+                <div class="sl-era-num">03</div>
+                <div class="sl-era-kick">Current Era</div>
+                <h3>Infrastructure</h3>
+                <p>Power, land, compute, capital, environmental planning, and execution. Data center development where site, power, connectivity, and sustainability are designed as one system from day one.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 THE STATEMENT -->
+      <section class="sl-sec" id="s-stmt">
+        <p class="sl-stmt reveal">Most infrastructure companies learned to build, then had to learn how to explain. We came the other way.</p>
+      </section>
+
+      <!-- 04 VALUES AS DECISIONS -->
+      <section class="sl-sec" id="s-values">
+        <div class="reveal">
+          <div class="sec-label">Our Values</div>
+          <h2 class="sec-h">What drives every decision we <em>make</em>.</h2>
+        </div>
+        <div class="sl-vlist">
+          <div class="sl-vrow" data-node><div class="sl-vidx">01</div><div class="sl-vbody">
+            <div class="sl-vprin">Clarity over complexity</div>
+            <div class="sl-vdec">Infrastructure is complex enough. Our job is to make it legible, to our clients, our partners, and ourselves. We present information clearly, make commitments we can keep, and never obscure risk.</div></div></div>
+          <div class="sl-vrow" data-node><div class="sl-vidx">02</div><div class="sl-vbody">
+            <div class="sl-vprin">Sustainability by design</div>
+            <div class="sl-vdec"><b>The decision:</b> we designed the water loop before we designed the building.</div></div></div>
+          <div class="sl-vrow" data-node><div class="sl-vidx">03</div><div class="sl-vbody">
+            <div class="sl-vprin">Scale with integrity</div>
+            <div class="sl-vdec">Growing the portfolio matters, but not at the expense of execution quality. We take on projects we can deliver well, and we hold ourselves to the same standards at every scale.</div></div></div>
+          <div class="sl-vrow" data-node><div class="sl-vidx">04</div><div class="sl-vbody">
+            <div class="sl-vprin">Long-term thinking</div>
+            <div class="sl-vdec">Hyperscale infrastructure lasts decades. We make decisions that serve the full life of a campus, not just the development cycle: the right site, the right power strategy, the right partners.</div></div></div>
+          <div class="sl-vrow" data-node><div class="sl-vidx">05</div><div class="sl-vbody">
+            <div class="sl-vprin">Partnership over transaction</div>
+            <div class="sl-vdec">The best outcomes come from deep, long-term relationships. We invest in understanding needs before we propose solutions, and we build with partners rather than around them.</div></div></div>
+          <div class="sl-vrow" data-node><div class="sl-vidx">06</div><div class="sl-vbody">
+            <div class="sl-vprin">Leave it better</div>
+            <div class="sl-vdec">Our whole motto: leave every site better than we found it. Regenerative by design, in the communities and landscapes where we build.</div></div></div>
+        </div>
+      </section>
+
+      <!-- 05 THE TEAM -->
+      <section class="sl-sec" id="s-team">
+        <div class="reveal">
+          <div class="sec-label">The people</div>
+          <h2 class="sec-h">The site does not energize without <em>every node</em>.</h2>
+        </div>
+        <!-- Role lines: edit the data-role value only. Empty means the line does not render. -->
+        <div class="sl-team">
+          <div class="sl-person" data-node tabindex="0" data-role="">
+            <div class="sl-av"></div>
+            <div class="sl-carry">Origin and vision</div>
+            <div class="sl-name">Carsten Gauslow</div>
+          </div>
+          <div class="sl-person" data-node tabindex="0" data-role="COO">
+            <div class="sl-av"></div>
+            <div class="sl-carry">Operations and execution</div>
+            <div class="sl-name">Tanner South</div>
+          </div>
+          <div class="sl-person" data-node tabindex="0" data-role="">
+            <div class="sl-av"></div>
+            <div class="sl-carry">Strategy</div>
+            <div class="sl-name">Austin Davis</div>
+          </div>
+          <div class="sl-person" data-node tabindex="0" data-role="">
+            <div class="sl-av"></div>
+            <div class="sl-carry">Technology and energy</div>
+            <div class="sl-name">Justin Runnels</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 INTO THE GROUND -->
+      <section class="sl-sec" id="s-roots">
+        <div class="reveal">
+          <div class="sec-label">Net Plus</div>
+          <h2 class="sec-h">Leave every site <em>better</em> than we found it.</h2>
+          <p class="sl-lede">Regenerative by design, in the communities and landscapes where we build. Environmental planning belongs in the power, community, and long-term value story, not as decorative sustainability language.</p>
+        </div>
+        <!-- Reserved slot: as-found / as-left scroll scrub, SEED campus assets. Nothing wired this round.
+             Remove the hidden attribute once the assets land. -->
+        <div class="sl-media" id="slMediaSlot" hidden></div>
+      </section>
+
+      <!-- 07 CTA -->
+      <section class="sl-sec" id="s-cta" style="padding-bottom:40px;">
+        <div class="ctaband reveal"><div><div class="lab">Work With Us</div><h2>We're building something that matters. If that resonates, let's talk.</h2></div><a href="contact.html" class="btn btn-primary" style="flex-shrink:0;">Get in Touch <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+      </section>
+
+    </div>
+  </div>
 </main><footer><div class="fgrid">
     <div><img src="images/ovmg-header-logo.png" alt="OneVibeMediaGroup" style="height:34px;margin-bottom:6px;">
       <p class="ftag">Hyperscale infrastructure and media, delivered with our strategic partners.</p></div>
@@ -441,12 +640,6 @@
    addEventListener('mousemove',function(e){var n=Date.now();if(n-last>90){rp.push({x:e.clientX,y:e.clientY,r:0,o:0.22});last=n;}});
    function d(){ctx.clearRect(0,0,c.width,c.height);for(var i=rp.length-1;i>=0;i--){var r=rp[i];r.r+=1.4;r.o-=0.004;if(r.o<=0){rp.splice(i,1);continue;}ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(30,107,255,'+r.o+')';ctx.lineWidth=1.4;ctx.stroke();}requestAnimationFrame(d);}d();})();
 </script><script>
-  (function(){var stage=document.getElementById('deckStage');if(!stage)return;var cards=[].slice.call(stage.querySelectorAll('.deck-card'));var dots=[].slice.call(document.querySelectorAll('.deck-dot'));var n=cards.length,idx=0;
-    function render(){cards.forEach(function(c,i){var pos=(i-idx+n)%n;c.style.zIndex=n-pos;c.style.opacity=pos>2?0:1;c.style.transform='translateY('+(pos*16)+'px) scale('+(1-pos*0.05).toFixed(3)+')';});dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});}
-    function next(){idx=(idx+1)%n;render();}function prev(){idx=(idx-1+n)%n;render();}
-    var nb=document.getElementById('deckNext'),pb=document.getElementById('deckPrev');if(nb)nb.onclick=next;if(pb)pb.onclick=prev;
-    var sx=0,drag=false;stage.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;});window.addEventListener('pointerup',function(e){if(!drag)return;drag=false;var dx=e.clientX-sx;if(dx<-40)next();else if(dx>40)prev();});
-    dots.forEach(function(d,i){d.style.cursor='pointer';d.onclick=function(){idx=i;render();};});render();})();
   (function(){var dio=document.querySelector('.diorama');if(!dio)return;var steps=[].slice.call(document.querySelectorAll('.cstep'));var map={community:'w-cc',local:'w-mk',infra:'w-sl'};var ids=['w-cc','w-mk','w-sl'];
     function set(k){ids.forEach(function(id){var el=document.getElementById(id);if(el)el.classList.toggle('lift',id===map[k]);});}
     if(matchMedia('(prefers-reduced-motion:reduce)').matches){steps.forEach(function(s){s.classList.add('active');});set('community');return;}
@@ -478,5 +671,352 @@
     sc.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();})();
   (function(){function reveal(){document.querySelectorAll('.reveal:not(.in),.rise:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*1.1&&r.bottom>-50)el.classList.add('in');});}
     window.addEventListener('load',function(){setTimeout(reveal,60);});setTimeout(reveal,600);window.addEventListener('scroll',reveal,{passive:true});})();
+
+  /* ---- team role lines: single edit point per card via data-role ---- */
+  (function(){
+    document.querySelectorAll('.sl-person[data-role]').forEach(function(card){
+      var r=(card.getAttribute('data-role')||'').trim();
+      if(!r) return;
+      var d=document.createElement('div');d.className='sl-role';d.textContent=r;card.appendChild(d);
+    });
+  })();
+
+  /* =========================================================
+     THE SIGNAL LINE
+     One unbroken stroke down the page. Amplitude falls and
+     regularity rises, so a recorded waveform tightens into a
+     clean signal, flattens into a conductor, then crosses the
+     ground line and spreads into roots.
+     ========================================================= */
+  (function(){
+    var frame=document.getElementById('slFrame');
+    if(!frame||!document.getElementById('slSignal')) return;
+    var svg=document.getElementById('slLayer'),
+        signal=document.getElementById('slSignal'),
+        ghost=document.getElementById('slGhost'),
+        nodesG=document.getElementById('slNodes'),
+        rootsG=document.getElementById('slRoots'),
+        pulse=document.getElementById('slPulse'),
+        eraTrack=document.getElementById('slEraTrack'),
+        eraRail=document.getElementById('slEraRail'),
+        eraPanels=[].slice.call(document.querySelectorAll('[data-era]'));
+
+    var mqReduce=matchMedia('(prefers-reduced-motion:reduce)'),
+        mqStack=matchMedia('(max-width:900px)');
+
+    var W=140, CX=77, S=1, total=0, len=0, groundY=0, frameTop=0,
+        nodeEls=[], rootPaths=[], rootsShown=false,
+        onScreen=false, rafId=0, t0=null,
+        ys=[], cum=[], lenScale=1;
+
+    /* path length at a given page y, so scroll drives the reveal by distance
+       down the page rather than by distance along a very uneven path */
+    function lenAtY(Y){
+      if(!ys.length) return 0;
+      if(Y<=ys[0]) return 0;
+      if(Y>=ys[ys.length-1]) return len;
+      var lo=0, hi=ys.length-1, mid;
+      while(hi-lo>1){ mid=(lo+hi)>>1; if(ys[mid]<=Y) lo=mid; else hi=mid; }
+      var span=ys[hi]-ys[lo];
+      return (cum[lo]+(cum[hi]-cum[lo])*(span?(Y-ys[lo])/span:0))*lenScale;
+    }
+
+    function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
+    function smooth(t){return t*t*(3-2*t);}
+    function docTop(el){var t=0;while(el){t+=el.offsetTop;el=el.offsetParent;}return t;}
+    function stacked(){return mqReduce.matches||mqStack.matches;}
+
+    /* -----------------------------------------------------------------
+       Three states, crossfaded by t (fraction of page height). This is
+       the brand evolution, drawn:
+
+         1. BEAT      recorded audio. A dense summed carrier under a kick
+                      envelope, accented every fourth beat.
+         2. SIGNAL    the beats lose their irregularity and tighten.
+         3. ELECTRIC  a flat conductor carrying a periodic pulse train.
+
+       State 1 holds through the hero and Era One. It hands over during
+       the Transition panel and is fully electric by the time the history
+       section ends, so every present-tense section reads as current.
+       ----------------------------------------------------------------- */
+    var BEAT_P=96, PULSE_P=208, STEP=2;
+
+    /* deterministic pseudo-noise: the band edge has to look ragged like a real
+       render, but it must be identical on every rebuild and resize */
+    function hash(n){var s=Math.sin(n*12.9898+78.233)*43758.5453;return s-Math.floor(s);}
+
+    /* 1. RECORDED AUDIO.
+       A real waveform is not a snaking line, it is a dense vertical zigzag
+       whose OUTER ENVELOPE carries the beat. That is why the eye reads it as a
+       filled shape. So the trace flips side to side on every single 2px sample
+       and the envelope below shapes the band. Do not smooth this into a
+       continuous curve: it stops looking like audio the moment you do. */
+    function beatEnv(y){
+      var ph=(y%BEAT_P)/BEAT_P;
+      var n=Math.floor(y/BEAT_P)%4;
+      var accent=n===0?1:(n===1?0.42:(n===2?0.70:0.34));  /* kick, ghost, snare, ghost */
+      var phrase=0.66+0.34*Math.sin(y/380+0.6);           /* slow swell across the section */
+      return (0.12+0.88*Math.exp(-ph*4.2)*accent)*phrase; /* sharp attack, exponential decay */
+    }
+    function audioAt(y,t){
+      var w=wBeat(t); if(w<=0.002) return 0;
+      var k=Math.round(y/STEP);
+      var sign=(k&1)?1:-1;                                /* the zigzag */
+      var jit=0.50+0.50*hash(k);                          /* ragged edge, not a solid bar */
+      return w*(52-20*smooth(clamp((t-0.10)/0.30,0,1)))*beatEnv(y)*sign*jit;
+    }
+
+    /* 3. ELECTRICITY.
+       Angular, not sinusoidal. Piecewise-linear ramps with hard corners and a
+       decaying alternating ring: a discharge on a scope, not a wave. */
+    var RING=[0,1,-0.42,0.20,-0.08,0];
+    function elec(y){
+      var ph=(y%PULSE_P)/PULSE_P;
+      if(ph>0.26) return 0;                               /* flat conductor between pulses */
+      var k=(ph/0.26)*5, seg=Math.floor(k);
+      if(seg>=5) return 0;
+      return RING[seg]+(RING[seg+1]-RING[seg])*(k-seg);
+    }
+
+    function wBeat(t){return 1-smooth(clamp((t-0.22)/0.16,0,1));}
+    function wSig(t){return smooth(clamp((t-0.22)/0.12,0,1))*(1-smooth(clamp((t-0.36)/0.14,0,1)));}
+    function wElec(t){return smooth(clamp((t-0.36)/0.14,0,1));}
+
+    /* the smooth part of the trace: no zigzag, so nodes and roots can sit on it */
+    function centre(y,t){
+      var v=0,w;
+      if((w=wSig(t))>0.002)  v+=w*13*Math.sin(y/23);
+      if((w=wElec(t))>0.002) v+=w*26*elec(y);
+      return v;
+    }
+    function xAt(y){var t=y/total;return CX+centre(y,t)*S;}          /* nodes, root origin */
+    function xDraw(y){var t=y/total;return CX+(centre(y,t)+audioAt(y,t))*S;}  /* the drawn path */
+
+    function svgEl(n){return document.createElementNS('http://www.w3.org/2000/svg',n);}
+
+    function build(){
+      var cs=getComputedStyle(document.documentElement).getPropertyValue('--sl-col');
+      W=parseFloat(cs)||140; S=W/140; CX=W*0.55;
+      total=frame.offsetHeight;
+      if(!total||!W) return;
+      frameTop=docTop(frame);
+      /* land the ground crossing on a flat run between pulses, so the roots
+         leave a clean point rather than the side of a spike */
+      groundY=Math.round((total*0.905-PULSE_P*0.62)/PULSE_P)*PULSE_P+PULSE_P*0.62;
+
+      svg.setAttribute('width',W);
+      svg.setAttribute('height',total);
+      svg.setAttribute('viewBox','0 0 '+W+' '+total);
+
+      /* Uniform 2px sampling. The zigzag needs it, and so do the hard corners
+         on the electrical ring. Also record cumulative path length against page
+         y: the zigzag makes the audio stretch many times longer than the flat
+         conductor, so a reveal driven by raw path length would crawl through
+         the waveform and then race down the rest of the page. */
+      var d='M '+xDraw(0).toFixed(2)+' 0', y=0, px=xDraw(0), py=0, run=0;
+      ys=[0]; cum=[0];
+      while(y<groundY){
+        y=Math.min(groundY, y+STEP);
+        var x=xDraw(y);
+        run+=Math.sqrt((x-px)*(x-px)+(y-py)*(y-py));
+        px=x; py=y;
+        ys.push(y); cum.push(run);
+        d+=' L '+x.toFixed(2)+' '+y.toFixed(1);
+      }
+      signal.setAttribute('d',d);
+      ghost.setAttribute('d',d);
+      len=signal.getTotalLength();
+      lenScale=run>0?len/run:1;
+      signal.style.strokeDasharray=len;
+
+      buildRoots();
+      buildNodes();
+    }
+
+    function buildRoots(){
+      rootsG.innerHTML=''; rootPaths=[];
+      var gl=svgEl('line');
+      gl.setAttribute('x1',4); gl.setAttribute('x2',W-4);
+      gl.setAttribute('y1',groundY); gl.setAttribute('y2',groundY);
+      gl.setAttribute('stroke','rgba(152,162,182,.34)'); gl.setAttribute('stroke-width',1);
+      rootsG.appendChild(gl);
+
+      /* A real root system branches, tapers and thins as it goes. Five primaries
+         leave the terminus and each one keeps splitting, every child shorter,
+         narrower and fainter than its parent. Angles are measured from straight
+         down and every value is hashed, so it looks grown rather than drawn but
+         is identical on every rebuild. This is the one organic moment on the
+         page: everything above it is deliberately precise. */
+      var bx=xAt(groundY),
+          room=Math.min(total-groundY-30, 420*Math.max(S,0.5)),
+          loX=W*0.05, hiX=W*0.95, maxDepth=3;
+
+      function limb(x,y,ang,len,depth,wid,seed){
+        /* Deflect off the column walls rather than clipping against them.
+           Blocked horizontal travel is converted into depth, so a limb that
+           reaches the edge dives instead of flattening out along it. Clipping
+           here piles 40 percent of the system into two vertical stripes. */
+        var dx=Math.sin(ang)*len, maxR=hiX-x, maxL=x-loX;
+        if(dx>maxR)  dx=maxR*0.75;
+        if(dx<-maxL) dx=-maxL*0.75;
+        var dy=Math.sqrt(Math.max(len*len-dx*dx, len*len*0.25)),
+            ex=x+dx, ey=y+dy, ang2=Math.atan2(dx,dy);
+        /* bow each limb sideways so it curves instead of running straight */
+        var bow=(hash(seed)-0.5)*len*0.30,
+            mx=clamp((x+ex)/2+Math.cos(ang2)*bow, loX, hiX),
+            my=(y+ey)/2-Math.sin(ang2)*bow;
+        var p=svgEl('path');
+        p.setAttribute('d','M '+x.toFixed(2)+' '+y.toFixed(1)+
+                       ' Q '+mx.toFixed(2)+' '+my.toFixed(1)+', '+ex.toFixed(2)+' '+ey.toFixed(1));
+        p.setAttribute('fill','none');
+        p.setAttribute('stroke','#1E6BFF');
+        p.setAttribute('stroke-width',Math.max(0.55,wid).toFixed(2));
+        p.setAttribute('opacity',Math.max(0.22,0.62-depth*0.12).toFixed(2));
+        p.setAttribute('stroke-linecap','round');
+        rootsG.appendChild(p);
+
+        var L=p.getTotalLength();
+        p.style.strokeDasharray=L;
+        if(rootsShown||mqReduce.matches){ p.style.strokeDashoffset=0; }
+        else{
+          p.style.strokeDashoffset=L;
+          /* stagger by depth, so the system grows outward from the trunk */
+          p.style.transition='stroke-dashoffset .5s cubic-bezier(.2,.7,.2,1) '+(depth*0.16).toFixed(2)+'s';
+        }
+        rootPaths.push(p);
+
+        if(depth>=maxDepth||len<15) return;
+        var kids=depth<2?2:(hash(seed*1.7)>0.45?2:1);
+        for(var i=0;i<kids;i++){
+          var h=hash(seed*3.7+i*11.3),
+              dir=kids===1?(h>0.5?1:-1):(i?1:-1),
+              /* two corrections: level out as a limb steepens, and curve back
+                 toward the middle as it drifts wide, so the system fills the
+                 volume the way a root ball does instead of racing to the sides */
+              pull=-((ex-CX)/(W*0.5))*0.30,
+              turn=dir*(0.20+0.40*h)-ang2*0.30+pull;
+          limb(ex,ey,ang2+turn,len*(0.54+0.20*hash(seed+i*5.1)),depth+1,wid*0.66,seed*2.1+i*7.9);
+        }
+      }
+
+      [-0.42,-0.21,0,0.21,0.42].forEach(function(a,i){
+        limb(bx,groundY,a,room*(0.30+0.09*hash(i*5.5)),0,1.75*Math.max(S,0.55),i*13.7+1);
+      });
+    }
+
+    function showRoots(){
+      if(rootsShown) return;
+      rootsShown=true;
+      rootPaths.forEach(function(p){p.style.strokeDashoffset=0;});
+    }
+
+    function buildNodes(){
+      nodesG.innerHTML=''; nodeEls=[];
+      var lastY=-999;
+      [].slice.call(frame.querySelectorAll('[data-node]')).forEach(function(el){
+        /* offsetTop, not getBoundingClientRect: reveal transforms would skew the rect */
+        var y=docTop(el)-frameTop+el.offsetHeight/2;
+        if(y<0||y>groundY) return;
+        /* the team grid puts four cards on one row: draw one node, not four stacked */
+        if(Math.abs(y-lastY)<14){ nodeEls.push({dot:null,y:y}); return; }
+        lastY=y;
+        var x=xAt(y);
+        var tick=svgEl('line');
+        tick.setAttribute('x1',x.toFixed(2)); tick.setAttribute('x2',W-3);
+        tick.setAttribute('y1',y.toFixed(1)); tick.setAttribute('y2',y.toFixed(1));
+        tick.setAttribute('stroke','rgba(68,199,255,.28)'); tick.setAttribute('stroke-width',1);
+        var c=svgEl('circle');
+        c.setAttribute('cx',x.toFixed(2)); c.setAttribute('cy',y.toFixed(1)); c.setAttribute('r',4);
+        c.setAttribute('fill','#0C0F18'); c.setAttribute('stroke','#44C7FF'); c.setAttribute('stroke-width',1.6);
+        c.setAttribute('opacity','.35');
+        nodesG.appendChild(tick); nodesG.appendChild(c);
+        nodeEls.push({dot:c,y:y});
+      });
+    }
+
+    function paint(){
+      if(!len) return;
+      if(mqReduce.matches){
+        /* complete and static, every node lit */
+        signal.style.strokeDashoffset=0;
+        pulse.setAttribute('opacity',0);
+        nodeEls.forEach(function(n){if(n.dot){n.dot.setAttribute('opacity','1');n.dot.setAttribute('r',5);}});
+        showRoots();
+        return;
+      }
+      var revealY=window.scrollY+window.innerHeight*0.82-frameTop;
+      signal.style.strokeDashoffset=len-lenAtY(clamp(revealY,0,groundY));
+      var probe=window.scrollY+window.innerHeight*0.75-frameTop;
+      nodeEls.forEach(function(n){
+        if(!n.dot) return;
+        var seen=probe>n.y;
+        n.dot.setAttribute('opacity',seen?'1':'.35');
+        n.dot.setAttribute('r',seen?5:4);
+      });
+      if(!rootsShown&&probe>groundY-window.innerHeight*0.45) showRoots();
+    }
+
+    function eras(){
+      if(!eraTrack||!eraRail) return;
+      if(stacked()){
+        eraRail.style.transform='';
+        eraPanels.forEach(function(p){p.classList.add('on');});
+        return;
+      }
+      var pin=eraTrack.firstElementChild;
+      var travel=eraTrack.offsetHeight-pin.offsetHeight;
+      if(travel<=0) return;
+      var p=clamp(-eraTrack.getBoundingClientRect().top/travel,0,1);
+      var n=eraPanels.length;
+      eraRail.style.transform='translate3d(-'+(p*100*(n-1)/n).toFixed(3)+'%,0,0)';
+      var active=Math.min(n-1,Math.floor(p*n+0.0001));
+      eraPanels.forEach(function(el,i){el.classList.toggle('on',i===active);});
+    }
+
+    /* current pulse: rAF only, never CSS Motion Path (iOS mispositions offset-path) */
+    function tick(ts){
+      if(!onScreen||mqReduce.matches){rafId=0;return;}
+      if(t0===null) t0=ts;
+      if(len){
+        /* current flows in the conductor, not in the audio. Starting the pulse
+           where the line goes electric keeps it from jittering across the
+           zigzag, and says the right thing besides. */
+        var a=lenAtY(total*0.42),
+            b=lenAtY(clamp(window.scrollY+window.innerHeight*0.82-frameTop,0,groundY));
+        if(b>a+24){
+          try{
+            var pt=signal.getPointAtLength(a+(b-a)*(((ts-t0)/5200)%1));
+            pulse.setAttribute('cx',pt.x); pulse.setAttribute('cy',pt.y);
+            pulse.setAttribute('opacity',0.9);
+          }catch(e){}
+        } else pulse.setAttribute('opacity',0);
+      }
+      rafId=requestAnimationFrame(tick);
+    }
+
+    function rebuild(){build();paint();eras();}
+
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){
+        onScreen=en[0].isIntersecting;
+        if(onScreen&&!rafId&&!mqReduce.matches){t0=null;rafId=requestAnimationFrame(tick);}
+      },{threshold:0}).observe(frame);
+    }
+
+    rebuild();
+    /* Cinzel is not used here, but Inter still swaps in: remeasure once fonts settle
+       or the nodes land off the path on a throttled first load. */
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rebuild);
+    window.addEventListener('load',rebuild);
+    var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(rebuild,140);});
+    var queued=false;
+    window.addEventListener('scroll',function(){
+      if(queued) return; queued=true;
+      requestAnimationFrame(function(){queued=false;paint();eras();});
+    },{passive:true});
+    (mqReduce.addEventListener?mqReduce.addEventListener('change',rebuild):mqReduce.addListener(rebuild));
+    /* content reveals change nothing about layout, but images and late reveals can: cheap safety remeasure */
+    setTimeout(rebuild,900);
+  })();
 </script>
 </body></html>
