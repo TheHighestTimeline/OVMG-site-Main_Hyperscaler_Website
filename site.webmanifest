@@ -1,0 +1,10 @@
+{
+  "name": "OneVibeMediaGroup",
+  "short_name": "OVMG",
+  "icons": [
+    { "src": "/images/icons/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icons/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0C0F18",
+  "background_color": "#0C0F18"
+}
