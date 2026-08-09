@@ -178,3 +178,34 @@ Each profile carries `cameraElevation`, `cameraYaw`, `systemRoll`, `orbitSpreadX
 ## 8. Accessibility and motion preference
 
 `prefers-reduced-motion: reduce` (or the `forceReducedMotion` debug prop) freezes `runtime.elapsed` at `REDUCED_MOTION_POSE_SECONDS` (`530`, see `MOTION_SPEC.md` §8), zeroes pointer and scroll response, and holds every partner motionless in that single authored pose — chosen by `scripts/find-static-pose.mjs` specifically so no medallion sits inside the mark's opening or crowds another medallion, on both the desktop and phone-sm breakpoints. The canvas itself is `aria-hidden`; every active partner name is exposed via a visually-hidden `<ul>` (`.ovmg-hero__a11y`) regardless of motion state, so assistive technology never depends on the 3D scene rendering at all.
+
+## Carved band extent — revised 2026-08-01
+
+The recessed carved band originally ran from 0.72 of the outer radius, on the
+reasoning that the inner stretch of the measured pattern was the photographed
+object's own bevel rather than decoration. Re-measuring settled it the other
+way.
+
+Method: for each one-pixel-wide ring of the source raster, bin the pixels by
+angle, take the mean luminance per angular bin, and take the standard deviation
+across those bins. Carving is rotationally non-uniform and scores high; a smooth
+bevel or flat is rotationally uniform and scores near zero.
+
+Result on `images/ovmg-o-stone.webp` (bore at 0.557 of the outer radius):
+
+| radius | angular std | reading |
+|---|---|---|
+| 0.54 | 3.2 | inside the bore |
+| 0.56 | 39.3 | glyphs |
+| 0.60–0.95 | 44–57 | glyphs, uninterrupted |
+| 0.98 | 54.6 | glyphs |
+
+For contrast, the same scan of the reference photograph reads 10.5 at the bore
+edge and 22 at the outer rim highlight — that is what a genuinely smooth surface
+looks like under this measure. Nothing on the face reads that way.
+
+The band therefore runs bore-to-rim: `bandInner` 0.569, clamped against
+`innerRadius + innerFaceLip` rather than against `innerRadius + edgeBevel +
+faceLip`. The inner chamfer is now an edge-break (`innerBevelDrop` 0.014) rather
+than the wide cone it had become, since a wide cone reproduces exactly the
+undecorated plateau the measurement rules out.

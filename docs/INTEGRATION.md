@@ -271,8 +271,8 @@ passing behind it:
 
 | Value | Result |
 | --- | --- |
-| `'always-front'` | **Shipped default.** Marks are drawn over the O, so no partner disappears for part of its orbit. They still sort correctly against each other, and still shrink and dim with distance, so the orbit keeps reading as three-dimensional. |
-| `'occluded'` | Physically correct depth: a mark travelling behind the O is hidden by it. |
+| `'always-front'` | Marks are drawn over the O, so no partner disappears for part of its orbit. They still sort correctly against each other, and still shrink and dim with distance, so the orbit keeps reading as three-dimensional. |
+| `'occluded'` | **Shipped default.** Physically correct depth: a mark travelling behind the O is hidden by it, and reappears as it comes back around the front. A mark passing directly behind the O's open centre is still visible through the hole, which is correct. |
 
 ```tsx
 <PartnerOrbitHero logoLayer="occluded" />
@@ -283,7 +283,7 @@ passing behind it:
 <div id="hero3d-root" data-hero-layer="occluded"></div>
 ```
 
-`always-front` is an art-direction choice, not a limitation of the renderer.
+`always-front` remains available as an art-direction choice; the renderer supports either.
 The trade-off is explicit: true occlusion is more physically honest, but it
 hides a partner for a stretch of every cycle, and partner visibility is the
 point of the panel. The scene keeps every other depth cue — perspective scale

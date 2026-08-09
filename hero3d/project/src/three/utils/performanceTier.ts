@@ -56,25 +56,50 @@ export function readDeviceSignals(): DeviceSignals {
   };
 }
 
-/** Pure scoring function so the decision is unit-testable. */
+/**
+ * Pure scoring function so the decision is unit-testable.
+ *
+ * The earlier version of this function penalised a device for having a touch
+ * screen and penalised it AGAIN for having a high-DPR panel. Those two signals
+ * together describe every flagship phone made, so a current iPhone scored 0 and
+ * was handed the cheapest tier: antialiasing off, half-resolution rendering,
+ * anisotropy 2. The rendering artefacts that produced read as "low-poly game",
+ * which is the opposite of what the panel is for.
+ *
+ * The scoring is therefore re-based on what the signals actually mean:
+ *
+ *   - A dense panel is EVIDENCE OF a capable device, not a burden on it. No
+ *     manufacturer ships a 3x display on a GPU that cannot drive one.
+ *   - A small viewport is fewer pixels to shade, not a weaker machine.
+ *   - `deviceMemory` is unimplemented in Safari, so `undefined` is the normal
+ *     reading on every iPhone and iPad and must not be scored as a deficit.
+ *
+ * A coarse pointer still costs a little, because a phone is genuinely more
+ * thermally constrained than a desktop. It is a nudge now, not a veto.
+ */
 export function scoreDevice(signals: DeviceSignals): QualityTier {
   if (signals.saveData) return 'low';
   if (signals.renderer && SOFTWARE_RENDERER.test(signals.renderer)) return 'low';
+  // Genuinely weak hardware, whatever else it reports.
+  if (signals.hardwareConcurrency <= 2) return 'low';
 
   let score = 0;
-  score += signals.hardwareConcurrency >= 8 ? 2 : signals.hardwareConcurrency >= 4 ? 1 : 0;
+  score +=
+    signals.hardwareConcurrency >= 8 ? 2 : signals.hardwareConcurrency >= 6 ? 1.5 : signals.hardwareConcurrency >= 4 ? 1 : 0;
   if (signals.deviceMemory !== undefined) {
     score += signals.deviceMemory >= 8 ? 2 : signals.deviceMemory >= 4 ? 1 : 0;
   } else {
-    score += 1; // unknown: assume mid
+    // Not reported by Safari at all: assume mid rather than penalise.
+    score += 1.5;
   }
-  score += signals.viewportWidth >= 1280 ? 2 : signals.viewportWidth >= 820 ? 1 : 0;
-  if (signals.coarsePointer) score -= 1;
-  // A phone pushing 3x DPR is doing far more work per CSS pixel.
-  if (signals.devicePixelRatio >= 3 && signals.coarsePointer) score -= 1;
+  score += signals.viewportWidth >= 1280 ? 2 : signals.viewportWidth >= 820 ? 1.5 : signals.viewportWidth >= 380 ? 1 : 0;
+  // A dense panel indicates capable hardware behind it.
+  if (signals.devicePixelRatio >= 2) score += 0.5;
+  // Thermal headroom, not capability: a nudge, not a veto.
+  if (signals.coarsePointer) score -= 0.5;
 
   if (score >= 5) return 'high';
-  if (score >= 2) return 'medium';
+  if (score >= 2.5) return 'medium';
   return 'low';
 }
 

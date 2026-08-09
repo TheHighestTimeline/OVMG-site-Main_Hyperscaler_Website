@@ -12,7 +12,7 @@ A real-GPU frame-rate measurement was not possible in the environment this docum
 
 | Parameter | `low` | `medium` | `high` |
 |---|---|---|---|
-| `maxDpr` | 1.5 | 1.75 | 2.0 |
+| `maxDpr` | 2.0 | 2.0 | 2.0 |
 | `shadows` | false | true | true |
 | `shadowMapSize` | 512 | 1024 | 2048 |
 | `postprocessing` | false | true | true |
@@ -24,13 +24,14 @@ A real-GPU frame-rate measurement was not possible in the environment this docum
 | `ringRadialSegments` | 5 | 6 | 8 |
 | `starDensity` (multiplier on `STAR_LAYERS` counts) | 0.46 | 0.72 | 1.0 |
 | `medallionSegments` (plaque bevel curve segments) | 40 | 56 | 72 |
-| `anisotropy` | 2 | 4 | 8 |
+| `anisotropy` | 8 | 8 | 16 |
 
 Every parameter degrades monotonically low→high (asserted in `tests/unit/responsive.test.ts`). Tier resolution (`src/three/utils/performanceTier.ts`):
 
 - `resolveQualityProfile(requested, signals)` returns `QUALITY_PROFILES[requested]` directly unless `requested === 'auto'`, in which case it calls `scoreDevice()`.
 - `scoreDevice()` forces `low` unconditionally if `navigator.connection.saveData` is set, or if the unmasked WebGL renderer string matches `/swiftshader|llvmpipe|software|basic render/i` (so a software-rendered browser — including this doc's own measurement environment — always gets the cheapest tier regardless of any other signal).
-- Otherwise it sums a score from `hardwareConcurrency` (0/1/2), `deviceMemory` (0/1/2, or `1` if unknown), and `viewportWidth` (0/1/2), then subtracts 1 for a coarse pointer and a further 1 if `devicePixelRatio ≥ 3` on a coarse pointer. `score ≥ 5` → `high`, `score ≥ 2` → `medium`, else `low`.
+- Otherwise it sums a score from `hardwareConcurrency` (0/1/1.5/2), `deviceMemory` (0/1/2, or `1.5` if unreported — Safari never reports it), and `viewportWidth` (0/1/1.5/2), **adds** 0.5 for `devicePixelRatio ≥ 2`, and subtracts 0.5 for a coarse pointer. `score ≥ 5` → `high`, `score ≥ 2.5` → `medium`, else `low`. `hardwareConcurrency ≤ 2` forces `low` outright.
+- **Revised 2026-08-01.** The previous scoring penalised a device once for a touch screen and again for a high-DPR panel — together a description of every flagship phone — so a current iPhone scored 0 and got `low`: antialiasing off, half-resolution rendering upscaled to a 3x panel, anisotropy 2. Those artefacts read as a low-poly game asset. A dense panel is now treated as evidence of capable hardware rather than a burden, a small viewport as fewer pixels to shade rather than a weaker machine, and an unreported `deviceMemory` as mid rather than a deficit. A coarse pointer still costs a little for thermal headroom. A current iPhone now resolves to `medium`; a 4-core/2 GB budget Android still resolves to `low` (both pinned in `tests/unit/responsive.test.ts`).
 - The DPR actually handed to the WebGL renderer is `clampDpr()`: `min(profile.maxDpr, max(1, devicePixelRatio))`.
 
 ## 3. Measured results (`scripts/perf-probe.mjs`, SwiftShader software rasteriser)
@@ -41,6 +42,8 @@ Every parameter degrades monotonically low→high (asserted in `tests/unit/respo
 | high | 1440×900 | 67 | 134,719 | 30 | 19 | 35 | 3990 | 45.7 |
 | medium | 768×1024 | 67 | 75,583 | 30 | 19 | 35 | 2241 | 47.8 |
 | low | 390×844 | 37 | 37,614 | 25 | 18 | 16 | 1010 | 16.6 |
+
+**Antialiasing (revised 2026-08-01).** `antialias` on the WebGL context is now `true` at every tier (it was `tier !== 'low'`), and `EffectComposer`'s `multisampling` is `4` at `medium` as well as `high` (it was `high` only, which left `medium` with no MSAA at all once the composer took over the render target). `low` has no composer, so its context-level antialiasing is what applies there.
 
 Read `frameMs` as "how long a software rasteriser takes," not as a GPU frame budget — the `low` tier's lower `frameMs` here is explained entirely by it having 30 fewer draw calls and no postprocessing, not by any GPU-relevant optimisation being absent at `high`.
 

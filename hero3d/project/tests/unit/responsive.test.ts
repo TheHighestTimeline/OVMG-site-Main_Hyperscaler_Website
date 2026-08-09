@@ -83,6 +83,20 @@ describe('quality tiers', () => {
     expect(QUALITY_PROFILES.low.postprocessing).toBe(false);
     expect(QUALITY_PROFILES.low.shadows).toBe(false);
   });
+
+  it('never renders below native-ish resolution on a dense panel', () => {
+    // Half-resolution rendering upscaled to a 3x panel is what made the mark
+    // read as a low-poly game asset. Every tier now resolves to at least 2x.
+    for (const tier of ['low', 'medium', 'high'] as const) {
+      expect(clampDpr(QUALITY_PROFILES[tier], 3)).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it('keeps anisotropic filtering high enough for angled logo faces', () => {
+    for (const tier of ['low', 'medium', 'high'] as const) {
+      expect(QUALITY_PROFILES[tier].anisotropy).toBeGreaterThanOrEqual(8);
+    }
+  });
 });
 
 const baseSignals: DeviceSignals = {
@@ -100,17 +114,44 @@ describe('device scoring', () => {
     expect(scoreDevice(baseSignals)).toBe('high');
   });
 
-  it('drops a phone to medium or low', () => {
-    const phone = scoreDevice({
+  it('gives a current iPhone the medium tier, not low', () => {
+    // Safari reports no deviceMemory at all; this is the real signal shape.
+    const iphone = scoreDevice({
       ...baseSignals,
-      hardwareConcurrency: 6,
-      deviceMemory: 4,
+      hardwareConcurrency: 4,
+      deviceMemory: undefined,
       coarsePointer: true,
       viewportWidth: 390,
       devicePixelRatio: 3,
       renderer: 'Apple GPU',
     });
-    expect(phone === 'medium' || phone === 'low').toBe(true);
+    expect(iphone).toBe('medium');
+  });
+
+  it('still drops a genuinely weak phone to low', () => {
+    const budget = scoreDevice({
+      ...baseSignals,
+      hardwareConcurrency: 4,
+      deviceMemory: 2,
+      coarsePointer: true,
+      viewportWidth: 360,
+      devicePixelRatio: 2,
+      renderer: 'Mali-G52',
+    });
+    expect(budget).toBe('low');
+  });
+
+  it('never lets a phone outrank a desktop', () => {
+    const phone = scoreDevice({
+      ...baseSignals,
+      hardwareConcurrency: 6,
+      deviceMemory: undefined,
+      coarsePointer: true,
+      viewportWidth: 390,
+      devicePixelRatio: 3,
+      renderer: 'Apple GPU',
+    });
+    expect(phone).not.toBe('high');
   });
 
   it('forces low on a software renderer', () => {
@@ -123,7 +164,7 @@ describe('device scoring', () => {
   });
 
   it('clamps device pixel ratio to the tier cap', () => {
-    expect(clampDpr(QUALITY_PROFILES.low, 3)).toBe(1.5);
+    expect(clampDpr(QUALITY_PROFILES.low, 3)).toBe(2);
     expect(clampDpr(QUALITY_PROFILES.high, 3)).toBe(2);
     expect(clampDpr(QUALITY_PROFILES.high, 1)).toBe(1);
   });

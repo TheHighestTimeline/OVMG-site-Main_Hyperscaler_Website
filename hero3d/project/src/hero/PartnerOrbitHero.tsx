@@ -190,7 +190,7 @@ export function PartnerOrbitHero(props: PartnerOrbitHeroProps) {
           shadows={quality.shadows}
           frameloop="always"
           gl={{
-            antialias: quality.tier !== 'low',
+            antialias: true,
             alpha: config.background === 'transparent',
             powerPreference: 'high-performance',
             stencil: false,

@@ -11,3 +11,7 @@ hero3d/screenshots/
 hero3d/project/test-results/
 hero3d/project/tsconfig.tsbuildinfo
 .claude/
+
+# Transfer/backup archives: these are tarballs of the repo itself, so
+# committing them would store the tree inside its own history.
+_*.tgz

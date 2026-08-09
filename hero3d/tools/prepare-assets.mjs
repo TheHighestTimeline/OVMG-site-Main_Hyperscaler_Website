@@ -59,7 +59,8 @@ const LOGO_SOURCES = [
 
 const RELIEF_SIZE = 1024; // Part B canvas size
 const STONE_NOISE_SIZE = 512; // Part C canvas size
-const LOGO_MAX_BOX = 512; // Part D max fit box
+const LOGO_MAX_BOX = 1024; // Part D max fit box (raised from 512: ESS 878px and
+// Vela Tech 1050px were being thrown away by the old cap)
 
 // ---------------------------------------------------------------------------
 // Small utilities
@@ -543,8 +544,11 @@ async function buildOTextures(metricsResult) {
   // back 3x too long and every downstream index into it would be corrupted.
   const reliefUpscaled = await sharp(Buffer.from(srcHeightU8), { raw: { width, height, channels: 1 } })
     .toColourspace('b-w')
-    .resize(RELIEF_SIZE, RELIEF_SIZE, { kernel: 'cubic' })
-    .blur(0.8) // 0.6-1px light blur so the height field is smooth for normal generation
+    // lanczos3 holds the carved glyph edges far better than cubic across a
+    // 460 -> 1024 upscale, which is the whole budget we have: the source art is
+    // only 460px, so every bit of edge definition has to survive the resample.
+    .resize(RELIEF_SIZE, RELIEF_SIZE, { kernel: 'lanczos3' })
+    .blur(0.6) // light blur so the height field is smooth for normal generation
     .raw()
     .toBuffer();
 

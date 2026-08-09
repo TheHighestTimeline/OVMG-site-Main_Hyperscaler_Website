@@ -176,20 +176,50 @@ export const CENTRAL_O = {
   innerRadius: 0.724,
   /** Half-depth: the O spans -depth..+depth along Z. */
   depth: 0.175,
-  /** Radial start/end of the recessed carved band, as a fraction of
-   * outerRadius. Clamped against the bevels by bandRadii(). */
-  bandInner: 0.72,
-  bandOuter: 0.96,
-  /** Width of the flat lip between a bevel and the carved band. */
-  faceLip: 0.014,
-  /** How far the inner bevel drops from the face plane to the bore. */
-  innerBevelDrop: 0.058,
+  /**
+   * Radial start/end of the recessed carved band, as a fraction of
+   * outerRadius. Clamped against the bevels by bandRadii().
+   *
+   * Measured twice, independently, and both measurements agree: the engraving
+   * covers essentially the WHOLE face. `o-metrics.json` puts it at 0.560–0.994
+   * of the outer radius from the brand raster ("there is no flat undecorated
+   * lip on either side of the carving"), and an angular-luminance-variance scan
+   * of the reference photograph puts the bore edge at 0.63 and continuous
+   * carving from 0.64 to 0.99.
+   *
+   * An earlier pass pulled `bandInner` in to 0.72 to cure a "rounded tube"
+   * read. That was the wrong lever: the tube came from double-counting the
+   * inner chamfer, not from the band being too wide. Pulling the band in left a
+   * broad smooth plateau between the bore and the first glyph — roughly a third
+   * of the face — which is not on the real object. The chamfer is now modelled
+   * once (see `innerBevelDrop`) and the band runs nearly edge to edge, as it
+   * does on the reference.
+   */
+  bandInner: 0.569,
+  bandOuter: 0.99,
+  /** Width of the flat lip between the OUTER bevel and the carved band. */
+  faceLip: 0.006,
+  /**
+   * Hairline flat between the bore and the first glyph.
+   *
+   * Kept deliberately tiny. The raster has no smooth inner stretch at all, so
+   * anything wider than a hairline here invents a plateau the object does not
+   * have.
+   */
+  innerFaceLip: 0.016,
+  /**
+   * How far the inner chamfer drops from the face plane to the bore. Small:
+   * it is an edge-break on the opening, not a conical surface. An earlier pass
+   * had this at 0.058 across a wide radial run, which produced the broad
+   * light-catching cone that read as an undecorated plateau.
+   */
+  innerBevelDrop: 0.014,
   /** How far the carved band floor sits below the outer front face. */
   bandRecess: 0.028,
-  /** Bevel width on the outer and inner edges. */
-  edgeBevel: 0.032,
+  /** Bevel width on the outer edge. */
+  edgeBevel: 0.016,
   /** Displacement applied to the carved relief (negative = engraved inward). */
-  reliefDepth: 0.023,
+  reliefDepth: 0.03,
   /** Ambient motion budget. */
   spinSpeed: 0.0125, // rad/s -> a few degrees over a slow cycle
   spinAmplitude: 0.052, // rad, max deviation from rest (~3 degrees)
@@ -356,11 +386,11 @@ export const QUALITY_PROFILES: Record<QualityTier, QualityProfile> = {
     ringRadialSegments: 8,
     starDensity: 1,
     medallionSegments: 72,
-    anisotropy: 8,
+    anisotropy: 16,
   },
   medium: {
     tier: 'medium',
-    maxDpr: 1.75,
+    maxDpr: 2,
     shadows: true,
     shadowMapSize: 1024,
     postprocessing: true,
@@ -372,11 +402,11 @@ export const QUALITY_PROFILES: Record<QualityTier, QualityProfile> = {
     ringRadialSegments: 6,
     starDensity: 0.72,
     medallionSegments: 56,
-    anisotropy: 4,
+    anisotropy: 8,
   },
   low: {
     tier: 'low',
-    maxDpr: 1.5,
+    maxDpr: 2,
     shadows: false,
     shadowMapSize: 512,
     postprocessing: false,
@@ -388,7 +418,7 @@ export const QUALITY_PROFILES: Record<QualityTier, QualityProfile> = {
     ringRadialSegments: 5,
     starDensity: 0.46,
     medallionSegments: 40,
-    anisotropy: 2,
+    anisotropy: 8,
   },
 };
 
@@ -542,9 +572,9 @@ export const DEFAULT_HERO_CONFIG: HeroConfig = {
   scrollResponse: 1,
   quality: 'auto',
   labels: false,
-  // Partner visibility beats physical occlusion here: a hero that hides a
-  // partner for a third of every orbit is not doing its job.
-  logoLayer: 'always-front',
+  // Spatial truth wins: a mark passing behind the O is hidden by it, the same
+  // way the rings are. Marks reappear as they come back around the front.
+  logoLayer: 'occluded',
   safeZone: { left: 0, right: 0, top: 0, bottom: 0 },
 };
 

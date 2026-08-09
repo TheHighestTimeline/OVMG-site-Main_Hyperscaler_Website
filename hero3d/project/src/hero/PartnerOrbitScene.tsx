@@ -438,7 +438,7 @@ export function PartnerOrbitScene({ partners, visibility = FULL_SCENE, showHelpe
       <TelemetryReporter partners={partners} />
 
       {runtime.quality.postprocessing ? (
-        <EffectComposer enableNormalPass={false} multisampling={runtime.quality.tier === 'high' ? 4 : 0}>
+        <EffectComposer enableNormalPass={false} multisampling={runtime.quality.tier === 'low' ? 0 : 4}>
           {/* Tight and high-threshold on purpose: a loose bloom turns a near
               dust mote into a lens blob, which is the single fastest way to
               make a scene look like a stock particle template. */}

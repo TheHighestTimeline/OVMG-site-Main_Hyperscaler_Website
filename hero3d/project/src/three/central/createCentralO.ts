@@ -50,22 +50,25 @@ export interface CentralOOptions {
 /**
  * Radial extents of the recessed carved band.
  *
- * The measured artwork puts the engraving across essentially the whole ring
- * face (0.560 to 0.994 of the outer radius), leaving no flat lip worth
- * modelling. The band is therefore derived from the geometry — just inside the
- * chamfers — rather than from free-floating fractions. Deriving it is what
- * keeps the lathe profile valid: an independently-authored `bandInner` smaller
- * than `innerRadius + bevel` folds the profile back on itself and produces a
- * fat plain ring that reads as a tube instead of a carved seal.
+ * An angular-luminance-variance scan of the brand raster, one ring of pixels at
+ * a time, puts glyphs continuously from 0.56 to 0.99 of the outer radius —
+ * variance holds around 47 across that whole span. A smooth surface reads near
+ * zero by comparison (the bore edge of the reference photograph measures 10).
+ * There is no undecorated stretch anywhere on the face: the carving runs bore
+ * to rim.
+ *
+ * The floor is therefore taken against the BORE plus a hairline, not against
+ * the outer bevel. Clamping the inner edge with the outer `edgeBevel`, as this
+ * function used to, forced the band a full bevel-width away from the opening
+ * and opened a smooth plateau across roughly a third of the face — the single
+ * biggest reason the mark read as a game asset rather than carved stone.
  */
 export function bandRadii(): { inner: number; outer: number } {
   const R = CENTRAL_O.outerRadius;
   const Ri = CENTRAL_O.innerRadius;
-  const bev = CENTRAL_O.edgeBevel;
-  const lip = CENTRAL_O.faceLip;
 
-  const minInner = Ri + bev + lip;
-  const maxOuter = R - bev - lip;
+  const minInner = Ri + CENTRAL_O.innerFaceLip;
+  const maxOuter = R - CENTRAL_O.edgeBevel - CENTRAL_O.faceLip;
   const inner = Math.max(minInner, R * CENTRAL_O.bandInner);
   const outer = Math.min(maxOuter, R * CENTRAL_O.bandOuter);
   return { inner, outer: Math.max(outer, inner + 0.12) };
@@ -80,7 +83,7 @@ export function buildProfile(): THREE.Vector2[] {
 
   // The lathe floor sits below the displaced face so the two never z-fight.
   const floorZ = D - CENTRAL_O.bandRecess - CENTRAL_O.reliefDepth - 0.006;
-  const wall = Math.max(0.008, Math.min(0.022, (bandInner - Ri - bev) * 0.9));
+  const wall = Math.max(0.004, Math.min(0.022, (bandInner - Ri - CENTRAL_O.innerBevelDrop) * 0.5));
 
   const p = (r: number, z: number) => new THREE.Vector2(r, z);
 
