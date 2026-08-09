@@ -443,6 +443,16 @@
   .sl-role{font-size:12.5px;color:var(--infra);margin-top:4px;line-height:1.5;}
   .sl-bio{font-size:14px;color:var(--infra);line-height:1.72;margin-top:14px;}
 
+  /* -- partner ecosystem, the 3D orbit, sitting above the CTA --
+     The bundle measures its responsive profile from this container rather than
+     the viewport, so the mount must carry a definite height. Shorter than the
+     home page hero: this is a section on a page, not the page's opening. */
+  .sl-eco{margin-top:28px;}
+  .hero3d-mount{position:relative;width:100%;height:clamp(380px,46vh,520px);}
+  #hero3d-root{position:absolute;inset:0;}
+  @media(max-width:900px){.hero3d-mount{height:clamp(320px,40vh,420px);}}
+  @media(max-width:560px){.hero3d-mount{height:340px;}}
+
   /* -- 06 into the ground -- */
   .sl-media{width:100%;aspect-ratio:16/7;border-radius:16px;border:1px solid var(--border);background:var(--graphite);margin-top:34px;}
   .sl-media[hidden]{display:none;}
@@ -667,6 +677,19 @@
         <!-- Reserved slot: as-found / as-left scroll scrub, SEED campus assets. Nothing wired this round.
              Remove the hidden attribute once the assets land. -->
         <div class="sl-media" id="slMediaSlot" hidden></div>
+      </section>
+
+      <!-- 06b THE ECOSYSTEM -->
+      <section class="sl-sec" id="s-eco">
+        <div class="reveal">
+          <div class="sec-label">The network</div>
+          <h2 class="sec-h">Nothing here is built <em>alone</em>.</h2>
+        </div>
+        <div class="sl-eco reveal">
+          <div class="hero3d-mount">
+            <div id="hero3d-root" data-hero-background="transparent" data-hero-height="100%" data-hero-quality="high"></div>
+          </div>
+        </div>
       </section>
 
       <!-- 07 CTA -->
@@ -906,9 +929,17 @@
       total=frame.offsetHeight;
       if(!total||!W) return;
       frameTop=docTop(frame);
-      /* land the ground crossing on a flat run between pulses, so the roots
-         leave a clean point rather than the side of a spike */
-      groundY=Math.round((total*0.905-PULSE_P*0.62)/PULSE_P)*PULSE_P+PULSE_P*0.62;
+      /* Anchor the ground crossing to the Net Plus section itself, not to a
+         fixed fraction of page height. A fraction silently moves the moment a
+         section is added or removed: inserting one above the CTA pushed 0.905
+         clean past Net Plus and buried the roots in the wrong section. */
+      var rootSec=document.getElementById('s-roots');
+      var anchor=rootSec
+        ? docTop(rootSec)-frameTop+rootSec.offsetHeight*0.78
+        : total*0.905;
+      /* then land it on a flat run between pulses, so the roots leave a clean
+         point rather than the side of a spike */
+      groundY=Math.round((anchor-PULSE_P*0.62)/PULSE_P)*PULSE_P+PULSE_P*0.62;
 
       svg.setAttribute('width',W);
       svg.setAttribute('height',total);
@@ -1188,4 +1219,5 @@
     setTimeout(rebuild,900);
   })();
 </script>
+<script type="module" src="hero3d/hero3d.js"></script>
 </body></html>
