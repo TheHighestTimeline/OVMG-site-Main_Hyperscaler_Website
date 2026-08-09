@@ -51,7 +51,6 @@ const O_SOURCE = path.join(IMAGES, 'ovmg-o-stone.webp');
 // then re-run `node prepare-assets.mjs`.
 const LOGO_SOURCES = [
   { id: 'velatech', file: 'logo-velatech.png' },
-  { id: 'tlg-consulting', file: 'logo-tlg-consulting.png' },
   { id: 'solr-energy', file: 'logo-solr-energy.png' },
   { id: 'bright-sun-solar', file: 'logo-bright-sun-solar.png' },
   { id: 'ess', file: 'logo-ess.png' },

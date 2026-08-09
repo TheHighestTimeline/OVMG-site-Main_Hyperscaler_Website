@@ -13,19 +13,6 @@
     "sourceHeight": 149
   },
   {
-    "id": "tlg-consulting",
-    "file": "tlg-consulting.webp",
-    "width": 496,
-    "height": 360,
-    "aspect": 1.3778,
-    "meanLuminance": 0.5807,
-    "opaquePixelRatio": 0.4176,
-    "tone": "mixed",
-    "sourceFile": "images/logo-tlg-consulting.png",
-    "sourceWidth": 496,
-    "sourceHeight": 360
-  },
-  {
     "id": "solr-energy",
     "file": "solr-energy.webp",
     "width": 445,

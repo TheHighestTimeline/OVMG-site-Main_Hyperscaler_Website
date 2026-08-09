@@ -161,9 +161,8 @@ describe('tone handling', () => {
 
   it('gives only the dark-ink marks an outline to read against', () => {
     const byId = new Map(resolvePartners(PARTNERS).map((p) => [p.id, p]));
-    // Dark green/black and deep blue type needs something behind it.
+    // Dark green/black type needs something behind it.
     expect(byId.get('ess')!.halo).toBeGreaterThan(0);
-    expect(byId.get('tlg-consulting')!.halo).toBeGreaterThan(0);
     // Bright marks read on their own and get nothing.
     expect(byId.get('velatech')!.halo).toBe(0);
     expect(byId.get('ram-global')!.halo).toBe(0);

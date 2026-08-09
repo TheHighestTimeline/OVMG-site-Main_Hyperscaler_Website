@@ -32812,7 +32812,7 @@ var wy = [
 		id: "solr-energy",
 		name: "SOLR Energy",
 		logoUrl: "partners/solr-energy.webp",
-		ring: 0,
+		ring: 1,
 		phase: 3.64,
 		scale: .86,
 		emphasis: .92,
@@ -32820,21 +32820,6 @@ var wy = [
 		tone: "light",
 		plate: "none",
 		aspectHint: 1.2361,
-		active: !0
-	},
-	{
-		id: "tlg-consulting",
-		name: "TLG Consulting",
-		logoUrl: "partners/tlg-consulting.webp",
-		ring: 1,
-		phase: 1.7,
-		scale: .86,
-		emphasis: .86,
-		padding: .05,
-		tone: "mixed",
-		plate: "none",
-		halo: .58,
-		aspectHint: 1.3778,
 		active: !0
 	},
 	{

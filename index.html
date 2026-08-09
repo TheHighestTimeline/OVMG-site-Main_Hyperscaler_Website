@@ -158,7 +158,11 @@
   @media (max-width:520px){.orbit-stage{width:330px;height:330px;} .node .chip{width:46px;height:46px;margin:-23px;} .node .chip img{width:28px;height:28px;}}
 
   /* boxless partner grid */
-  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:60px 48px;margin-top:48px;align-items:end;}
+  /* Flex, not grid: with five partners a 3-column grid leaves a hole in the
+     last row that reads as a missing logo. Wrapping flex centres the short
+     row instead, so 3 + 2 looks deliberate. */
+  .pgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:60px 48px;margin-top:48px;align-items:flex-end;}
+  .pgrid .pcard{flex:0 0 calc((100% - 96px)/3);}
   .pcard{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:16px;text-decoration:none;transition:transform .25s;}
   .pcard:hover{transform:translateY(-5px);}
   .pcard img{height:104px;max-width:100%;object-fit:contain;filter:brightness(1.08);transition:filter .25s;}
@@ -229,13 +233,15 @@
   .mobile-close{position:absolute;top:18px;right:20px;background:none;border:none;color:#fff;cursor:pointer;padding:8px;}
 
   @media (max-width:960px){
-    .hero-grid,.duo,.cards3,.cards6,.trip,.proof-grid,.pgrid,.fgrid,.qgrid{grid-template-columns:1fr!important;}
-    .cards6,.trip,.pgrid{grid-template-columns:1fr 1fr!important;}
+    .hero-grid,.duo,.cards3,.cards6,.trip,.proof-grid,.fgrid,.qgrid{grid-template-columns:1fr!important;}
+    .cards6,.trip{grid-template-columns:1fr 1fr!important;}
+    .pgrid .pcard{flex-basis:calc((100% - 48px)/2);}
     .stew{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:768px){
     nav{display:none;} .mobile-menu-btn{display:block;} .header-inner .btn-primary{display:none;}
-    .cards3,.cards6,.trip,.pgrid,.proof-grid{grid-template-columns:1fr!important;}
+    .cards3,.cards6,.trip,.proof-grid{grid-template-columns:1fr!important;}
+    .pgrid .pcard{flex-basis:100%;}
     .stat{border-right:none;border-bottom:1px solid var(--border);padding-bottom:16px;}
     .ctaband{flex-direction:column;align-items:flex-start;} .mission-box{padding:32px;}
   }
@@ -451,7 +457,7 @@
 
   <section class="sec" style="padding-top:64px;padding-bottom:64px;"><div class="section reveal">
     <div class="sec-label">The Network</div><h2 class="sec-h">Powered by the <em>network</em>.</h2><p class="sec-sub">And we are adding partners, capital relationships, and sites all the time.</p>
-    <div class="pgrid reveal"><a class="pcard" href="https://velatech.com" target="_blank" rel="noopener"><img src="images/logo-velatech.png" alt="Vela Tech"><span>velatech.com</span></a><a class="pcard" href="https://solr.energy" target="_blank" rel="noopener"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><span>solr.energy</span></a><a class="pcard" href="https://energystoragesolutionsllc.com" target="_blank" rel="noopener"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><span>energystoragesolutionsllc.com</span></a><a class="pcard" href="https://tlgconsulting.tech" target="_blank" rel="noopener"><img src="images/logo-tlg-consulting.png" alt="TLG Consulting"><span>tlgconsulting.tech</span></a><a class="pcard" href="https://brightsun.solar" target="_blank" rel="noopener"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><span>brightsun.solar</span></a><a class="pcard" href="https://ramgellc.com" target="_blank" rel="noopener"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises"><span>ramgellc.com</span></a></div>
+    <div class="pgrid reveal"><a class="pcard" href="https://velatech.com" target="_blank" rel="noopener"><img src="images/logo-velatech.png" alt="Vela Tech"><span>velatech.com</span></a><a class="pcard" href="https://solr.energy" target="_blank" rel="noopener"><img src="images/logo-solr-energy.png" alt="SOLR Energy"><span>solr.energy</span></a><a class="pcard" href="https://energystoragesolutionsllc.com" target="_blank" rel="noopener"><img src="images/logo-ess.png" alt="Energy Storage Solutions"><span>energystoragesolutionsllc.com</span></a><a class="pcard" href="https://brightsun.solar" target="_blank" rel="noopener"><img src="images/logo-bright-sun-solar.png" alt="Bright Sun Solar"><span>brightsun.solar</span></a><a class="pcard" href="https://ramgellc.com" target="_blank" rel="noopener"><img src="images/logo-ram-global.png" alt="RAM Global Enterprises"><span>ramgellc.com</span></a></div>
   </div></section>
 
   

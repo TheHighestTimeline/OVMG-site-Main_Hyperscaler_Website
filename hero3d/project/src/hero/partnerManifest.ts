@@ -90,7 +90,11 @@ export const PARTNERS: PartnerDefinition[] = [
     id: 'solr-energy',
     name: 'SOLR Energy',
     logoUrl: 'partners/solr-energy.webp',
-    ring: 0,
+    // Moved out to ring 1 when TLG Consulting was removed. TLG was the sole
+    // occupant of ring 1, and leaving it vacant drew an empty track through
+    // the system. Five partners across five rings, one each, keeps every
+    // track earning its place and preserves the aspect-ratio ordering below.
+    ring: 1,
     phase: 3.64,
     scale: 0.86,
     emphasis: 0.92,
@@ -98,23 +102,6 @@ export const PARTNERS: PartnerDefinition[] = [
     tone: 'light',
     plate: 'none',
     aspectHint: 1.2361,
-    active: true,
-  },
-  {
-    id: 'tlg-consulting',
-    name: 'TLG Consulting',
-    logoUrl: 'partners/tlg-consulting.webp',
-    ring: 1,
-    phase: 1.7,
-    scale: 0.86,
-    emphasis: 0.86,
-    padding: 0.05,
-    tone: 'mixed',
-    // Deep-blue wordmark under the lion: no plaque, but a feathered glow so
-    // the dark type still separates from the field.
-    plate: 'none',
-    halo: 0.58,
-    aspectHint: 1.3778,
     active: true,
   },
   {

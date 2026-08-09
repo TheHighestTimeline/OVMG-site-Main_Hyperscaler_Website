@@ -92,7 +92,7 @@ export interface LogoHaloMaterial extends THREE.ShaderMaterial {
  * A halo that follows the artwork's own outline.
  *
  * Marks drawn in dark ink — Energy Storage Solutions' dark green and black
- * type, TLG's deep blue wordmark — vanish against a dark field, and partner
+ * type, for one — vanish against a dark field, and partner
  * trademarks may never be recoloured. The obvious fix is a plate behind them,
  * but a plate is exactly the "bubble" this design is trying to avoid, and a
  * soft radial glow is just a blurrier bubble: it still reads as an oval.
