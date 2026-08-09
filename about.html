@@ -355,13 +355,17 @@
   .sl-frame{position:relative;max-width:1240px;margin:0 auto;padding:0 var(--sl-pad);}
   #slLayer{position:absolute;top:0;left:var(--sl-pad);width:var(--sl-col);pointer-events:none;z-index:0;overflow:visible;}
   .sl-col{margin-left:var(--sl-col);padding-left:var(--sl-gap);position:relative;z-index:1;min-width:0;}
-  .sl-sec{padding:88px 0;position:relative;}
+  .sl-sec{padding:48px 0;position:relative;}
   .sl-sec:first-child{padding-top:30px;}
   .sl-lede{font-size:16.5px;color:var(--infra);line-height:1.75;margin-top:18px;max-width:620px;}
 
   /* -- 02 the three eras -- */
-  .sl-era-track{position:relative;height:300vh;}
+  /* The heading lives INSIDE the pin. Left outside it, the pin centres only the
+     panel in a full viewport box and opens a dead ~350px hole under the heading. */
+  .sl-era-track{position:relative;height:270vh;}
   .sl-era-pin{position:sticky;top:70px;height:calc(100vh - 70px);height:calc(100svh - 70px);display:flex;align-items:center;overflow:hidden;}
+  .sl-era-inner{flex:1 1 auto;min-width:0;}
+  .sl-era-head{margin-bottom:30px;}
   /* flex:0 0 auto is load-bearing: as a flex item the rail would shrink its 300% back to one column */
   .sl-era-rail{display:flex;flex:0 0 auto;width:300%;will-change:transform;}
   .sl-era{flex:0 0 33.3333%;width:33.3333%;min-width:0;padding-right:44px;border-left:2px solid var(--gray,#2A3448);padding-left:26px;transition:border-color .45s ease,opacity .45s ease;opacity:.42;}
@@ -374,63 +378,70 @@
   /* -- 03 the statement -- */
   .sl-stmt{font-size:clamp(23px,3.1vw,37px);font-weight:800;color:var(--white);line-height:1.28;letter-spacing:-0.02em;max-width:780px;}
 
-  /* -- 04 values as decisions -- */
-  .sl-vlist{margin-top:34px;}
-  .sl-vrow{display:flex;align-items:flex-start;gap:18px;padding:24px 0;border-bottom:1px solid var(--border);}
-  .sl-vrow:last-child{border-bottom:none;}
-  .sl-vidx{font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--infra);width:28px;flex:0 0 28px;padding-top:4px;}
+  /* -- 04 values as decisions --
+     Vertical sticky stack: each card pins, the next scrolls up over it. Cards
+     need an opaque background or the one beneath shows through, and each sticks
+     a few px lower than the last so the growing stack stays visible. */
+  /* padding-bottom gives the sixth card its own dwell: without it the container
+     ends the moment card six pins, and the whole stack releases at once */
+  .sl-vlist{margin-top:30px;padding-bottom:60px;}
+  #s-values{padding-bottom:0;}
+  .sl-vrow{position:sticky;top:calc(100px + var(--i) * 13px);z-index:var(--i);
+    display:flex;align-items:flex-start;gap:18px;min-height:164px;
+    background:var(--graphite);border:1px solid var(--border);border-radius:14px;
+    padding:26px 30px;margin-bottom:54px;
+    box-shadow:0 -14px 44px rgba(0,0,0,.55);}
+  .sl-vrow:last-child{margin-bottom:0;}
+  .sl-vidx{font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--sky);width:28px;flex:0 0 28px;padding-top:4px;}
   .sl-vbody{min-width:0;}
-  .sl-vprin{font-weight:700;font-size:17px;color:var(--white);letter-spacing:-0.01em;}
-  .sl-vdec{margin-top:6px;font-size:14.5px;color:var(--infra);line-height:1.7;}
+  .sl-vprin{font-weight:700;font-size:18px;color:var(--white);letter-spacing:-0.01em;}
+  .sl-vdec{margin-top:8px;font-size:14.5px;color:var(--infra);line-height:1.7;max-width:640px;}
   .sl-vdec b{color:var(--sky);font-weight:600;}
 
   /* -- 05 the team -- */
-  .sl-team{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:36px;}
-  .sl-person{background:var(--graphite);border:1px solid var(--border);border-radius:13px;padding:16px;min-width:0;transition:transform .3s,border-color .3s;outline:none;}
+  .sl-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:34px;}
+  .sl-person{background:var(--graphite);border:1px solid var(--border);border-radius:13px;padding:26px 28px;min-width:0;transition:transform .3s,border-color .3s;outline:none;}
   .sl-person:hover,.sl-person:focus-visible{transform:translateY(-4px);border-color:var(--border-lit);}
   .sl-person:focus-visible{box-shadow:0 0 0 2px var(--sky);}
-  /* unresolved portrait: sparse point cloud, resolves to photo on hover/focus. no blur filters. */
-  .sl-av{position:relative;height:152px;border-radius:9px;overflow:hidden;background-color:#0E1523;
-    background-image:
-      radial-gradient(circle at 50% 40%, rgba(68,199,255,.20), transparent 64%),
-      radial-gradient(rgba(216,220,226,.32) 1px, transparent 1.3px),
-      radial-gradient(rgba(30,107,255,.30) 1px, transparent 1.3px);
-    background-size:100% 100%, 7px 7px, 12px 12px;
-    background-position:0 0, 0 0, 3px 5px;}
-  .sl-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;}
-  .sl-person:hover .sl-av img,.sl-person:focus-within .sl-av img,.sl-person:focus-visible .sl-av img{opacity:1;}
-  .sl-carry{font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-top:15px;}
-  .sl-name{font-weight:700;font-size:16px;color:var(--white);margin-top:7px;}
-  .sl-role{font-size:12.5px;color:var(--infra);margin-top:3px;line-height:1.5;}
+  .sl-carry{font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);}
+  .sl-name{font-weight:700;font-size:19px;color:var(--white);margin-top:9px;letter-spacing:-0.01em;}
+  .sl-role{font-size:12.5px;color:var(--infra);margin-top:4px;line-height:1.5;}
+  .sl-bio{font-size:14px;color:var(--infra);line-height:1.72;margin-top:14px;}
 
   /* -- 06 into the ground -- */
   .sl-media{width:100%;aspect-ratio:16/7;border-radius:16px;border:1px solid var(--border);background:var(--graphite);margin-top:34px;}
   .sl-media[hidden]{display:none;}
 
-  @media (max-width:960px){
-    .sl-team{grid-template-columns:repeat(2,minmax(0,1fr));}
-  }
   @media (max-width:900px){
     :root{--sl-col:60px;--sl-gap:20px;}
-    .sl-sec{padding:64px 0;}
+    .sl-sec{padding:46px 0;}
     /* no pin below 900: three panels stack, same line morph, driven by page scroll */
     .sl-era-track{height:auto;}
     .sl-era-pin{position:relative;top:0;height:auto;display:block;overflow:visible;}
+    .sl-era-inner{width:auto;}
     .sl-era-rail{display:block;width:auto;transform:none!important;transition:none;}
     .sl-era{width:auto;flex:none;padding-right:0;opacity:1;margin-top:26px;}
     .sl-era p{max-width:none;}
+    .sl-vrow{min-height:0;margin-bottom:40px;padding:22px 22px;top:calc(88px + var(--i) * 10px);}
+  }
+  @media (max-width:700px){
+    .sl-team{grid-template-columns:minmax(0,1fr);}
   }
   @media (max-width:600px){
     :root{--sl-pad:18px;--sl-gap:16px;}
-    .sl-person{padding:14px;} .sl-av{height:128px;}
+    .sl-person{padding:20px 18px;}
+    .sl-vrow{padding:20px 18px;gap:12px;}
   }
   @media (prefers-reduced-motion:reduce){
     /* line renders complete and static, all nodes lit, everything readable with zero motion */
     .sl-era-track{height:auto;}
     .sl-era-pin{position:relative;top:0;height:auto;display:block;overflow:visible;}
+    .sl-era-inner{width:auto;}
     .sl-era-rail{display:block;width:auto;transform:none!important;transition:none;}
     .sl-era{width:auto;flex:none;padding-right:0;opacity:1;margin-top:26px;border-left-color:var(--sky);transition:none;}
-    .sl-person{transition:none;} .sl-av img{transition:none;}
+    /* no stacking either: six plain cards, all readable, nothing pinned */
+    .sl-vrow{position:static;margin-bottom:16px;min-height:0;box-shadow:none;}
+    .sl-person{transition:none;}
   }
 </style><style id="bubfix">.bub{overflow:visible!important}.bub .bw{overflow:visible!important}.bub .bl{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#3E8BFF!important;-webkit-text-fill-color:#3E8BFF!important;padding:0!important;margin:0!important;line-height:inherit!important;overflow:visible!important}h1 em,.hero-h1 em,.ph em,h2 em,.sec-h em,.mission-lead em,.px-title em{overflow:visible!important}  @media(max-width:700px){.spanel{padding:24px 20px 28px;}}
 </style><style id="mobilefix">
@@ -468,9 +479,14 @@
           <stop offset="45%" stop-color="#1E6BFF"/>
           <stop offset="100%" stop-color="#1E6BFF"/>
         </linearGradient>
+        <!-- roots are filled shapes, not strokes, so they grow by sweeping this
+             clip downward instead of by stroke-dashoffset -->
+        <clipPath id="slRootClip" clipPathUnits="userSpaceOnUse">
+          <rect id="slRootClipRect" x="0" y="0" width="0" height="0"/>
+        </clipPath>
       </defs>
       <path id="slGhost" fill="none" stroke="rgba(152,162,182,.16)" stroke-width="2"/>
-      <g id="slRoots"></g>
+      <g id="slRoots" clip-path="url(#slRootClip)"></g>
       <path id="slSignal" fill="none" stroke="url(#slGrad)" stroke-width="2.4" stroke-linecap="round"/>
       <g id="slNodes"></g>
       <circle id="slPulse" r="4.5" fill="#44C7FF" opacity="0"/>
@@ -496,12 +512,13 @@
 
       <!-- 02 THE THREE ERAS -->
       <section class="sl-sec" id="s-eras">
-        <div class="reveal">
-          <div class="sec-label">Where we came from</div>
-          <h2 class="sec-h">The line was a <em>waveform</em> before it was a conductor.</h2>
-        </div>
-        <div class="sl-era-track" id="slEraTrack" style="margin-top:30px;">
+        <div class="sl-era-track" id="slEraTrack">
           <div class="sl-era-pin">
+           <div class="sl-era-inner">
+            <div class="sl-era-head">
+              <div class="sec-label">Where we came from</div>
+              <h2 class="sec-h" style="margin-bottom:0;">The line was a <em>waveform</em> before it was a conductor.</h2>
+            </div>
             <div class="sl-era-rail" id="slEraRail">
               <div class="sl-era on" data-era>
                 <div class="sl-era-num">01</div>
@@ -522,6 +539,7 @@
                 <p>Power, land, compute, capital, environmental planning, and execution. Data center development where site, power, connectivity, and sustainability are designed as one system from day one.</p>
               </div>
             </div>
+           </div>
           </div>
         </div>
       </section>
@@ -538,22 +556,22 @@
           <h2 class="sec-h">What drives every decision we <em>make</em>.</h2>
         </div>
         <div class="sl-vlist">
-          <div class="sl-vrow" data-node><div class="sl-vidx">01</div><div class="sl-vbody">
+          <div class="sl-vrow" data-node style="--i:1"><div class="sl-vidx">01</div><div class="sl-vbody">
             <div class="sl-vprin">Clarity over complexity</div>
             <div class="sl-vdec">Infrastructure is complex enough. Our job is to make it legible, to our clients, our partners, and ourselves. We present information clearly, make commitments we can keep, and never obscure risk.</div></div></div>
-          <div class="sl-vrow" data-node><div class="sl-vidx">02</div><div class="sl-vbody">
+          <div class="sl-vrow" data-node style="--i:2"><div class="sl-vidx">02</div><div class="sl-vbody">
             <div class="sl-vprin">Sustainability by design</div>
             <div class="sl-vdec"><b>The decision:</b> we designed the water loop before we designed the building.</div></div></div>
-          <div class="sl-vrow" data-node><div class="sl-vidx">03</div><div class="sl-vbody">
+          <div class="sl-vrow" data-node style="--i:3"><div class="sl-vidx">03</div><div class="sl-vbody">
             <div class="sl-vprin">Scale with integrity</div>
             <div class="sl-vdec">Growing the portfolio matters, but not at the expense of execution quality. We take on projects we can deliver well, and we hold ourselves to the same standards at every scale.</div></div></div>
-          <div class="sl-vrow" data-node><div class="sl-vidx">04</div><div class="sl-vbody">
+          <div class="sl-vrow" data-node style="--i:4"><div class="sl-vidx">04</div><div class="sl-vbody">
             <div class="sl-vprin">Long-term thinking</div>
             <div class="sl-vdec">Hyperscale infrastructure lasts decades. We make decisions that serve the full life of a campus, not just the development cycle: the right site, the right power strategy, the right partners.</div></div></div>
-          <div class="sl-vrow" data-node><div class="sl-vidx">05</div><div class="sl-vbody">
+          <div class="sl-vrow" data-node style="--i:5"><div class="sl-vidx">05</div><div class="sl-vbody">
             <div class="sl-vprin">Partnership over transaction</div>
             <div class="sl-vdec">The best outcomes come from deep, long-term relationships. We invest in understanding needs before we propose solutions, and we build with partners rather than around them.</div></div></div>
-          <div class="sl-vrow" data-node><div class="sl-vidx">06</div><div class="sl-vbody">
+          <div class="sl-vrow" data-node style="--i:6"><div class="sl-vidx">06</div><div class="sl-vbody">
             <div class="sl-vprin">Leave it better</div>
             <div class="sl-vdec">Our whole motto: leave every site better than we found it. Regenerative by design, in the communities and landscapes where we build.</div></div></div>
         </div>
@@ -565,27 +583,41 @@
           <div class="sec-label">The people</div>
           <h2 class="sec-h">The site does not energize without <em>every node</em>.</h2>
         </div>
-        <!-- Role lines: edit the data-role value only. Empty means the line does not render. -->
+        <!-- No portraits. Bios are drawn from the Bennettsville deck with every
+             figure stripped out, per the no-numbers rule for this page: no dollar
+             amounts, no investor counts, no founding years. Role lines still come
+             from a single data-role attribute, so a title is a one-line edit;
+             empty renders nothing, which is why three cards show no title yet. -->
         <div class="sl-team">
-          <div class="sl-person" data-node tabindex="0" data-role="">
-            <div class="sl-av"></div>
+          <div class="sl-person" data-node data-role="Founder">
             <div class="sl-carry">Origin and vision</div>
             <div class="sl-name">Carsten Gauslow</div>
+            <p class="sl-bio">Founder of OneVibeMediaGroup and the wider OneVibe ecosystem, including OneVibeFest and OneVibeEarth, and founder of Carbon Sponge. Carbon Sponge grew straight out of the question behind this company: if a festival can pull more carbon out of the air than it puts in, so can a data center. He sets direction, opens the rooms, and drives the conversations that move a project from concept to funded execution.</p>
           </div>
-          <div class="sl-person" data-node tabindex="0" data-role="COO">
-            <div class="sl-av"></div>
+          <div class="sl-person" data-node data-role="Chief Operating Officer">
             <div class="sl-carry">Operations and execution</div>
             <div class="sl-name">Tanner South</div>
+            <p class="sl-bio">The integrator. Translates vision into operating structure and owns process, sequencing, diligence readiness, and the transaction stack end to end. Built the operating backend for multiple companies himself: entity structure, workflow systems, CRM and data room architecture, and the internal tooling that keeps them coordinated.</p>
           </div>
-          <div class="sl-person" data-node tabindex="0" data-role="">
-            <div class="sl-av"></div>
+          <div class="sl-person" data-node data-role="Chief Strategy Advisor">
             <div class="sl-carry">Strategy</div>
             <div class="sl-name">Austin Davis</div>
+            <p class="sl-bio">Digital pioneer, board member, and co-founder of technology ventures, with two decades as an active investor and advisor across AI and enterprise. Venture partner at Morgan Creek Capital, focused on AI, chips, blockchain, and data, and strategic advisor to Kraus Hamdani Aerospace and Cohesive AI. Helped pioneer distributed open-source protocol networks globally.</p>
           </div>
-          <div class="sl-person" data-node tabindex="0" data-role="">
-            <div class="sl-av"></div>
+          <div class="sl-person" data-node data-role="Chief Technology Officer">
             <div class="sl-carry">Technology and energy</div>
             <div class="sl-name">Justin Runnels</div>
+            <p class="sl-bio">Renewable energy and power infrastructure executive with two decades developing utility-scale solar, microgrids, thermal energy storage, hydrogen generation, and AI-ready energy infrastructure. Leads technology, energy, and infrastructure strategy across the campuses, from resilient power systems to sustainable energy for hyperscale, enterprise, and government compute. His expertise spans electrical engineering, financial engineering, military energy programs, and cybersecurity for mission-critical infrastructure.</p>
+          </div>
+          <div class="sl-person" data-node data-role="Senior Financial Advisor, RAM Global">
+            <div class="sl-carry">Capital and structure</div>
+            <div class="sl-name">Ronald Gross</div>
+            <p class="sl-bio">Four decades in capital formation, structured finance, and investment banking across institutional and private markets. Founded Ronald I. Gross Ltd. and has served as general partner on land syndications. Led investment banking and due diligence at Fox and Company, then the largest broker-dealer in Arizona, and has represented accredited investors managing discretionary capital for pension plans, physicians, and professional firms.</p>
+          </div>
+          <div class="sl-person" data-node data-role="Climate Technology Advisor">
+            <div class="sl-carry">Climate technology</div>
+            <div class="sl-name">Tim Sperry</div>
+            <p class="sl-bio">Inventor and climate technology entrepreneur focused on advanced cooling and carbon reduction for the built environment. His work in thermal management materials and carbon capture builds the pathways that let operators cut thermal load, improve efficiency, and support their sustainability goals. Anchors the Carbon Sponge relationship inside the platform.</p>
           </div>
         </div>
       </section>
@@ -672,12 +704,15 @@
   (function(){function reveal(){document.querySelectorAll('.reveal:not(.in),.rise:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*1.1&&r.bottom>-50)el.classList.add('in');});}
     window.addEventListener('load',function(){setTimeout(reveal,60);});setTimeout(reveal,600);window.addEventListener('scroll',reveal,{passive:true});})();
 
-  /* ---- team role lines: single edit point per card via data-role ---- */
+  /* ---- team role lines: one edit point per card, empty renders nothing ---- */
   (function(){
     document.querySelectorAll('.sl-person[data-role]').forEach(function(card){
       var r=(card.getAttribute('data-role')||'').trim();
       if(!r) return;
-      var d=document.createElement('div');d.className='sl-role';d.textContent=r;card.appendChild(d);
+      var d=document.createElement('div');d.className='sl-role';d.textContent=r;
+      var bio=card.querySelector('.sl-bio');
+      /* the title belongs above the bio, not appended after it */
+      if(bio) card.insertBefore(d,bio); else card.appendChild(d);
     });
   })();
 
@@ -699,13 +734,14 @@
         pulse=document.getElementById('slPulse'),
         eraTrack=document.getElementById('slEraTrack'),
         eraRail=document.getElementById('slEraRail'),
-        eraPanels=[].slice.call(document.querySelectorAll('[data-era]'));
+        eraPanels=[].slice.call(document.querySelectorAll('[data-era]')),
+        rootClipRect=document.getElementById('slRootClipRect');
 
     var mqReduce=matchMedia('(prefers-reduced-motion:reduce)'),
         mqStack=matchMedia('(max-width:900px)');
 
     var W=140, CX=77, S=1, total=0, len=0, groundY=0, frameTop=0,
-        nodeEls=[], rootPaths=[], rootsShown=false,
+        nodeEls=[], rootsShown=false, rootDeepest=0, rootFullH=0,
         onScreen=false, rafId=0, t0=null,
         ys=[], cum=[], lenScale=1;
 
@@ -794,7 +830,21 @@
 
     function svgEl(n){return document.createElementNS('http://www.w3.org/2000/svg',n);}
 
+    /* The pin centres its content in a viewport-tall box, so when it releases
+       there is half the leftover height sitting empty under the last panel,
+       stacking on top of the next section's padding. Pull the following section
+       up by exactly that slack. Measured, not guessed, so it tracks any viewport. */
+    function fitEraTrack(){
+      if(!eraTrack) return;
+      var pin=eraTrack.firstElementChild, inner=pin&&pin.firstElementChild;
+      if(!inner) return;
+      if(stacked()){ eraTrack.style.marginBottom=''; return; }
+      var slack=(pin.offsetHeight-inner.offsetHeight)/2;
+      eraTrack.style.marginBottom=slack>4?(-Math.round(slack))+'px':'';
+    }
+
     function build(){
+      fitEraTrack();
       var cs=getComputedStyle(document.documentElement).getPropertyValue('--sl-col');
       W=parseFloat(cs)||140; S=W/140; CX=W*0.55;
       total=frame.offsetHeight;
@@ -834,7 +884,7 @@
     }
 
     function buildRoots(){
-      rootsG.innerHTML=''; rootPaths=[];
+      rootsG.innerHTML='';
       var gl=svgEl('line');
       gl.setAttribute('x1',4); gl.setAttribute('x2',W-4);
       gl.setAttribute('y1',groundY); gl.setAttribute('y2',groundY);
@@ -851,7 +901,9 @@
           room=Math.min(total-groundY-30, 420*Math.max(S,0.5)),
           loX=W*0.05, hiX=W*0.95, maxDepth=3;
 
-      function limb(x,y,ang,len,depth,wid,seed){
+      rootDeepest=groundY;
+
+      function limb(x,y,ang,len,depth,w0,seed){
         /* Deflect off the column walls rather than clipping against them.
            Blocked horizontal travel is converted into depth, so a limb that
            reaches the edge dives instead of flattening out along it. Clipping
@@ -865,25 +917,13 @@
         var bow=(hash(seed)-0.5)*len*0.30,
             mx=clamp((x+ex)/2+Math.cos(ang2)*bow, loX, hiX),
             my=(y+ey)/2-Math.sin(ang2)*bow;
+        var w1=w0*0.46;                       /* taper along this limb */
         var p=svgEl('path');
-        p.setAttribute('d','M '+x.toFixed(2)+' '+y.toFixed(1)+
-                       ' Q '+mx.toFixed(2)+' '+my.toFixed(1)+', '+ex.toFixed(2)+' '+ey.toFixed(1));
-        p.setAttribute('fill','none');
-        p.setAttribute('stroke','#1E6BFF');
-        p.setAttribute('stroke-width',Math.max(0.55,wid).toFixed(2));
-        p.setAttribute('opacity',Math.max(0.22,0.62-depth*0.12).toFixed(2));
-        p.setAttribute('stroke-linecap','round');
+        p.setAttribute('d',taper(x,y,mx,my,ex,ey,w0,w1,seed));
+        p.setAttribute('fill','#1E6BFF');
+        p.setAttribute('opacity',Math.max(0.24,0.66-depth*0.11).toFixed(2));
         rootsG.appendChild(p);
-
-        var L=p.getTotalLength();
-        p.style.strokeDasharray=L;
-        if(rootsShown||mqReduce.matches){ p.style.strokeDashoffset=0; }
-        else{
-          p.style.strokeDashoffset=L;
-          /* stagger by depth, so the system grows outward from the trunk */
-          p.style.transition='stroke-dashoffset .5s cubic-bezier(.2,.7,.2,1) '+(depth*0.16).toFixed(2)+'s';
-        }
-        rootPaths.push(p);
+        if(ey>rootDeepest) rootDeepest=ey;
 
         if(depth>=maxDepth||len<15) return;
         var kids=depth<2?2:(hash(seed*1.7)>0.45?2:1);
@@ -895,19 +935,66 @@
                  volume the way a root ball does instead of racing to the sides */
               pull=-((ex-CX)/(W*0.5))*0.30,
               turn=dir*(0.20+0.40*h)-ang2*0.30+pull;
-          limb(ex,ey,ang2+turn,len*(0.54+0.20*hash(seed+i*5.1)),depth+1,wid*0.66,seed*2.1+i*7.9);
+          /* a child starts at its parent's tip width, so the taper is continuous
+             from trunk to hair tip rather than stepping at every junction */
+          limb(ex,ey,ang2+turn,len*(0.54+0.20*hash(seed+i*5.1)),depth+1,w1*1.06,seed*2.1+i*7.9);
         }
       }
 
       [-0.42,-0.21,0,0.21,0.42].forEach(function(a,i){
-        limb(bx,groundY,a,room*(0.30+0.09*hash(i*5.5)),0,1.75*Math.max(S,0.55),i*13.7+1);
+        limb(bx,groundY,a,room*(0.30+0.09*hash(i*5.5)),0,5.4*Math.max(S,0.5),i*13.7+1);
       });
+
+      rootFullH=(rootDeepest-groundY)+16;
+      rootClipRect.setAttribute('x',0);
+      rootClipRect.setAttribute('y',(groundY-4).toFixed(1));
+      rootClipRect.setAttribute('width',W);
+      setRootClip(rootsShown||mqReduce.matches?rootFullH:0);
     }
 
+    /* A stroke cannot change width along its length, so each limb is drawn as a
+       filled outline: walk the curve, offset by a half width that shrinks from
+       base to tip, and wander a little perpendicular on the way. That continuous
+       taper plus the gnarl is what separates a root from a bent wire. */
+    function taper(x0,y0,cx,cy,x1,y1,w0,w1,seed){
+      var N=12, A=[], B=[], i, u, iu, px, py, tx, ty, m, nx, ny, g, hw;
+      for(i=0;i<=N;i++){
+        u=i/N; iu=1-u;
+        px=iu*iu*x0+2*iu*u*cx+u*u*x1;
+        py=iu*iu*y0+2*iu*u*cy+u*u*y1;
+        tx=2*(iu*(cx-x0)+u*(x1-cx));
+        ty=2*(iu*(cy-y0)+u*(y1-cy));
+        m=Math.sqrt(tx*tx+ty*ty)||1;
+        nx=-ty/m; ny=tx/m;
+        g=(hash(seed*7.3+i*3.1)-0.5)*w0*0.6*Math.sin(u*Math.PI);   /* gnarl, zero at both ends */
+        px+=nx*g; py+=ny*g;
+        hw=(w0*iu+w1*u)*0.5;
+        A.push([px+nx*hw, py+ny*hw]);
+        B.push([px-nx*hw, py-ny*hw]);
+      }
+      var d='M '+A[0][0].toFixed(2)+' '+A[0][1].toFixed(2);
+      for(i=1;i<=N;i++) d+=' L '+A[i][0].toFixed(2)+' '+A[i][1].toFixed(2);
+      for(i=N;i>=0;i--) d+=' L '+B[i][0].toFixed(2)+' '+B[i][1].toFixed(2);
+      return d+' Z';
+    }
+
+    function setRootClip(h){
+      if(rootClipRect) rootClipRect.setAttribute('height',Math.max(0,h).toFixed(1));
+    }
+
+    /* grow the system by sweeping the clip downward: one animation instead of
+       sixty-five, and it reads as roots pushing into the ground */
     function showRoots(){
       if(rootsShown) return;
       rootsShown=true;
-      rootPaths.forEach(function(p){p.style.strokeDashoffset=0;});
+      if(mqReduce.matches){ setRootClip(rootFullH); return; }
+      var start=null;
+      requestAnimationFrame(function step(ts){
+        if(start===null) start=ts;
+        var u=clamp((ts-start)/950,0,1);
+        setRootClip(rootFullH*smooth(u));
+        if(u<1) requestAnimationFrame(step);
+      });
     }
 
     function buildNodes(){
@@ -956,6 +1043,30 @@
       if(!rootsShown&&probe>groundY-window.innerHeight*0.45) showRoots();
     }
 
+    /* Scroll position to panel index, with holds. Travel is not linear: each
+       panel parks for a stretch before the next one moves in. Panel 02 gets the
+       longest dwell because the Transition era is the hinge of the story and
+       needs a beat to land before the Current Era arrives. */
+    var ERA_PHASE=[
+      {to:0.14, at:0},              /* hold on 01            */
+      {to:0.36, move:[0,1]},        /* 01 -> 02              */
+      {to:0.62, at:1},              /* the long hold on 02   */
+      {to:0.84, move:[1,2]},        /* 02 -> 03              */
+      {to:2.00, at:2}               /* hold on 03            */
+    ];
+    function railPos(p){
+      var lo=0;
+      for(var i=0;i<ERA_PHASE.length;i++){
+        var ph=ERA_PHASE[i];
+        if(p<ph.to){
+          if(!ph.move) return ph.at;
+          return ph.move[0]+(ph.move[1]-ph.move[0])*smooth(clamp((p-lo)/(ph.to-lo),0,1));
+        }
+        lo=ph.to;
+      }
+      return ERA_PHASE[ERA_PHASE.length-1].at;
+    }
+
     function eras(){
       if(!eraTrack||!eraRail) return;
       if(stacked()){
@@ -967,9 +1078,9 @@
       var travel=eraTrack.offsetHeight-pin.offsetHeight;
       if(travel<=0) return;
       var p=clamp(-eraTrack.getBoundingClientRect().top/travel,0,1);
-      var n=eraPanels.length;
-      eraRail.style.transform='translate3d(-'+(p*100*(n-1)/n).toFixed(3)+'%,0,0)';
-      var active=Math.min(n-1,Math.floor(p*n+0.0001));
+      var n=eraPanels.length, pos=railPos(p);
+      eraRail.style.transform='translate3d(-'+(pos*(100/n)).toFixed(3)+'%,0,0)';
+      var active=Math.round(pos);
       eraPanels.forEach(function(el,i){el.classList.toggle('on',i===active);});
     }
 
