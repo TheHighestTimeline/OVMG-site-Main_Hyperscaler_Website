@@ -362,8 +362,12 @@
   /* -- 02 the three eras -- */
   /* The heading lives INSIDE the pin. Left outside it, the pin centres only the
      panel in a full viewport box and opens a dead ~350px hole under the heading. */
-  .sl-era-track{position:relative;height:270vh;}
-  .sl-era-pin{position:sticky;top:70px;height:calc(100vh - 70px);height:calc(100svh - 70px);display:flex;align-items:center;overflow:hidden;}
+  /* 200vh, not 270: the track is pure scroll runway for the horizontal travel,
+     and a longer one just means further to scroll for the same three panels.
+     The pin is capped well under a full viewport too, because every pixel of
+     pin taller than its content becomes dead space above and below it. */
+  .sl-era-track{position:relative;height:200vh;}
+  .sl-era-pin{position:sticky;top:70px;height:calc(100vh - 70px);height:min(calc(100svh - 70px),520px);display:flex;align-items:center;overflow:hidden;}
   .sl-era-inner{flex:1 1 auto;min-width:0;}
   .sl-era-head{margin-bottom:30px;}
   /* flex:0 0 auto is load-bearing: as a flex item the rail would shrink its 300% back to one column */
@@ -386,12 +390,18 @@
      ends the moment card six pins, and the whole stack releases at once */
   .sl-vlist{margin-top:30px;padding-bottom:60px;}
   #s-values{padding-bottom:0;}
-  .sl-vrow{position:sticky;top:calc(100px + var(--i) * 13px);z-index:var(--i);
+  /* every card pins at the SAME top so each one completely covers the last.
+     Offsetting them stepwise left a sliver of the card beneath showing, which
+     orphaned its title above the incoming card. */
+  .sl-vrow{position:sticky;top:100px;z-index:var(--i);
     display:flex;align-items:flex-start;gap:18px;min-height:164px;
     background:var(--graphite);border:1px solid var(--border);border-radius:14px;
     padding:26px 30px;margin-bottom:54px;
     box-shadow:0 -14px 44px rgba(0,0,0,.55);}
-  .sl-vrow:last-child{margin-bottom:0;}
+  /* Do NOT zero the last card's margin. A sticky element releases at
+     container bottom minus its own margin and height, so a last card with no
+     bottom margin travels 54px further down than the rest and uncovers the
+     card behind it, orphaning that card's title. All margins must match. */
   .sl-vidx{font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--sky);width:28px;flex:0 0 28px;padding-top:4px;}
   .sl-vbody{min-width:0;}
   .sl-vprin{font-weight:700;font-size:18px;color:var(--white);letter-spacing:-0.01em;}
@@ -422,7 +432,7 @@
     .sl-era-rail{display:block;width:auto;transform:none!important;transition:none;}
     .sl-era{width:auto;flex:none;padding-right:0;opacity:1;margin-top:26px;}
     .sl-era p{max-width:none;}
-    .sl-vrow{min-height:0;margin-bottom:40px;padding:22px 22px;top:calc(88px + var(--i) * 10px);}
+    .sl-vrow{min-height:0;margin-bottom:40px;padding:22px 22px;top:88px;}
   }
   @media (max-width:700px){
     .sl-team{grid-template-columns:minmax(0,1fr);}
@@ -838,13 +848,34 @@
       if(!eraTrack) return;
       var pin=eraTrack.firstElementChild, inner=pin&&pin.firstElementChild;
       if(!inner) return;
-      if(stacked()){ eraTrack.style.marginBottom=''; return; }
+      if(stacked()){ eraTrack.style.marginTop=''; eraTrack.style.marginBottom=''; return; }
+      /* Cancel the slack at BOTH ends, not just the bottom. The empty half above
+         the content pushed the heading down the page just as far as the empty
+         half below pushed the next section away. Capped on the top side so the
+         track can never ride up over the cards above it. */
       var slack=(pin.offsetHeight-inner.offsetHeight)/2;
-      eraTrack.style.marginBottom=slack>4?(-Math.round(slack))+'px':'';
+      if(slack>4){
+        eraTrack.style.marginTop=(-Math.round(Math.min(slack,80)))+'px';
+        eraTrack.style.marginBottom=(-Math.round(slack))+'px';
+      }else{ eraTrack.style.marginTop=''; eraTrack.style.marginBottom=''; }
+    }
+
+    /* Level the stack. Cards pin at the same top, so a card shorter than the one
+       under it leaves that card's rounded bottom edge showing. Content length
+       varies, so the height has to be measured rather than assumed. */
+    function fitValueCards(){
+      var rows=document.querySelectorAll('.sl-vrow');
+      if(!rows.length) return;
+      rows.forEach(function(r){r.style.height='';});
+      if(mqReduce.matches) return;            /* static list, nothing overlaps */
+      var h=0;
+      rows.forEach(function(r){ if(r.offsetHeight>h) h=r.offsetHeight; });
+      rows.forEach(function(r){r.style.height=h+'px';});
     }
 
     function build(){
       fitEraTrack();
+      fitValueCards();
       var cs=getComputedStyle(document.documentElement).getPropertyValue('--sl-col');
       W=parseFloat(cs)||140; S=W/140; CX=W*0.55;
       total=frame.offsetHeight;
@@ -1048,11 +1079,13 @@
        longest dwell because the Transition era is the hinge of the story and
        needs a beat to land before the Current Era arrives. */
     var ERA_PHASE=[
-      {to:0.14, at:0},              /* hold on 01            */
+      {to:0.10, at:0},              /* short hold on 01      */
       {to:0.36, move:[0,1]},        /* 01 -> 02              */
-      {to:0.62, at:1},              /* the long hold on 02   */
-      {to:0.84, move:[1,2]},        /* 02 -> 03              */
-      {to:2.00, at:2}               /* hold on 03            */
+      {to:0.64, at:1},              /* the long hold on 02   */
+      {to:0.88, move:[1,2]},        /* 02 -> 03              */
+      {to:2.00, at:2}               /* hold on 03, trimmed so the section does
+                                       not sit still for long after the last
+                                       panel lands                            */
     ];
     function railPos(p){
       var lo=0;
