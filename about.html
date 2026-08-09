@@ -443,15 +443,24 @@
   .sl-role{font-size:12.5px;color:var(--infra);margin-top:4px;line-height:1.5;}
   .sl-bio{font-size:14px;color:var(--infra);line-height:1.72;margin-top:14px;}
 
-  /* -- partner ecosystem, the 3D orbit, sitting above the CTA --
-     The bundle measures its responsive profile from this container rather than
-     the viewport, so the mount must carry a definite height. Shorter than the
-     home page hero: this is a section on a page, not the page's opening. */
-  .sl-eco{margin-top:28px;}
-  .hero3d-mount{position:relative;width:100%;height:clamp(380px,46vh,520px);}
-  #hero3d-root{position:absolute;inset:0;}
-  @media(max-width:900px){.hero3d-mount{height:clamp(320px,40vh,420px);}}
-  @media(max-width:560px){.hero3d-mount{height:340px;}}
+  /* -- the What If film, sitting above the CTA --
+     Adapted from the supplied film band: the eyebrow and heading use this
+     page's own .sec-label / .sec-h rather than the mono and Cinzel the
+     original called for, since neither font is loaded here and this page
+     ships zero monospace. The play button's backdrop-filter is dropped for
+     the same reason the rest of the page avoids it. */
+  .sl-film{position:relative;margin:28px 0 0;aspect-ratio:16/9;overflow:hidden;
+    border:1px solid var(--border);border-radius:14px;background:#000;}
+  .sl-film-video{width:100%;height:100%;object-fit:cover;display:block;}
+  .sl-film-play{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;
+    display:grid;place-items:center;cursor:pointer;
+    background:rgba(12,15,24,.55);border:1px solid rgba(216,220,226,.55);
+    transition:transform .25s ease,background .25s ease,border-color .25s ease,opacity .4s ease;}
+  .sl-film-play svg{width:34px;height:34px;fill:var(--stone);margin-left:4px;}
+  .sl-film-play:hover{transform:scale(1.06);background:rgba(30,107,255,.30);border-color:var(--electric);}
+  .sl-film-play:focus-visible{outline:2px solid var(--sky);outline-offset:4px;}
+  .sl-film.is-playing .sl-film-play{opacity:0;pointer-events:none;}
+  @media(max-width:640px){.sl-film-play{width:64px;height:64px;} .sl-film-play svg{width:26px;height:26px;}}
 
   /* -- 06 into the ground -- */
   .sl-media{width:100%;aspect-ratio:16/7;border-radius:16px;border:1px solid var(--border);background:var(--graphite);margin-top:34px;}
@@ -679,17 +688,24 @@
         <div class="sl-media" id="slMediaSlot" hidden></div>
       </section>
 
-      <!-- 06b THE ECOSYSTEM -->
-      <section class="sl-sec" id="s-eco">
+      <!-- 06b THE FILM -->
+      <section class="sl-sec" id="s-film">
         <div class="reveal">
-          <div class="sec-label">The network</div>
-          <h2 class="sec-h">Nothing here is built <em>alone</em>.</h2>
+          <div class="sec-label">The film</div>
+          <h2 class="sec-h">What if data centers <em>gave more back</em> than they took?</h2>
         </div>
-        <div class="sl-eco reveal">
-          <div class="hero3d-mount">
-            <div id="hero3d-root" data-hero-background="transparent" data-hero-height="100%" data-hero-quality="high"></div>
-          </div>
-        </div>
+        <figure class="sl-film reveal">
+          <video class="sl-film-video"
+                 poster="images/ovmg-whatif-poster.jpg"
+                 preload="none" muted playsinline
+                 disablepictureinpicture controlslist="nodownload noplaybackrate"
+                 aria-label="OVMG brand film: what if data centers gave more back than they took?">
+            <source src="images/ovmg-whatif.mp4" type="video/mp4">
+          </video>
+          <button class="sl-film-play" type="button" aria-label="Play the film">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </figure>
       </section>
 
       <!-- 07 CTA -->
@@ -1218,6 +1234,49 @@
     /* content reveals change nothing about layout, but images and late reveals can: cheap safety remeasure */
     setTimeout(rebuild,900);
   })();
+  /* ---- the What If film ----
+     Silent autoplay once it is properly in view, click to play if the browser
+     blocks that. Never loops: the closing logo frame is the resting state. */
+  (function(){
+    var band=document.querySelector('.sl-film');
+    if(!band) return;
+    var video=band.querySelector('.sl-film-video'),
+        btn=band.querySelector('.sl-film-play'),
+        reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,
+        started=false;
+
+    function start(){
+      if(started) return;
+      started=true;
+      video.preload='auto';
+      band.classList.add('is-playing');
+      var p=video.play();
+      /* If the browser refuses (iOS in Low Power Mode blocks even muted
+         autoplay), put the button back. Hiding it on the optimistic assumption
+         that play() succeeds leaves a dead poster with no way to start it. */
+      if(p&&p.catch) p.catch(function(){
+        started=false;
+        band.classList.remove('is-playing');
+      });
+    }
+
+    btn.addEventListener('click',function(){
+      if(video.ended){ video.currentTime=0; video.play(); band.classList.add('is-playing'); return; }
+      start();
+    });
+
+    /* under reduced motion it never starts itself: the poster and button stand in */
+    if(!reduce&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(en){
+        en.forEach(function(e){ if(e.isIntersecting){ start(); io.disconnect(); } });
+      },{threshold:0.6});
+      io.observe(band);
+    }
+
+    video.addEventListener('ended',function(){
+      band.classList.remove('is-playing');
+      btn.setAttribute('aria-label','Replay the film');
+    });
+  })();
 </script>
-<script type="module" src="hero3d/hero3d.js"></script>
 </body></html>
