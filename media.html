@@ -314,12 +314,20 @@
 </style><style id="mediapage">
   .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px;}
   .chipstrip{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
-  .filmfig{margin-top:30px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#05070C;box-shadow:0 24px 60px rgba(0,0,0,.45);}
-  .filmfig video{display:block;width:100%;height:auto;}
-  .filmcap{font-size:12.5px;color:var(--infra);padding:14px 20px 16px;border-top:1px solid var(--border);}
-  .stack .spanel:nth-child(2){background:linear-gradient(135deg,rgba(68,199,255,.07),var(--graphite));}
-  .stack .spanel:nth-child(3){background:linear-gradient(135deg,rgba(124,58,237,.09),var(--graphite));}
-  .stack .spanel:nth-child(4){background:linear-gradient(135deg,rgba(30,107,255,.10),var(--graphite));}
+  /* Sticky stack: panels must be fully OPAQUE or they read through to the panel
+     beneath them as they slide over. The shared .spanel rule starts its gradient
+     on a 6%-alpha color, so we re-layer the tint over a solid base here. Each
+     panel also sticks 14px lower than the last, so the stack shows its edges. */
+  .stack .spanel{background:linear-gradient(135deg,rgba(30,107,255,.14),rgba(30,107,255,0) 62%),#161D2C;box-shadow:0 -14px 40px rgba(0,0,0,.55);}
+  .stack .spanel:nth-child(1){top:100px;z-index:1;}
+  .stack .spanel:nth-child(2){top:114px;z-index:2;background:linear-gradient(135deg,rgba(68,199,255,.15),rgba(68,199,255,0) 62%),#161D2C;}
+  .stack .spanel:nth-child(3){top:128px;z-index:3;background:linear-gradient(135deg,rgba(124,58,237,.17),rgba(124,58,237,0) 62%),#161D2C;}
+  .stack .spanel:nth-child(4){top:142px;z-index:4;background:linear-gradient(135deg,rgba(30,107,255,.18),rgba(30,107,255,0) 62%),#161D2C;}
+  .stack .spanel:last-child{margin-bottom:0;}
+  @media (max-width:700px){
+    .stack .spanel:nth-child(1){top:88px;} .stack .spanel:nth-child(2){top:98px;}
+    .stack .spanel:nth-child(3){top:108px;} .stack .spanel:nth-child(4){top:118px;}
+  }
   @media (max-width:960px){.grid4{grid-template-columns:1fr 1fr;}}
   @media (max-width:640px){.grid4{grid-template-columns:1fr;}}
 </style></head><body><div class="bg-depth"></div><canvas id="ripple"></canvas>
@@ -408,19 +416,6 @@
         </ul>
       </div>
     </div>
-  </div></section>
-
-  <!-- ===== OUR OWN WORK ===== -->
-  <section class="sec" style="padding-top:20px;"><div class="section">
-    <div class="reveal"><div class="sec-label">Our Own Work</div><h2 class="sec-h">We hold our own name to the <em>same</em> standard.</h2>
-    <p class="sec-sub">The clearest sample of how we work is what we make for ourselves. This is the OVMG brand film: same process, same team, on our own name.</p></div>
-    <figure class="filmfig reveal">
-      <video poster="images/ovmg-whatif-poster.jpg" preload="none" controls playsinline
-             controlslist="nodownload" aria-label="OVMG brand film: what if data centers gave more back than they took?">
-        <source src="images/ovmg-whatif.mp4" type="video/mp4">
-      </video>
-      <figcaption class="filmcap">OVMG brand film &mdash; What if data centers gave more back than they took?</figcaption>
-    </figure>
   </div></section>
 
   <!-- ===== WORK WITH US / EARLY CAREER ===== -->
